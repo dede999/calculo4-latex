@@ -1,0 +1,445 @@
+\documentclass[12pt,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[margin = 2cm]{geometry}
+\usepackage[colorlinks=false]{hyperref}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}{Lema}[section]
+\newtheorem{corollary}{Corolário}[theorem]
+\newtheorem{definition}{Definição}[section]
+\newtheorem{demonstration}{Demonstração}
+\newtheorem{obs}{Observação}
+\usepackage[rightcaption]{sidecap}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{dsfont}
+
+
+\title{Calculo IV - IME 2015}
+\author{André Luiz A Silveira}
+\date{Segundo Semestre}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Introdução}
+\label{chap:c1}
+
+\hspace{5mm} Eu criei esse livrinho pra ter um resumo e material de estudo. Espero que dê os resultados esperados para mim e vc também que estiver lendo esse material. 
+
+Esse PDF não tem intenção nenhuma de ser uma segunda lousa, quanto menos substituir as aulas, pois selecionei partes que são importantes para mim, mas podem não ser para outros. Essa é unicamente uma forma de me organizar e estudar, e que PODE ajudar a outras pessoas em outros momentos.\\
+
+Professor: 	Antonio Carlos Asperti (\href{mailto:asperti@ime.usp.br}{asperti@ime.usp.br})
+
+Livro usado: Um curso de Cáluclo -- Volumes 2 e 4
+
+Provas:
+\begin{description}
+\item[P1] 14-Set (2ªf - peso 1)
+\item[P2] 21-Out (4ªf - peso 1)
+\item[P3] 02-Dez (4ªf - peso 2)
+\item[P SUB] 07-Dez (2ªf - peso ?)
+\end{description}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.05\textwidth]{lucky}
+\caption{Boa Sorte, pessoal}
+\label{fig:lucky}
+\end{figure}
+
+
+
+\chapter{Integrais Impróprias}
+\label{chap:c2}
+
+\hspace{5mm} Assunto tratado entre 03/08/2015 e 05/08/2015
+\section{Conceitos}
+\label{sec:s21}
+
+\hspace{5mm} São expressões do tipo $\displaystyle{\int_a^{+ \infty}f(x)dx}$, $\displaystyle{\int_{-\infty}^{a} f(x)dx}$, $\displaystyle{\int_{-\infty}^{+ \infty}f(x)dx}$\\
+\vspace{15pt}
+
+Definição: Seja $f:{[a,+\infty)}\rightarrow \mathds{R}$ e suponha que $f$ seja integrável em $[a,t]$ para todo $t>a$. Assim definimos $$ \int_a^{+\infty}f(x)dx = \lim_{t\rightarrow\infty}\int_a^t f(x)dx$$ desde que exista o limite e seja finito.
+
+Neste caso, o o limite é a \underline{integral imprópria} de $f$ estendido ao intervalo $[a,+\infty)$.
+
+Se o limite existir e for finito, diremos se tratar de uma \underline{integral convergente}. Caso contrário, é uma \underline{integral divergente}.
+
+Exemplo 1:
+\begin{align*}
+\int_1^{+\infty}\frac{1}{x^2}dx &= \lim_{t\rightarrow + \infty}\int_1^t \frac{dx}{x^2}=\lim_{t\rightarrow + \infty}\left[\frac{x^{-2+1}}{-2+1}\right]_1^t = \lim_{t\rightarrow + \infty}\left[-\frac{1}{x}\right]_1^t = -\lim_{t\rightarrow + \infty}\left[\frac{1}{t}-1\right]=1
+\end{align*}
+
+Exemplo 2:
+\begin{align*}
+\int_1^{+\infty}\frac{dx}{x}= \lim_{t\rightarrow + \infty}\int_1^t\frac{dx}{x}= \left.\lim_{t\rightarrow + \infty}\ln x \right|_1^t = \lim_{t\rightarrow + \infty}\ln t - 0 = +\infty
+\end{align*}
+
+\section{Função definida por uma integral}
+\label{sec:s22}
+
+\hspace{5mm} Seja $f \in (-\infty, +\infty) \rightarrow \mathds{R}$ contínua e tal que $\displaystyle{\int_{-\infty}^x f(t)dt}$ exista $\displaystyle{\forall x \in \mathds{R}}$. Podemos afirmar que $F:\mathds{R}\rightarrow\mathds{R}$, $\displaystyle{F(x)=\int_{-\infty}^x f(t)dt}$. Fixe $a \in \mathds{R}$. Então:
+
+\begin{align*}
+\int_a^x f(t)dt &= \int_a^b f(t)dt + \int_b^x f(t)dt \\
+F(x) = \lim_{a\rightarrow - \infty}\int_a^xf(t)dt &= \underbrace{\int_{-\infty}^b f(t)dt}_{constante} + \underbrace{\int_b^x f(t)dt}_{H(x)}\\
+H(x) &= \int_a^x f(t)dt \\
+F(x) &= \underbrace{\int_{-\infty}^b f(t)dt}_{constante}+ \underbrace{H(x)}_{derivável} 
+\end{align*}
+
+$H$ é derivável e $H'(x) = f(x)$ (T.F.C.), logo $F$ é derivável e $F'(x)=H'(x)=f(x)$
+
+\vspace{20pt}
+Exemplo 1: Dada $f:\mathds{R}\rightarrow\mathds{R}$, $\hbox{f}(t)
+= \left\{ \begin{array}{rll}
+2 & \hbox{se} &  |t| \leq 1 \\
+0 & \hbox{se} &  |t|  > 1 \\
+\end{array}\right.$, esboçe o gráfico de $\displaystyle{F(x)=\int_{-\infty}^x f(t)dt}$
+\begin{SCfigure}
+\centering
+\includegraphics[width=0.5\textwidth]{enun}
+\caption{gráfico de f(x): exemplo 1}
+\label{fig:en1}
+\end{SCfigure}
+
+Resolução:
+\begin{itemize}
+\item se $\displaystyle{x<-1 \Rightarrow F(x) = \int_{-\infty}^x 0\hspace{1mm}dt = 0}$
+\item se $\displaystyle{ -1 \leq x < 1 \Rightarrow F(x) = \int_{-\infty}^{-1} f(t) dt + \int_{-1}^x f(t)dt = 0 + \int_{-1}^x \hspace{1mm}dt = 2x+2}$
+\item se $\displaystyle{ x \geq 1 \Rightarrow F(x) = \int_{-\infty}^{-1} f(t) dt + \int_{-1}^1 f(t)dt + \int_1^{+\infty}f(t)dt = 0 + 4+ \int_1^x 0 \hspace{1mm}dt = 4}$
+\end{itemize}
+
+$\hbox{F}(x)
+= \left\{ \begin{array}{rll}
+0 & \hbox{se} &  x <-1 \\
+2x+2 & \hbox{se} &  -1 \leq x < 1 \\
+4 & \hbox{se} & x \geq 1 \\
+\end{array}\right.$
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{resp}
+\caption{Gráfico Resultate da Operação}
+\label{fig:res1}
+\end{figure}
+\vspace{20pt}
+
+\hspace{5mm}Tente você mesmo: Esboçe o gráfico da função $\displaystyle{F(x) = \int_{-\infty}^x f(t)dt}$, onde $\hbox{f}(t)
+= \left\{ \begin{array}{rll}
+\displaystyle{\frac{1}{t}} & \hbox{se} &  t \geq 1 \\
+0 & \hbox{se} &  t < 1 \\
+\end{array}\right.$
+
+\section{Critério de Comaparação}
+\label{sec:23}
+
+\hspace{5mm} Ferramenta Importante na classificação de integrais impróprias
+
+\begin{theorem}[Critério de Comparação]
+Sejam $f$ e $g$ funções integráveis em $[a;t]$ para todo $t\geq a$ e tais que $0\leq f(x)\leq g(x)\ \forall x \geq a$.  Assim temos que:
+\begin{itemize}
+\item $\displaystyle{\int_a^{\infty} g(x)dx}$ é convergente $\Rightarrow$ $\displaystyle{\int_a^{\infty} f(x)dx}$ é convergente
+\item $\displaystyle{\int_a^{\infty} f(x)dx}$ é divergente $\Rightarrow$ $\displaystyle{\int_a^{\infty} g(x)dx}$ é divergente
+\end{itemize}
+\vspace{10pt}
+\begin{corollary}
+Seja $f:[a;+\infty) \rightarrow \mathds{R}$ integrável em $[a;t]$ para todo $t \geq a$, então vale que se $\displaystyle{\int_a^{+\infty}|f(x)| dx}$ for convergente, então $\displaystyle{\int_a^{+\infty} f(x) dx}$ também será.
+\end{corollary}
+\end{theorem}
+\vspace{10pt}
+
+Suponha que $F(x)$ seja crescente em $[a;+\infty)$, prove que $\displaystyle{\lim_{x \rightarrow +\infty} F(x) }$ será finito \footnote{nesse caso seria igual a $M = sup\{F(x)| x \in [a;+\infty)\}$ } ou não.
+
+\begin{demonstration}
+Sendo $f(x)$ integrável em $[a,t] \ \ \forall t \geq a$ e $f(x) \geq 0$, a função $\displaystyle{F(x) = \int_a^x\ f(t)\ dt}$ é crescente. De fato, sejam $x_1$ e $x_2 \in [a,+\infty)$, então:
+
+\begin{align*}
+F(x_2)-F(x_1) &= \int_a^{x_2} f(t)dt - \int_a^{x_1} f(t)dt \\
+&= \int_{x_1}^{x_2} f(t)dt \geq 0 \Rightarrow F(x_2) \geq F(x_1)
+\end{align*}
+
+Como $\displaystyle{\int_a^{+\infty} g(t)dt}$ é convergente, então $\displaystyle{\exists \lim_{t \rightarrow +\infty} \int_a^t g(x)\ dx} $ (será $M \geq 0$). E como $0 \leq f(x) \leq g(x)$, então $\forall t \geq a \Rightarrow F(x) = \int_a^t f(x)dx \leq \int_a^t g(x)dx \leq \int_a^{+\infty} f(x)dx = M$
+\end{demonstration}
+\vspace{10pt}
+
+Pelo que se vê acima, $\displaystyle{\lim_{t\rightarrow+\infty} F(t) = \lim_{t\rightarrow+\infty} \int_a^t f(x)dx}$ exite e é finito. Logo, $\displaystyle{\int_a^{+\infty} f(t)dt}$ é \textbf{convergente}.
+
+Interessante destacar que se tivermos a integral indefinida de $\displaystyle{f(x) =  \frac{g(x)}{x^{\alpha}}} $ com $g(x)$ limitado \footnote{$\displaystyle{ \lim_{x \rightarrow +\infty} g(x)} = L \neq \infty $}, então sua classificação depende únicamente da classificação de 1/x^\alpha 
+
+\section{Descobrindo se é ou não convergente -- Exemplo de exercícios}
+\label{sec:s24}
+
+\subsection{Exemplo 1}
+\label{sub:ex241}
+
+Mostrar que $\displaystyle{\int_0^{+\infty} e^{-x} \cos(\sqrt x) dx} $ é  convergente.
+\begin{align*}
+f(x) &= e^{-x} \cos(\sqrt x) \\
+|f(x)| &= e^{-x}  |\cos(\sqrt x)| \leq e^{-x} = g(x) \\
+\end{align*}
+Se $\displaystyle{\int_0^{+\infty}g(x)dx }$ for convergente, $\displaystyle{\int_0^{+\infty}f(x)dx }$ também o será.
+$$ \int_0^{+\infty}e^{-x}dx = \lim_{t \rightarrow +\infty} -e^{-x} |_0^t} = - \lim_{t \rightarrow +\infty} \left[\frac{1}{e^t}-1 \right] = 1$$
+
+$\displaystyle{\int_0^{+\infty}g(x)dx }$ é convergente, logo $\displaystyle{\int_0^{+\infty}f(x)dx }$ também  é convergente.
+
+\subsection{Exemplo 2}
+\label{sub:ex242}
+
+Mostre que $$ \int_1^{\infty} \frac{x^2+1}{x^3+1} $$ é divergente.
+
+\begin{align}
+\frac{x^2+1}{x^3+1} \geq \frac{x^2}{x^3+1} = \frac{1}{x+\frac{1}{x^2}} = \frac{1}{x(1+\frac{1}{x^2})}\\
+x^2 \geq 1 \Rightarrow \frac{1}{x^2} \leq 1 \\
+1 + \frac{1}{x^2} \leq 2 \Rightarrow \frac{1}{1+\frac{1}{x^2}} \geq \frac{1}{2}\\
+\frac{x^2+1}{x^3+1} \geq \frac{1}{x}\left(\frac{1}{1+\frac{1}{x^2}}\right) \geq \frac{1}{2x}
+\end{align}
+
+Como $ \displaystyle{\int_1^{\infty} \frac{1}{2x}} $ é divergente, $\displaystyle{ \int_1^{\infty} \frac{x^2+1}{x^3+1}} $ também é
+
+\subsection{Exemplo 3}
+\label{sub:ex243}
+
+\hspace{5mm}Seja $\alpha \in \mathds{R} | \alpha >0 $, então mostre que $\displaystyle{\int_1^\infty \frac{dx}{x^\alpha}} $:
+\begin{enumerate}
+\item [a.] é convergente se $\alpha > 1$\\
+\item [b.] é divergente se $\alpha \in (0,1) $
+\end{enumerate}
+
+Para $0  < \alpha \neq 1$ temos que $$\displaystyle{\int_1^\infty \frac{dx}{x^\alpha} = \lim_{t \rightarrow +\infty} \int_1^t x^{-\alpha}\ dx = \lim_{t \rightarrow +\infty} \left[ \frac{x^{-\alpha + 1}}{-\alpha + 1}\right]_1^t = \lim_{t \rightarrow +\infty} \left( \frac{t^{1-\alpha}-1}{1-\alpha}\right)}$$
+
+\begin{enumerate}
+\item [a.] $\alpha > 1 \Rightarrow 1 - \alpha < 0$. Quando t tende a infinito, $t^{1-\alpha}$ tende a 0: assim temos uma integral indefinida convergente $$\displaystyle{\int_1^\infty \frac{dx}{x^\alpha}} = \frac{1}{\alpha - 1}$$
+\item [b.] $0 < \alpha < 1 \Rightarrow 1 - \alpha > 0$. Quando t tende a infinito, $t^{1-\alpha}$ tende a infinito também: assim temos uma integral indefinida divergente.
+\end{enumerate}
+
+\subsection{Exemplo 4}
+\label{sub:ex244}
+
+\hspace{5mm} Verifique se são convergentes:
+\begin{enumerate}
+\item [a.] $\displaystyle{\int_1^{\infty} \frac{\ln x}{x \ln \left(x+1\right)} dx}$
+\item [b.] $\displaystyle{\int_{10}^{\infty}\frac{x^5-3}{\sqrt{x^{20}+x^{10}+1}} dx}$
+\end{enumerate}
+
+\begin{enumerate}
+\item [a.] Seja  $\displaystyle{g(x) = \frac{\ln x}{\kn {x+1}}}$ uma função limitada ($\displaystyle{\lim_{x \rightarrow +\infty} \frac{\ln x}{\ln {x+1}} = 1}$) e o fato de que $\displaystyle{\int_1^{\infty} \frac{1}{x}}$ é divergente, então a integral em questão é divergente.
+\item [b.] $$f(x) = \frac{x^5-3}{\sqrt{x^{20}+x^{10}+1}} = \frac{x^5\left(1-\frac{3}{x^5}\right)}{\sqrt{x^{20}(1+x^{-10}+x^{-20})}}= \underbrace{\frac{1}{x^5}}_{g(x)}\ \underbrace{\frac{1-\frac{3}{x^5}}{1+x^{-10}+x^{-20}}}_{h(x)}} = g(x)*h(x) $$ \\ $$\lim_{x \rightarrow +\infty} h(x) = 1$$ \\ $\displaystyle{\int_{10}^{\infty} g(x)\ dx}$ é convergente. Logo, $\displaystyle{\int_{10}^{\infty} f(x)\ dx}$ é convergente.
+\end{enumerate}
+
+\chapter{Sequências e Séries Numéricas}
+\label{chap:c3}
+
+Aulas dadas entre 10/08/2015 e 00/00/2015
+
+\section{Sequências e limites de sequências}
+\label{sec:s31}
+
+\hspace{5mm} Uma sequência  é uma função \footnote{$\mathds{N}^s$ geralmente é da forma $\left\{ n \in \mathds{N} | n \geq q , \ q \ fixo \right\} $ } \begin{align*}
+f: \underbrace{\mathds{N}^s \subset \mathds{N}}_n \rightarrow \underbrace{\mathds{R}}_{a_n} \\
+(a_n) \ n \in \mathds{N} \\
+a_n &= n,\ para \ n \geq 0 \\
+a_n &= \frac{1}{n} ,\ para \ n \geq 1 \\
+\end{align*}
+
+O que acontece quando n tende a infinito?
+
+\begin{enumerate}
+\item $(a_n) \ n \in \mathds{N} a_n = n$
+\item $\frac{1}{2}, \ \frac{1}{4}, \ \frac{1}{8}, \ \frac{1}{16}, \ \hdots a_n = \frac{1}{2^n}, \ \  n\geq 1 $
+\item 1, -1, 1, -1 , 1 , 1 $\hdots a_n = (-1)^n $ Vai para 0, 1 ou -1?
+\end{enumerate}
+\begin{definition}[Convergência]
+Dizemos que a sequência $(a_n)$ converge para o limite $L \in \mathds{R}$ dado $\epsilon > 0$, existe $n_0 \in \mathds{N}$ tal que $$ n \geq n_0 \Rightarrow |a_n - L| < \epsilon \Longleftrightarrow L-\epsilon < a_n < L + \epsilon $$
+\end{definition}
+
+$\displaystyle{\lim_{n \rightarrow + \infty} a_n = + \infty} $ acontece quando $\forall \ R > 0 $ existe $n_0 \in \mathds{N} $ tal que $$n \geq n_0 \Rightarrow a_n > R$$
+
+$\displaystyle{\lim_{n \rightarrow + \infty} a_n = - \infty} $ acontece quando $\forall \ R > 0 $ existe $n_0 \in \mathds{N} $ tal que $$n \geq n_0 \Rightarrow a_n < R$$
+
+Voltando aos exexmplos do começo do capítulo:
+\begin{enumerate}
+\item \begin {align*} 
+a_n &= n \\
+\lim_{n \rightarrow + \infty} a_n &= + \infty\\
+\end{align*}
+\item \begin{align*}
+a_n &= \frac{1}{2^n}\\
+\lim_{n \rightarrow + \infty} a_n &= 0\\
+\end{align*}
+Vamos verificar esse fato. Dado $\epsilon > 0, \ \exists \ n_0 \in \mathds{N}$ tal que $\displaystyle{ n \geq n_0  \Rightarrow \left\| \frac{1}{2^n} - 0 \right\| <  \epsilon \Longleftrightarrow \frac{1}{2^n} < \epsilon \Longleftrightarrow 2^n > \frac{1}{\epsilon}}$.   Basta tomarmos $n_0 \in \mathds{N}$ tal que $\displaystyle{2^{n_0} > \frac{1}{\epsilon}}$ e $$ n \geq n_0 \Rightarrow 2^n \geq 2^{n_0} > \frac{1}{\epsilon} \Rightarrow \frac{1}{2^n} < \epsilon$$
+\item $a_n = (-1)^n$. O limite dessa expressão não pode ser $\pm \infty$ pois para n tendendo a infinito, teremos $-1 \leq a_n \leq 1 $.  Seja $\displaystyle{0 < \epsilon < \frac{1}{\epsilon} } $. Dado qualquer $L \in \mathds{R}}$, o intervalo $]L- \epsilon, L+ \epsilon[ $ tem diâmetro $\displaystyle{2\epsilon < \frac{2}{3}}$. 
+Portanto, esse intervalo não comporta  todos os elementos da sequência, logo $$ \nexists \lim_{n \rightarrow + \infty} (-a)^n$$
+\item [\textbf{Adendo}] Seja $(a_n) \ n \in \mathds{N}$  e sejam $n > 0 \land s > 1$ com s fixo. Assim teremos $\displaystyle{\lim_{n \rightarrow + \infty} \frac{1}{n^s} = 0}$
+\end{enumerate}
+
+\textbf{Fatos Importantes}
+\hspace{5mm} Sejam $(a_n)$ $(b_n)$ duas sequências de números de números reais. Então \begin{enumerate}
+\item se $a_n \rightarrow a $ e $b_n \rightarrow b$ $\Rightarrow a_n + b_n \rightarrow a + b$
+\item se $a_n \rightarrow a $ e $b_n \rightarrow b$ $\Rightarrow a_nb_n \rightarrow ab$
+\item se $a_n \rightarrow a $ e $\lambda \in \mathds{R}$ $\Rightarrow \lambda a_n \rightarrow \lambda a$
+\item se $a_n \rightarrow a $ e $b_n \rightarrow b \neq 0$, então $b_n \neq 0$ para n suficientemente grande, então $\displaystyle{\frac{a_n}{b_n} = \frac{a}{b}}$
+\end{enumerate}
+
+\begin{lemma}[Critério do Confronto]
+Sejam $(a_n)$ $(b_n)$ $(c_n)$ sequências tais que $a_n \leq b_n \leq c_n$. Suponha que existam os limites existam e que seja verdade que $\displaystyle{\lim_{n \rightarrow + \infty} a_n = L = \lim_{n \rightarrow + \infty} c_n}$. Então: $$\lim_{n \rightarrow + \infty} b_n = L$$
+\end{lemma}
+
+\begin{demonstration}
+Seja um $\epsilon > 0$ suficientemente pequeno. Como $a_n$ e  $c_n$ tendem a $L$, existe $n_0 \in \mathds{N}$ tal que:
+\[ n \geq n_0) \Rightarrow
+  \begin{cases}
+    |a_n - L| < \epsilon \quad \Longleftrightarrow  & \quad L - \epsilon < a_n < L +\epsilon \\
+    |c_n - L| < \epsilon \quad \Longleftrightarrow  & \quad L - \epsilon < c_n < L +\epsilon \\
+  \end{cases}
+\]
+
+Então $n \geq n_0 \Rightarrow L - \epsilon < a_n \leq b_n \leq c_n < L + \epsilon$ ou seja $n \geq n_0 \Rightarrow L- \epsilon < b_n < L + \epsilon \Rightarrow \displaystyle{\lim_{n \rightarrow + \infty} b_n = L}$
+\end{demonstration}
+
+\begin{lemma}
+Seja $f$ uma função definida num intervalo $I \subset \mathds{R}$, exceto em $c \in I$ e suponha que exista $\displaystyle{\lim_{x \rightarrow c} f(x) = L}$. Seja $(a_n)$ uma sequência que satisfaça \begin{itemize}
+\item [a.] $a_n \in I$
+\item [b.] $a_n \neq c $
+\item [c.] $\displaystyle{\lim_{n \rightarrow + \infty} a_n = c} $
+\end{itemize}
+Assim, a sequencia $(b_n)_{n \in \mathds{N}} =(f(a_n))_{n \in \mathds{N}}$ é tal que $\displaystyle{\lim_{n \rightarrow + \infty} b_n = L}$ \footnote{Isso equivale a dizer que $\displaystyle{\lim_{n \rightarrow + \infty} f(a_n) = L} $}
+\end{lemma}
+
+\begin{demonstration}Dado $\epsilon > 0$ e $\displaystyle{\lim_{x \rightarrow c} f(x) = L}$, existe $\delta > 0$ tal que $$ |x-c| < \delta \Rightarrow |f(x) - L| < \epsilon $$ \hspace{5mm} Como $a_n \rightarrow c$, para tal $\delta > o$ existe $n_0 \in \mathds{N}$ tal que $n \geq n_0 \rightarrow |a_n - c| < \delta$. Então: $$n \geq n_0 \rightarrow |a_n - c| < \delta \Rightarrow |f(a_n) - L| < \epsilon$$ $$ \lim_{n \rightarrow +\infty} f(a_n) = L$$
+\end{demonstration}
+
+\begin{obs} Se $f$ está defiida entre $[a;+\infty)$, se $a_n \rightarrow +\infty$ e $\displaystyle{\lim_{x \rightarrow +\infty} f(x) =L}$, então $$\lim_{n \rightarrow +\infty} f(a_n) =L$$
+\end{obs}
+
+\section{Exercícios da aula (10/08)}
+\label{sec:s32}
+
+\subsection{Exemplo 1}
+\label{subsec:ex321}
+\hspace{5mm}Calcular $$\lim_{n \rightarrow +\infty} \frac{(5n-3)^3}{n(n^2+1)}$$
+Desenvolvendo o binio de cima, temos $(5n-3)^3 = 125n^3-75n^2+45n -27$. Assim temos $a_n$ como na forma abaixo. Se dividirmos numerador e denominador por $n^3$, ficará fácil determinar o limite em questão.
+\begin{align*}
+a_n &= \frac{125n^3-75n^2+45n -27}{n^3+n} =  \frac{125 - \frac{75}{n} + \frac{45}{n^2} - \frac{27}{n^3}}{1 + \frac{1}{n^2}} \\
+\lim_{n \rightarrow + \infty} a_n &= \lim_{n \rightarrow + \infty} \frac{125 - \frac{75}{n} + \frac{45}{n^2} - \frac{27}{n^3}}{1 + \frac{1}{n^2}} = 125\\
+\end{align*}
+
+\subsection{Exemplo 2}
+\label{subsec:ex322}
+\hspace{5mm}Calcular $$\lim_{n \rightarrow +\infty} (\sqrt{n+1} - \sqrt{n})$$
+\footnote{$\sqrt{n+1} + \sqrt{n} \geq 2\sqrt{n} \Longleftrightarrow \frac{1}{\sqrt{n+1} + \sqrt{n}} \leq \frac{1}{2\sqrt{n}} $}
+\begin{align*}
+0 \leq a_n = \sqrt{n+1} - \sqrt{n} &= \frac{(\sqrt{n+1} - \sqrt{n})(\sqrt{n+1} + \sqrt{n})}{\sqrt{n+1} + \sqrt{n}} \\
+\frac{(n+1) - n}{\sqrt{n+1} + \sqrt{n}} &= \frac{1}{\sqrt{n+1} + \sqrt{n}} \leq \frac{1}{2\sqrt{n}}\\
+0 \leq a_n \leq \frac{1}{2\sqrt{n}} & \land \lim_{n \rightarrow +\infty}\frac{1}{2\sqrt{n}} = 0  \\
+\end{align*}
+\hspace{5mm} Logo, $\displaystyle{\lim_{n \rightarrow +\infty} (\sqrt{n+1} - \sqrt{n}) = 0}$
+
+\subsection{Exemplo 3}
+\label{subsec:ex323}
+\hspace{5mm}Demonstrar que $$\lim_{n \rightarrow +\infty} a_n = 1$$ onde $a_n = \sqrt[n]{n},\ n \geq 1$
+
+$a_n = \sqrt[n]{n} = 1 + b_n, \ b_n > 0$, então $a_n \rightarrow 1 \Longleftrightarrow b_n \rightarrow 0$.
+$$n = a_n^n =(1+ b_n)^n = 1 + nb_n + \frac{n(n-1)}{2}}b_n^2 + \hdots + b_n^n \geq 1 + \frac{n(n-1)}{2}b_n^2$$
+
+Logo $\displaystyle{n-1 \geq \frac{n(n-1)}{2}}b_n^2 \Rightarrow b_n^2 \leq \frac{2}{n} \Rightarrow 0 < b_n \leq \frac{\sqrt{2}}{\sqrt{n}}}$
+
+Pelo critério de compração, $b_n \rightarrow 0$ e $a_n \rightarrow 1$.
+
+\subsubsection{Pensando de uma outra forma} Tome $f: [1;+\infty) \rightarrow \mathds{R} \ \ f(x) = x^{\frac{1}{n}}$
+
+\begin{align*}
+f(x) = x^{\frac{1}{x}} &= e^{\ln x^{\frac{1}{x}}} =   e^{\frac{\ln x}{x}} \Longleftrightarrow \\
+\lim_{x \rightarrow +\infty} \frac{\ln x}{x} &= 0 \Longleftrightarrow \\
+\lim_{x \rightarrow +\infty} e^0 &= 1 \\
+Logo, \ \sqrt[n]{n} & \rightarrow 1 \\
+\end{align*}
+
+\vspace{10mm}
+Vamos extender esses conceitos ...
+
+\subsubsection {Mostrar que $\displaystyle{\lim_{n \rightarrow +\infty} \sqrt[n]{a}} = 1 \ \ \forall \ a > 0$}
+\label{sssec:ss3232}
+\begin{itemize}
+\item [\textbf{1}. $ a > 1 $] Para $b_n > 0$ e $a_n = \sqrt[n]{a} = 1 + b_n$ \\ $a = a_n^n = (1 + b_n)^n$. Nesse caso, proceder como no exemplo \ref{subsec:ex323} 
+\item [\textbf{2}. $ 0 < a < 1 $] $ 0 < a < 1 \Longleftrightarrow \frac{1}{a} > 1$ Nesse caso teremos que $$ \sqrt[n]{\frac{1}{a}} \rightarrow 1 $$ $$\frac{1}{\sqrt[n]{a}}\rightarrow a $$ \footnote{Preciso me certificar desse detalhe}
+\end{itemize}
+
+\subsubsection {Calcular $\displaystyle{\lim_{n \rightarrow +\infty} \sqrt[n]{a^n + b^n}}$}
+\label{sssec:ss3233}
+\hspace{5mm} Dados $0 < a \leq b$ e $n \geq 1$.
+
+\begin{align*}
+a_n &= \sqrt[n]{a^n+b^n} > \sqrt[n]{b^n} = b \\
+a_n &= \sqrt[n]{a^n+b^n} \leq \sqrt[n]{2b^n} = b\sqrt[n]{2}\\
+b &< a_n \leq b\underbrace{\sqrt[n]{2}}_{= 1}\\
+\lim_{n \rightarrow + \infty} a_n &= b \\
+\end{align*}
+
+\section{Sequências Monótonas} 
+
+\hspace{5mm}Toda sequência convergente é limintada $$a_n \rightarrow a \Rightarrow \exists M \in \mathds{R} \ | \ \forall n \in \mathds{N} \ \ |a_n| \leq M$$ 
+
+De fato, dado $\epsilon = \frac{1}{3}$, então $\exists n_0 \in \mathds{N}$ tal que $$ n \geq n_0 \Rightarrow |a_n - a| < \epsilon$$
+
+Logo, se $n \geq n_0$, temos que $$ |a_n| = |a_n - a + a| \leq |a_n - a| + |a| < |a| + \frac{1}{3}$$
+
+Seja $M = max \left\{ |a_0|, |a_1|, \hdots , |a| +\frac{1}{3} \right\}$. Logo $|a_n| \leq M$
+
+\begin{definition}[Sequências Monótonas]
+\hspace{5mm} Pode ser:
+\begin{itemize}
+\item \underline{Crescente} : se $n \geq m \Rightarrow a_n \geq a_m $
+\item \underline{Decrescente} : se $n \geq m \Rightarrow a_n \leq a_m $
+\end{itemize}
+\end{definition}
+
+\begin{lemma}
+Se $(a_n)$ for crescente e limitada, então $\displaystyle{\exists \lim_{n\rightarrow+\infty} a_n}$\footnote{Analogamente, se a sequência for decrescente e limitada inferiormente. A demonstração também é análoga a do caso supra citado}
+\end{lemma}
+
+\begin{demonstration}
+Se $ (a_n) $ for limitada superiormente, o conjunto$\left\{a_n, n \in \mathds{N}\right\}$ é limitado superiormente e postanto existe $ a = sup \left\{a_n, n \in \mathds{N}\right\}$.
+
+Dado $\epsilon > 0$, existe $n_0 \in \mathds{N}$ existe $a - \epsilon < a_{n_0} \leq a$
+\begin{align*}
+\forall n \geq n_0 \Rightarrow a - \epsilon < a_{n_0} &\leq a_n \leq a \\
+n \geq n_0 \Rightarrow a - \epsilon &< a_n \leq a \\
+\lim_{n \rightarrow +\infty} a_n &= a \\
+\end{align*}
+\end{demonstration}
+
+\begin{definition}[Sequências de Couchy (Critério de Couchy)]
+Se $a_n \rightarrow a$, os termos vão ficando arbitrariamente próximos na medida em que n aumenta. 
+
+Dado $\epsilon > 0 $, existe $n_0 \in \mathds{N}$ tal que $n \geq n_0 \Rightarrow |a_n - a| < \frac{\epsilon}{2}$. Logo, se $m, \ n \geq n_0$, então $|a_m - a_n| = |(a_m + a) - (a + a_n)| \leq |a_m - a| + |a_n -a| < \displaystyle{\frac{\epsilon}{2}+\frac{\epsilon}{2}} = \epsilon$
+
+Uma sequência $(a_n)$ é uma sequência de Couchy, se para qualquer $\epsilon > 0$, existir $n_0 \in \mathds{N}$ tal que $m, \ n \geq n_0 \Rightarrow |a_m - a_n| < \epsilon$
+\end{definition}
+
+\begin{lemma}
+Toda sequência de Couchy é convergente. 
+\end{lemma}
+
+\begin{demonstration}
+\textbf{Diagmos que} $a_n$ satisfaz $m, \ n \geq n_0 \Rightarrow |a_m - a_n| < \epsilon$. De fato, para qualquer $k > 0$, existe $n_k \in \mathds{N}$ tal que para quaisquer $ m, \ n \geq n_k \Rightarrow |a_n - a_m| < \displaystyle{\frac{1}{k}}$.
+
+Toamando $m = n_k$ fixo, temos: $$ n \geq n_k \Rightarrow |a_{n_k} - a_n| < \frac{1}{k} $$ ou mesmo $$ n \geq n_k \Rightarrow a_{n_k} - \frac{1}{k} < a_n < a_{n_k} + 1 $$. Seja $M = max\left\{ |a_0|, |a_1|, \hdots , |a_{n_k}|, |a_{n_k} - \frac{1}{k}|, |a_{n_k} + 1| \right\}$, então $|a_n| \leq M \ \ \forall \ n \in \mathds{N}$
+
+\textbf{Mais algumas considerações:} Seja $A = \left\{ a_n, \ n \in \mathds{N} \right\}$ limitado e $A_n = \left\{ a_n, \ a_{n+1}, \ a_{n+2} \right\}$ também limitado. E por último, consideremos $L_n = sup \ A_n$ e $l_n = inf \ A_n$ onde $l_n \leq L_n$
+\begin{align*}
+A_n &= \left\{ a_n, \ a_{n+1}, \ a_{n+2}, \hdots \right\} \\
+A_{n+1} &= \left\{ a_{n+1}, \ a_{n+2}, \hdots \right\} \\
+L_n  &\geq L_{n+1} \\
+l_n & \leq l_{n+1} \\
+\end{align*}
+\begin{itemize}
+\item Se $L_n$ for decrescente, então $\displaystyle{\exists \lim_{n \rightarrow +\infty} L_n = L}$
+\item Se $l_n$ for crescente, então $\displaystyle{\exists \lim_{n \rightarrow +\infty} l_n = l}$
+\end{itemize}
+\textbf{Por último ...} $\displaystyle{L = l = \lim_{n \rightarrow +\infty} a_n}$ Como $(a_n)$ é de Couchy, já sabemos que $\forall k \in \mathds{N}, \ k > 0 \Rightarrow \exists n_k \in \mathds{N}$ tal que $n \geq n_k \Rightarrow a_{n_k} - \frac{1}{k} < a_n < a_{n_k} + 1$. Logo, $a_{n_k} - 1 $ e $a_{n_k} + 1 $ são cotas inferior e superior do conjunto $A_{n_k} = \left\{ a_n \ | \ n \geq n_k \right\}$. Para todo $n \geq n_k$, temos $a_{n_k} - \frac{1}{k} \leq l_n \leq L_n \leq a_{n_k} + \frac{1}{k}$. Logo $$ 0 \leq L_n - l_n \leq (a_{n_k} + \frac{1}{k}) - (a_{n_k} - \frac{1}{k}) = \frac{2}{k}$$ Pelo critério de comparação, $ 0 < L - l \leq 0 \Longleftrightarrow L = l = a $. Para todo $n \in \mathds{N}$ temos $ l_n \leq a_n \leq L_n$. Pelo critério de comparação, sabemos que $$ \exists \lim_{n \rightarrow +\infty} a_n = a $$
+\end{demonstration}
+\end{document}
