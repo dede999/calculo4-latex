@@ -17,7 +17,7 @@
 
 \title{Calculo IV - IME 2015}
 \author{André Luiz A Silveira}
-\date{Segundo Semestre}
+\date{Segundo Semestre -- 2015}
 
 \begin{document}
 
@@ -87,7 +87,7 @@ Exemplo 2:
 \begin{align*}
 \int_a^x f(t)dt &= \int_a^b f(t)dt + \int_b^x f(t)dt \\
 F(x) = \lim_{a\rightarrow - \infty}\int_a^xf(t)dt &= \underbrace{\int_{-\infty}^b f(t)dt}_{constante} + \underbrace{\int_b^x f(t)dt}_{H(x)}\\
-H(x) &= \int_a^x f(t)dt \\
+H(x) &= \int_b^x f(t)dt \\
 F(x) &= \underbrace{\int_{-\infty}^b f(t)dt}_{constante}+ \underbrace{H(x)}_{derivável} 
 \end{align*}
 
@@ -365,7 +365,7 @@ Vamos extender esses conceitos ...
 \label{sssec:ss3232}
 \begin{itemize}
 \item [\textbf{1}. $ a > 1 $] Para $b_n > 0$ e $a_n = \sqrt[n]{a} = 1 + b_n$ \\ $a = a_n^n = (1 + b_n)^n$. Nesse caso, proceder como no exemplo \ref{subsec:ex323} 
-\item [\textbf{2}. $ 0 < a < 1 $] $ 0 < a < 1 \Longleftrightarrow \frac{1}{a} > 1$ Nesse caso teremos que $$ \sqrt[n]{\frac{1}{a}} \rightarrow 1 $$ $$\frac{1}{\sqrt[n]{a}}\rightarrow a $$ \footnote{Preciso me certificar desse detalhe}
+\item [\textbf{2}. $ 0 < a < 1 $] $ 0 < a < 1 \Longleftrightarrow \frac{1}{a} > 1$ Nesse caso teremos que $$ \sqrt[n]{\frac{1}{a}} \rightarrow 1 $$ $$\frac{1}{\sqrt[n]{a}}\rightarrow 1 $$
 \end{itemize}
 
 \subsubsection {Calcular $\displaystyle{\lim_{n \rightarrow +\infty} \sqrt[n]{a^n + b^n}}$}
@@ -379,7 +379,8 @@ b &< a_n \leq b\underbrace{\sqrt[n]{2}}_{= 1}\\
 \lim_{n \rightarrow + \infty} a_n &= b \\
 \end{align*}
 
-\section{Sequências Monótonas} 
+\section{Sequências Monótonas}
+\label{sec:s33}
 
 \hspace{5mm}Toda sequência convergente é limintada $$a_n \rightarrow a \Rightarrow \exists M \in \mathds{R} \ | \ \forall n \in \mathds{N} \ \ |a_n| \leq M$$ 
 
@@ -442,4 +443,161 @@ l_n & \leq l_{n+1} \\
 \end{itemize}
 \textbf{Por último ...} $\displaystyle{L = l = \lim_{n \rightarrow +\infty} a_n}$ Como $(a_n)$ é de Couchy, já sabemos que $\forall k \in \mathds{N}, \ k > 0 \Rightarrow \exists n_k \in \mathds{N}$ tal que $n \geq n_k \Rightarrow a_{n_k} - \frac{1}{k} < a_n < a_{n_k} + 1$. Logo, $a_{n_k} - 1 $ e $a_{n_k} + 1 $ são cotas inferior e superior do conjunto $A_{n_k} = \left\{ a_n \ | \ n \geq n_k \right\}$. Para todo $n \geq n_k$, temos $a_{n_k} - \frac{1}{k} \leq l_n \leq L_n \leq a_{n_k} + \frac{1}{k}$. Logo $$ 0 \leq L_n - l_n \leq (a_{n_k} + \frac{1}{k}) - (a_{n_k} - \frac{1}{k}) = \frac{2}{k}$$ Pelo critério de comparação, $ 0 < L - l \leq 0 \Longleftrightarrow L = l = a $. Para todo $n \in \mathds{N}$ temos $ l_n \leq a_n \leq L_n$. Pelo critério de comparação, sabemos que $$ \exists \lim_{n \rightarrow +\infty} a_n = a $$
 \end{demonstration}
+
+\section{Subsequências}
+\label{sec:s34}
+\hspace{5mm} Tome essas sequências:
+\begin{align*}
+a_n &= \frac{1}{n}, \ n \geq 1 \\
+a_{n_k} &= \frac{1}{2k}, \\
+a'_{n_k} &= \frac{1}{2k+1} \\
+\end{align*}
+
+Dada uma sequência $\displaystyle{a'_{n_k} = \frac{1}{k^2}}$ é uma subsequência de $a_n$ se $\displaystyle{\lim_{n \rightarrow +\infty} a_n = a \Longleftrightarrow \lim_{k \rightarrow +\infty} a_{n_k} = a} \ \forall \ (a_n)$ subsequência de $(a_n)$.
+
+\textbf{Importante: }Sejam $(a_{n_k}) $ e $ (a'_{n_k}) $ subsequências de $(a_n)$ e suponha que $\nexists \lim_{k \rightarrow +\infty} a_{n_k}$ ou mesmo que $$\lim_{k \rightarrow +\infty} a_{n_k} = a \neq \lim_{k \rightarrow +\infty} a'_{n_k} = b $$. Então $(a_n)$ não é convergente.
+
+\section{Séries Numéricas: Definições e exmplos}
+\label{sec:s35}
+\hspace{5mm} Exemplos:
+\begin{enumerate}
+\item $\displaystyle{1 = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \hdots}$ \label{ex:351}
+\item $\displaystyle{1 = \frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \frac{9}{10000} + \hdots = 0,99999 \hdots} $ \label{ex:352}
+\item $\displaystyle{1 -1 + 1 - 1 + 1 - 1 + \hdots} $ \label{ex:353} \\
+Alguns fazem $(1-1) + (1-1) + (1-1) + \hdots = 0$. \\ Outros fazem $1 + (-1 + 1) + (-1 + 1) + (-1 + 1) + (-1 + 1) + \hdots = 1$. \\ Liebniz propos $\frac{1}{2} = 1 + 1 - 1 + 1 - 1 + 1 - 1 + \hdots$ \\
+\end{enumerate}
+
+Seja $(a_n)$ uma sequência  de números reais. A ela associamos a \underline{soma infinita}. $$\sum_{n = 0}^{\infty} a_n = a_0 + a_1 + a_2 + \hdots$$
+
+Consideramos a sequência $(S_m)$ das \underline{somas parciais}
+\begin{align*}
+S_0 &= a_0 \\
+S_1 &= a_0 + a_1 \\
+S_2 &= a_0 + a_1 + a_2 \\
+\vdots \\
+S_m &= a_0 + a_1 + \hdots + a_m = \sum_{n=0}^m a_n \\
+\end{align*}
+
+
+\begin{definition}
+Uma série $\sum_{n=0}^{\infty} a_n$ se diz \underline{convergente}. Se a sequência de somas parciais $(S_m)$ é convergente, neste caso, se $$ \lim_{n \rightarrow +\infty} S_n = S \Rightarrow \sum_{n=0}^{+\infty} a_n = S $$ onde S é a \underline{soma} da série. \footnote{$\displaystyle{\sum_{n=0}^{+\infty} a_n = \lim_{m \rightarrow +\infty} \left(\sum_{n=0}^m a_n\right)}$ }
+\end{definition}
+
+Voltando aos exemplos:
+\begin{itemize}
+\item \textbf{Exemplo \ref{ex:351}: } $\displaystyle{\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \hdots = \sum_{n=0}^{\infty} \frac{1}{2^{n+1}}}$
+\item \textbf{Exemplo \ref{ex:352}: } $\displaystyle{\frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \frac{9}{10000} + \hdots = \sum_{n=0}^{\infty} \frac{9}{10^{n+1}}}$.
+\end{itemize}
+Esses são exemplos de \underline{séries geométricas} que são séries do tipo $\displaystyle{\sum_{n=0} a.r^n}$, onde $a, \ r \in \mathds{R}$. No primeiro caso, $a=r=\frac{1}{2}$, e no segundo $a = \frac{9}{10}, \ r = \frac{1}{10}$. \\ $r = 0 \Rightarrow $ converge a 0 \\ $r = 1 \Rightarrow $ diverge.
+
+Supondo $r \neq 0 \land r \neq 1$. Somas parciais:
+\begin{align*}
+S_m &= a + a.r + a.r^2 + \hdots + a.r^m \\
+r.S_m &= a.r + a.r^2 + \hdots + a.r^{m+1} \\
+S_m - r.S_m &= a - a.r^{m+1} \\
+S_m &= \frac{a(1-r^{m+1})}{1-r} \\
+\end{align*}
+
+Se $0 < |r| < 1$, então $$\lim_{m \rightarrow +\infty} S_m = \lim_{m \rightarrow +\infty} \frac{a(1-r^{m+1})}{1-r} = \frac{a}{1-r}$$ Neste caso, $\displaystyle{\sum_{n=0} a.r^n = \frac{a}{1-r}}$.
+\begin{enumerate}
+\item $\sum_{n=0}^{\infty} \frac{1}{2^{n+1}} = \frac{\frac{1}{2}}{1-\frac{1}{2}} = 1$
+\item $\sum_{n=0}^{\infty} \frac{9}{10^{n+1}} = \frac{\frac{9}{10}}{1-\frac{1}{10}} = 1 $
+\end{enumerate}
+
+Se $|r| > 1$ a série diverge, pois $\displaystyle{\lim_{m \rightarrow +\infty} S_m = \lim_{m \rightarrow +\infty} \frac{a(1-r^{m+1})}{1-r} = \infty}$.
+
+Exemplo \ref{ex:353}: 
+\begin{align*} 
+1 - 1 + 1 - 1 + 1 - 1 + 1 + \hdots \\
+S_0 &= 1 \\
+S_1 &= 1 - 1 = 0 \\
+S_2 &= 1 - 1 + 1 = 1 \\
+S_3 &= 1 - 1 + 1  - 1 = 0 \\
+S_4 &= 1 - 1 + 1  - 1 + 1 = 1 \\
+S_{2k} &= 1, \ k \in \mathds{N} \\
+S_{2k+1} &= 0, \ k \in \mathds{N} \\
+\lim_{k \rightarrow +\infty} S_{2k} &= 1 \\
+\lim_{k \rightarrow +\infty} S_{2k+1} &= 0 \\
+\end{align*}
+
+$(S_m)$  tem duas subsequências convergindo a limites distintos, logo $\nexists \displaystyle{\lim_{n \rightarrow +\infty} S_{n}}$ nem $\displaystyle{\sum_{n=0}^{\infty} (-1)^n}$
+
+\textbf{Propriedades Simples:}
+\begin{enumerate}
+\item Se $\sum a_n = a$ e $\sum b_n = b$, então $\sum (a_n+b_n) = a+b$
+\item Se $\sum a_n = a$ e $\lambda \in \mathds{R}$, então $\sum (\lambda a_n) = \lambda a$
+\item A convergência (ou não) de uma série não se altera se omitido um termo finito da soma.
+\item $\displaystyle{\sum a_n}$ é convergente, então $\displaystyle{\lim_{n \rightarrow +\infty} a_n = 0}$ \footnote{Pode acontecer de o limite ser nulo, mas a série ser divergente}
+\item $\displaystyle{\lim_{n \rightarrow +\infty} a_n \neq 0 \Longleftrightarrow \sum a_n}$ é divergente.
+\end{enumerate}
+
+\section{Séries de Termos Positivos -- Critérios de Comparação (Parte I)}
+\label{sec:s36}
+$$\sum_{n=0}^{\infty} a_n \ \ \ a_n > 0 $$
+
+Convergência de sequêncio:
+\begin{enumerate}
+\item Sequências monótonas \label{361}
+\item Critério de Couchy \label{362}
+\end{enumerate}
+
+\textbf{Item \ref{361}}: para a série $\sum a_n$ de termos positivos, temos:
+\begin{align*}
+S_0 &= a_0 \\
+S_1 &= a_0 + a_1 > a_0 = S_0 \\
+S_2 &= a_0 + a_1 + a_2 > S_1 \\
+\end{align*}
+
+A sequência $(S_m)$ é crescente. Podemos afirmar que uma série $\displaystyle{\sum_{n=0}^{\infty} a_n}$ é convergente, se e somente se, a sequência das somas parciais $(S_m)$ for limitada superiormente. \\
+
+\textbf{Item \ref{362}: Critério de Comparação}: Sejam $\sum a_n$ e $\sum b_n$ séries de termos positivos e suponha que $a_n \leq b_n \ \forall \ n$. Então, se $\sum b_n$ converge, então $\sum a_n$
+
+\section{Exercícios da aula do dia 17/08}
+\label{sec:s37}
+
+\subsection{Calcular $\displaystyle{\sum_{n=1}^{\infty} e^{\frac{1}{n}}} $}
+$$ a_n = e^{\frac{1}{n}} \ \ \lim_{n \rightarrow +\infty} e^{\frac{1}{n}} = 1 \neq 0$$ Logo a série converge.
+
+\subsection{Determinar se a expressão abaixo converge ou não. $$\sum_{n=1}^{\infty} \frac{1}{n}$$}
+
+Ainda que o limite de $a_n$ tenda pra zero quando n vai pra infinito, essa expressão não é convergente.
+
+\begin{align*}
+S_1 &= 1 \\
+S_2 &= 1 + \frac{1}{2} = \frac{3}{2} \\
+S_3 &= 1 + \frac{1}{2} + \frac{1}{3} = \frac{11}{6} \\
+S_4 &= 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} > 1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{4} = 2 \\
+S_8 &= S_4 + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} > 2 + \frac{1}{8} + \frac{1}{8} + \frac{1}{8} + \frac{1}{8} = 2 + \frac{1}{2} = \frac{5}{2} \\
+S_{2^3} &> \frac{3 + 2}{2} \\
+S_{2^n} &> \frac{n + 2}{2} \ \ \forall \ n \in \mathds{N} \\
+\lim_{n \rightarrow +\infty} \frac{n+2}{2} = +\infty &\Rightarrow \lim_{n \rightarrow +\infty} S_{2^n} = +\infty \\
+\end{align*}
+
+Logo $S_n$ diverge.
+
+\section{Determine a soma:}
+\begin{align*}
+\frac{1}{1*2} + \frac{1}{2*3} + \frac{1}{3*4} + \hdots = \sum_{n = 1}^{\infty} \frac{1}{n*(n+1)} \\
+S_m &= \frac{1}{1*2} + \frac{1}{2*3} + \frac{1}{3*4} + \hdots + \frac{1}{n*(n+1)}\\
+ &= \left(1 - \frac{1}{2}\right) + \left(\frac{1}{2} - \frac{1}{3}\right) + \left(\frac{1}{3} - \frac{1}{4}\right) + \left(\frac{1}{n} - \frac{1}{n+1}\right) \\
+ &= 1 - \frac{1}{n+1} \\
+ \lim_{n \rightarrow +\infty} S_m = \lim_{n \rightarrow +\infty} \left(1 - \frac{1}{n+1} \right) &=  \sum_{n = 1}^{\infty} \frac{1}{n*(n+1)} = 1 \\
+\end{align*}
+
+Nesse caso, $S_n$ converge.
+
+\section{Teste seu conhecimento: (pergunte para o professor ou monitor se tiver dúvida)}
+\label{sec:s39}
+
+Determinar quais somas são convergentes:
+\begin{itemize}
+\item [a] $\displaystyle{\sum_{n = 1}^{\infty} \left(\frac{-1}{n}\right)^n}$
+\item [b] $\displaystyle{\sum_{n = 0}^{\infty} 10^{-n} }$
+\item [c] $\displaystyle{\sum_{n = 0}^{\infty} \frac{3^n}{2^n}}$
+\item [d] $\displaystyle{\sum_{n = 0}^{\infty} \frac{n+5}{2n+4}}$
+\item [e] $\displaystyle{\sum_{n = 0}^{\infty} \sin (n\pi)}$
+\item [e] $\displaystyle{\sum_{n = 0}^{\infty} \cos (n\pi)}$
+\item [a] $\displaystyle{\sum_{n = 0}^{\infty}  (2^{-n} + 3^{-n})}$
+\end{itemize}
+
 \end{document}
