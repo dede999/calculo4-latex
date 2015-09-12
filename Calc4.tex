@@ -9,10 +9,34 @@
 \newtheorem{definition}{Definição}[section]
 \newtheorem{demonstration}{Demonstração}
 \newtheorem{obs}{Observação}
+\newtheorem{prop}{Proposição}
 \usepackage[rightcaption]{sidecap}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{dsfont}
+\newcommand{\LI}[1][n]{\lim_{{#1} \rightarrow \infty}}
+\newcommand{\soma}[2][n]{\sum_{{#1} = #2}^\infty}
+
+%modelo de início de capítulo encontrado no link https://pt.sharelatex.com/learn/Defining_your_own_commands
+\makeatletter 
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1.2ex \hfill \kern \z@}
+\def\@makechapterhead#1{
+  \vspace*{10\p@}%
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill\quad 
+        \scshape\bfseries\textit{\@chapapp{}  \thechapter}  
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{10\p@}%
+        \Huge \bfseries #1 \par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+        \vskip 40\p@
+  }}
 
 
 \title{Calculo IV - IME 2015}
@@ -25,8 +49,8 @@
 
 \tableofcontents
 
-\chapter{Introdução}
-\label{chap:c1}
+\chapter*{Introdução}
+\label{chap:c0}
 
 \hspace{5mm} Eu criei esse livrinho pra ter um resumo e material de estudo. Espero que dê os resultados esperados para mim e vc também que estiver lendo esse material. 
 
@@ -54,11 +78,11 @@ Provas:
 
 
 \chapter{Integrais Impróprias}
-\label{chap:c2}
+\label{chap:c1}
 
 \hspace{5mm} Assunto tratado entre 03/08/2015 e 05/08/2015
 \section{Conceitos}
-\label{sec:s21}
+\label{sec:s11}
 
 \hspace{5mm} São expressões do tipo $\displaystyle{\int_a^{+ \infty}f(x)dx}$, $\displaystyle{\int_{-\infty}^{a} f(x)dx}$, $\displaystyle{\int_{-\infty}^{+ \infty}f(x)dx}$\\
 \vspace{15pt}
@@ -80,7 +104,7 @@ Exemplo 2:
 \end{align*}
 
 \section{Função definida por uma integral}
-\label{sec:s22}
+\label{sec:s12}
 
 \hspace{5mm} Seja $f \in (-\infty, +\infty) \rightarrow \mathds{R}$ contínua e tal que $\displaystyle{\int_{-\infty}^x f(t)dt}$ exista $\displaystyle{\forall x \in \mathds{R}}$. Podemos afirmar que $F:\mathds{R}\rightarrow\mathds{R}$, $\displaystyle{F(x)=\int_{-\infty}^x f(t)dt}$. Fixe $a \in \mathds{R}$. Então:
 
@@ -88,7 +112,7 @@ Exemplo 2:
 \int_a^x f(t)dt &= \int_a^b f(t)dt + \int_b^x f(t)dt \\
 F(x) = \lim_{a\rightarrow - \infty}\int_a^xf(t)dt &= \underbrace{\int_{-\infty}^b f(t)dt}_{constante} + \underbrace{\int_b^x f(t)dt}_{H(x)}\\
 H(x) &= \int_b^x f(t)dt \\
-F(x) &= \underbrace{\int_{-\infty}^b f(t)dt}_{constante}+ \underbrace{H(x)}_{derivável} 
+F(x) &= \underbrace{\int_{-\infty}^b f(t)dt}_{constante}+ \underbrace{H(x)}_{derivavel} 
 \end{align*}
 
 $H$ é derivável e $H'(x) = f(x)$ (T.F.C.), logo $F$ é derivável e $F'(x)=H'(x)=f(x)$
@@ -135,7 +159,7 @@ $\hbox{F}(x)
 \end{array}\right.$
 
 \section{Critério de Comaparação}
-\label{sec:23}
+\label{sec:13}
 
 \hspace{5mm} Ferramenta Importante na classificação de integrais impróprias
 
@@ -168,26 +192,26 @@ Como $\displaystyle{\int_a^{+\infty} g(t)dt}$ é convergente, então $\displayst
 
 Pelo que se vê acima, $\displaystyle{\lim_{t\rightarrow+\infty} F(t) = \lim_{t\rightarrow+\infty} \int_a^t f(x)dx}$ exite e é finito. Logo, $\displaystyle{\int_a^{+\infty} f(t)dt}$ é \textbf{convergente}.
 
-Interessante destacar que se tivermos a integral indefinida de $\displaystyle{f(x) =  \frac{g(x)}{x^{\alpha}}} $ com $g(x)$ limitado \footnote{$\displaystyle{ \lim_{x \rightarrow +\infty} g(x)} = L \neq \infty $}, então sua classificação depende únicamente da classificação de 1/x^\alpha 
+Interessante destacar que se tivermos a integral indefinida de $\displaystyle{f(x) =  \frac{g(x)}{x^{\alpha}}}$ com $g(x)$ limitado \footnote{$\displaystyle{\lim_{x \rightarrow +\infty} g(x)} = L \neq \infty $}, então sua classificação depende únicamente da classificação de 1/x^\alpha 
 
 \section{Descobrindo se é ou não convergente -- Exemplo de exercícios}
-\label{sec:s24}
+\label{sec:s14}
 
-\subsection{Exemplo 1}
-\label{sub:ex241}
+\subsection*{Exemplo 1}
+\label{sub:ex141}
 
 Mostrar que $\displaystyle{\int_0^{+\infty} e^{-x} \cos(\sqrt x) dx} $ é  convergente.
 \begin{align*}
 f(x) &= e^{-x} \cos(\sqrt x) \\
 |f(x)| &= e^{-x}  |\cos(\sqrt x)| \leq e^{-x} = g(x) \\
 \end{align*}
-Se $\displaystyle{\int_0^{+\infty}g(x)dx }$ for convergente, $\displaystyle{\int_0^{+\infty}f(x)dx }$ também o será.
+Se $\displaystyle{\int_0^\infty \ g(x)dx}$ for convergente, $\displaystyle{\int_0^{+\infty}f(x)dx }$ também o será.
 $$ \int_0^{+\infty}e^{-x}dx = \lim_{t \rightarrow +\infty} -e^{-x} |_0^t} = - \lim_{t \rightarrow +\infty} \left[\frac{1}{e^t}-1 \right] = 1$$
 
 $\displaystyle{\int_0^{+\infty}g(x)dx }$ é convergente, logo $\displaystyle{\int_0^{+\infty}f(x)dx }$ também  é convergente.
 
 \subsection{Exemplo 2}
-\label{sub:ex242}
+\label{sub:ex142}
 
 Mostre que $$ \int_1^{\infty} \frac{x^2+1}{x^3+1} $$ é divergente.
 
@@ -201,7 +225,7 @@ x^2 \geq 1 \Rightarrow \frac{1}{x^2} \leq 1 \\
 Como $ \displaystyle{\int_1^{\infty} \frac{1}{2x}} $ é divergente, $\displaystyle{ \int_1^{\infty} \frac{x^2+1}{x^3+1}} $ também é
 
 \subsection{Exemplo 3}
-\label{sub:ex243}
+\label{sub:ex143}
 
 \hspace{5mm}Seja $\alpha \in \mathds{R} | \alpha >0 $, então mostre que $\displaystyle{\int_1^\infty \frac{dx}{x^\alpha}} $:
 \begin{enumerate}
@@ -217,7 +241,7 @@ Para $0  < \alpha \neq 1$ temos que $$\displaystyle{\int_1^\infty \frac{dx}{x^\a
 \end{enumerate}
 
 \subsection{Exemplo 4}
-\label{sub:ex244}
+\label{sub:ex144}
 
 \hspace{5mm} Verifique se são convergentes:
 \begin{enumerate}
@@ -230,13 +254,11 @@ Para $0  < \alpha \neq 1$ temos que $$\displaystyle{\int_1^\infty \frac{dx}{x^\a
 \item [b.] $$f(x) = \frac{x^5-3}{\sqrt{x^{20}+x^{10}+1}} = \frac{x^5\left(1-\frac{3}{x^5}\right)}{\sqrt{x^{20}(1+x^{-10}+x^{-20})}}= \underbrace{\frac{1}{x^5}}_{g(x)}\ \underbrace{\frac{1-\frac{3}{x^5}}{1+x^{-10}+x^{-20}}}_{h(x)}} = g(x)*h(x) $$ \\ $$\lim_{x \rightarrow +\infty} h(x) = 1$$ \\ $\displaystyle{\int_{10}^{\infty} g(x)\ dx}$ é convergente. Logo, $\displaystyle{\int_{10}^{\infty} f(x)\ dx}$ é convergente.
 \end{enumerate}
 
-\chapter{Sequências e Séries Numéricas}
-\label{chap:c3}
-
-Aulas dadas entre 10/08/2015 e 00/00/2015
+\chapter{Sequências e Séries Numéricas} Aulas dadas entre 10/08/2015 e 26/08/2015
+\label{chap:c2}
 
 \section{Sequências e limites de sequências}
-\label{sec:s31}
+\label{sec:s21}
 
 \hspace{5mm} Uma sequência  é uma função \footnote{$\mathds{N}^s$ geralmente é da forma $\left\{ n \in \mathds{N} | n \geq q , \ q \ fixo \right\} $ } \begin{align*}
 f: \underbrace{\mathds{N}^s \subset \mathds{N}}_n \rightarrow \underbrace{\mathds{R}}_{a_n} \\
@@ -316,10 +338,10 @@ Assim, a sequencia $(b_n)_{n \in \mathds{N}} =(f(a_n))_{n \in \mathds{N}}$ é ta
 \end{obs}
 
 \section{Exercícios da aula (10/08)}
-\label{sec:s32}
+\label{sec:s22}
 
-\subsection{Exemplo 1}
-\label{subsec:ex321}
+\subsection*{Exemplo 1}
+\label{subsec:ex221}
 \hspace{5mm}Calcular $$\lim_{n \rightarrow +\infty} \frac{(5n-3)^3}{n(n^2+1)}$$
 Desenvolvendo o binio de cima, temos $(5n-3)^3 = 125n^3-75n^2+45n -27$. Assim temos $a_n$ como na forma abaixo. Se dividirmos numerador e denominador por $n^3$, ficará fácil determinar o limite em questão.
 \begin{align*}
@@ -327,8 +349,8 @@ a_n &= \frac{125n^3-75n^2+45n -27}{n^3+n} =  \frac{125 - \frac{75}{n} + \frac{45
 \lim_{n \rightarrow + \infty} a_n &= \lim_{n \rightarrow + \infty} \frac{125 - \frac{75}{n} + \frac{45}{n^2} - \frac{27}{n^3}}{1 + \frac{1}{n^2}} = 125\\
 \end{align*}
 
-\subsection{Exemplo 2}
-\label{subsec:ex322}
+\subsection*{Exemplo 2}
+\label{subsec:ex222}
 \hspace{5mm}Calcular $$\lim_{n \rightarrow +\infty} (\sqrt{n+1} - \sqrt{n})$$
 \footnote{$\sqrt{n+1} + \sqrt{n} \geq 2\sqrt{n} \Longleftrightarrow \frac{1}{\sqrt{n+1} + \sqrt{n}} \leq \frac{1}{2\sqrt{n}} $}
 \begin{align*}
@@ -338,14 +360,14 @@ a_n &= \frac{125n^3-75n^2+45n -27}{n^3+n} =  \frac{125 - \frac{75}{n} + \frac{45
 \end{align*}
 \hspace{5mm} Logo, $\displaystyle{\lim_{n \rightarrow +\infty} (\sqrt{n+1} - \sqrt{n}) = 0}$
 
-\subsection{Exemplo 3}
-\label{subsec:ex323}
+\subsection*{Exemplo 3}
+\label{subsec:ex223}
 \hspace{5mm}Demonstrar que $$\lim_{n \rightarrow +\infty} a_n = 1$$ onde $a_n = \sqrt[n]{n},\ n \geq 1$
 
 $a_n = \sqrt[n]{n} = 1 + b_n, \ b_n > 0$, então $a_n \rightarrow 1 \Longleftrightarrow b_n \rightarrow 0$.
-$$n = a_n^n =(1+ b_n)^n = 1 + nb_n + \frac{n(n-1)}{2}}b_n^2 + \hdots + b_n^n \geq 1 + \frac{n(n-1)}{2}b_n^2$$
+$$n = a_n^n =(1+ b_n)^n = 1 + nb_n + \frac{n(n-1)}{2}b_n^2 + \hdots + b_n^n \geq 1 + \frac{n(n-1)}{2}b_n^2$$
 
-Logo $\displaystyle{n-1 \geq \frac{n(n-1)}{2}}b_n^2 \Rightarrow b_n^2 \leq \frac{2}{n} \Rightarrow 0 < b_n \leq \frac{\sqrt{2}}{\sqrt{n}}}$
+Logo $\displaystyle{n-1 \geq \frac{n(n-1)}{2}b_n^2 \Rightarrow b_n^2 \leq \frac{2}{n} \Rightarrow 0 < b_n \leq \frac{\sqrt{2}}{\sqrt{n}}}$
 
 Pelo critério de compração, $b_n \rightarrow 0$ e $a_n \rightarrow 1$.
 
@@ -362,14 +384,14 @@ Logo, \ \sqrt[n]{n} & \rightarrow 1 \\
 Vamos extender esses conceitos ...
 
 \subsubsection {Mostrar que $\displaystyle{\lim_{n \rightarrow +\infty} \sqrt[n]{a}} = 1 \ \ \forall \ a > 0$}
-\label{sssec:ss3232}
+\label{sssec:ss2232}
 \begin{itemize}
-\item [\textbf{1}. $ a > 1 $] Para $b_n > 0$ e $a_n = \sqrt[n]{a} = 1 + b_n$ \\ $a = a_n^n = (1 + b_n)^n$. Nesse caso, proceder como no exemplo \ref{subsec:ex323} 
+\item [\textbf{1}. $ a > 1 $] Para $b_n > 0$ e $a_n = \sqrt[n]{a} = 1 + b_n$ \\ $a = a_n^n = (1 + b_n)^n$. Nesse caso, proceder como no exemplo \ref{subsec:ex223} 
 \item [\textbf{2}. $ 0 < a < 1 $] $ 0 < a < 1 \Longleftrightarrow \frac{1}{a} > 1$ Nesse caso teremos que $$ \sqrt[n]{\frac{1}{a}} \rightarrow 1 $$ $$\frac{1}{\sqrt[n]{a}}\rightarrow 1 $$
 \end{itemize}
 
 \subsubsection {Calcular $\displaystyle{\lim_{n \rightarrow +\infty} \sqrt[n]{a^n + b^n}}$}
-\label{sssec:ss3233}
+\label{sssec:ss2233}
 \hspace{5mm} Dados $0 < a \leq b$ e $n \geq 1$.
 
 \begin{align*}
@@ -380,7 +402,7 @@ b &< a_n \leq b\underbrace{\sqrt[n]{2}}_{= 1}\\
 \end{align*}
 
 \section{Sequências Monótonas}
-\label{sec:s33}
+\label{sec:s23}
 
 \hspace{5mm}Toda sequência convergente é limintada $$a_n \rightarrow a \Rightarrow \exists M \in \mathds{R} \ | \ \forall n \in \mathds{N} \ \ |a_n| \leq M$$ 
 
@@ -445,7 +467,7 @@ l_n & \leq l_{n+1} \\
 \end{demonstration}
 
 \section{Subsequências}
-\label{sec:s34}
+\label{sec:s24}
 \hspace{5mm} Tome essas sequências:
 \begin{align*}
 a_n &= \frac{1}{n}, \ n \geq 1 \\
@@ -455,15 +477,15 @@ a'_{n_k} &= \frac{1}{2k+1} \\
 
 Dada uma sequência $\displaystyle{a'_{n_k} = \frac{1}{k^2}}$ é uma subsequência de $a_n$ se $\displaystyle{\lim_{n \rightarrow +\infty} a_n = a \Longleftrightarrow \lim_{k \rightarrow +\infty} a_{n_k} = a} \ \forall \ (a_n)$ subsequência de $(a_n)$.
 
-\textbf{Importante: }Sejam $(a_{n_k}) $ e $ (a'_{n_k}) $ subsequências de $(a_n)$ e suponha que $\nexists \lim_{k \rightarrow +\infty} a_{n_k}$ ou mesmo que $$\lim_{k \rightarrow +\infty} a_{n_k} = a \neq \lim_{k \rightarrow +\infty} a'_{n_k} = b $$. Então $(a_n)$ não é convergente.
+\textbf{Importante: }Sejam $(a_{n_k})$ e $(a'_{n_k})$ subsequências de $(a_n)$ e suponha que $\nexists \lim_{k \rightarrow +\infty} a_{n_k}$ ou mesmo que $$\lim_{k \rightarrow +\infty} a_{n_k} = a \neq \lim_{k \rightarrow +\infty} a'_{n_k} = b $$. Então $(a_n)$ não é convergente.
 
 \section{Séries Numéricas: Definições e exmplos}
-\label{sec:s35}
+\label{sec:s25}
 \hspace{5mm} Exemplos:
 \begin{enumerate}
-\item $\displaystyle{1 = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \hdots}$ \label{ex:351}
-\item $\displaystyle{1 = \frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \frac{9}{10000} + \hdots = 0,99999 \hdots} $ \label{ex:352}
-\item $\displaystyle{1 -1 + 1 - 1 + 1 - 1 + \hdots} $ \label{ex:353} \\
+\item $\displaystyle{1 = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \hdots}$ \label{ex:251}
+\item $\displaystyle{1 = \frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \frac{9}{10000} + \hdots = 0,99999 \hdots} $ \label{ex:252}
+\item $\displaystyle{1 -1 + 1 - 1 + 1 - 1 + \hdots} $ \label{ex:253} \\
 Alguns fazem $(1-1) + (1-1) + (1-1) + \hdots = 0$. \\ Outros fazem $1 + (-1 + 1) + (-1 + 1) + (-1 + 1) + (-1 + 1) + \hdots = 1$. \\ Liebniz propos $\frac{1}{2} = 1 + 1 - 1 + 1 - 1 + 1 - 1 + \hdots$ \\
 \end{enumerate}
 
@@ -483,10 +505,11 @@ S_m &= a_0 + a_1 + \hdots + a_m = \sum_{n=0}^m a_n \\
 Uma série $\sum_{n=0}^{\infty} a_n$ se diz \underline{convergente}. Se a sequência de somas parciais $(S_m)$ é convergente, neste caso, se $$ \lim_{n \rightarrow +\infty} S_n = S \Rightarrow \sum_{n=0}^{+\infty} a_n = S $$ onde S é a \underline{soma} da série. \footnote{$\displaystyle{\sum_{n=0}^{+\infty} a_n = \lim_{m \rightarrow +\infty} \left(\sum_{n=0}^m a_n\right)}$ }
 \end{definition}
 
+
 Voltando aos exemplos:
 \begin{itemize}
-\item \textbf{Exemplo \ref{ex:351}: } $\displaystyle{\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \hdots = \sum_{n=0}^{\infty} \frac{1}{2^{n+1}}}$
-\item \textbf{Exemplo \ref{ex:352}: } $\displaystyle{\frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \frac{9}{10000} + \hdots = \sum_{n=0}^{\infty} \frac{9}{10^{n+1}}}$.
+\item \textbf{Exemplo \ref{ex:251}: } $\displaystyle{\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \hdots = \sum_{n=0}^{\infty} \frac{1}{2^{n+1}}}$
+\item \textbf{Exemplo \ref{ex:252}: } $\displaystyle{\frac{9}{10} + \frac{9}{100} + \frac{9}{1000} + \frac{9}{10000} + \hdots = \sum_{n=0}^{\infty} \frac{9}{10^{n+1}}}$.
 \end{itemize}
 Esses são exemplos de \underline{séries geométricas} que são séries do tipo $\displaystyle{\sum_{n=0} a.r^n}$, onde $a, \ r \in \mathds{R}$. No primeiro caso, $a=r=\frac{1}{2}$, e no segundo $a = \frac{9}{10}, \ r = \frac{1}{10}$. \\ $r = 0 \Rightarrow $ converge a 0 \\ $r = 1 \Rightarrow $ diverge.
 
@@ -506,7 +529,7 @@ Se $0 < |r| < 1$, então $$\lim_{m \rightarrow +\infty} S_m = \lim_{m \rightarro
 
 Se $|r| > 1$ a série diverge, pois $\displaystyle{\lim_{m \rightarrow +\infty} S_m = \lim_{m \rightarrow +\infty} \frac{a(1-r^{m+1})}{1-r} = \infty}$.
 
-Exemplo \ref{ex:353}: 
+Exemplo \ref{ex:253}: 
 \begin{align*} 
 1 - 1 + 1 - 1 + 1 - 1 + 1 + \hdots \\
 S_0 &= 1 \\
@@ -532,16 +555,16 @@ $(S_m)$  tem duas subsequências convergindo a limites distintos, logo $\nexists
 \end{enumerate}
 
 \section{Séries de Termos Positivos -- Critérios de Comparação (Parte I)}
-\label{sec:s36}
+\label{sec:s26}
 $$\sum_{n=0}^{\infty} a_n \ \ \ a_n > 0 $$
 
 Convergência de sequêncio:
 \begin{enumerate}
-\item Sequências monótonas \label{361}
-\item Critério de Couchy \label{362}
+\item Sequências monótonas \label{261}
+\item Critério de Couchy \label{262}
 \end{enumerate}
 
-\textbf{Item \ref{361}}: para a série $\sum a_n$ de termos positivos, temos:
+\textbf{Item \ref{261}}: para a série $\sum a_n$ de termos positivos, temos:
 \begin{align*}
 S_0 &= a_0 \\
 S_1 &= a_0 + a_1 > a_0 = S_0 \\
@@ -550,15 +573,23 @@ S_2 &= a_0 + a_1 + a_2 > S_1 \\
 
 A sequência $(S_m)$ é crescente. Podemos afirmar que uma série $\displaystyle{\sum_{n=0}^{\infty} a_n}$ é convergente, se e somente se, a sequência das somas parciais $(S_m)$ for limitada superiormente. \\
 
-\textbf{Item \ref{362}: Critério de Comparação}: Sejam $\sum a_n$ e $\sum b_n$ séries de termos positivos e suponha que $a_n \leq b_n \ \forall \ n$. Então, se $\sum b_n$ converge, então $\sum a_n$
+\textbf{Item \ref{262}: Critério de Comparação}: Sejam $\sum a_n$ e $\sum b_n$ séries de termos positivos e suponha que $a_n \leq b_n \ \forall \ n$. Então, se $\sum b_n$ converge, então $\sum a_n$ também converge. \footnote{De outra forma, se $a_n$ diverge, então $b_n$ também o faz.}
+
+\begin{demonstration}
+Sejam $\displaystyle{S_m = \sum_{n=0}^{m} a_n}$ e  $\displaystyle{S'_m = \sum_{n=0}^{m} b_n}$ sequências  crescentes tais que $S_m \leq S'_m$
+
+Por hipótese, temos $\displaystyle{\lim_{n \rightarrow +\infty} S'_m = S' = \sum b_n}$. Sabendo que $S'_m = sup \ \left\{S'_m \ | \ m \in \mathds{N}\right\}$, temos então que $S_m \leq S'_m \leq S' \ \forall \ m$.
+
+Logo, temos que $S'$ é cota superior do conjunto $\left\{S_m \ | m \in \mathds{N}\right\}$. Como $S_m$ é convergente, então $\displaystyle{\exists \lim_{n \rightarrow + \infty} S_m = S = \left\{S_m \ | m \in \mathds{N}\right\} \Rightarrow \sum a_n}$ converge. 
+\end{demonstration}
 
 \section{Exercícios da aula do dia 17/08}
-\label{sec:s37}
+\label{sec:s27}
 
-\subsection{Calcular $\displaystyle{\sum_{n=1}^{\infty} e^{\frac{1}{n}}} $}
+\subsection*{Calcular $\displaystyle{\sum_{n=1}^{\infty} e^{\frac{1}{n}}} $}
 $$ a_n = e^{\frac{1}{n}} \ \ \lim_{n \rightarrow +\infty} e^{\frac{1}{n}} = 1 \neq 0$$ Logo a série converge.
 
-\subsection{Determinar se a expressão abaixo converge ou não. $$\sum_{n=1}^{\infty} \frac{1}{n}$$}
+\subsection*{Determinar se a expressão abaixo converge ou não. $$\sum_{n=1}^{\infty} \frac{1}{n}$$}
 
 Ainda que o limite de $a_n$ tenda pra zero quando n vai pra infinito, essa expressão não é convergente.
 
@@ -575,7 +606,7 @@ S_{2^n} &> \frac{n + 2}{2} \ \ \forall \ n \in \mathds{N} \\
 
 Logo $S_n$ diverge.
 
-\section{Determine a soma:}
+\subsection*{Determine a soma:}
 \begin{align*}
 \frac{1}{1*2} + \frac{1}{2*3} + \frac{1}{3*4} + \hdots = \sum_{n = 1}^{\infty} \frac{1}{n*(n+1)} \\
 S_m &= \frac{1}{1*2} + \frac{1}{2*3} + \frac{1}{3*4} + \hdots + \frac{1}{n*(n+1)}\\
@@ -587,7 +618,7 @@ S_m &= \frac{1}{1*2} + \frac{1}{2*3} + \frac{1}{3*4} + \hdots + \frac{1}{n*(n+1)
 Nesse caso, $S_n$ converge.
 
 \section{Teste seu conhecimento: (pergunte para o professor ou monitor se tiver dúvida)}
-\label{sec:s39}
+\label{sec:s28}
 
 Determinar quais somas são convergentes:
 \begin{itemize}
@@ -599,5 +630,353 @@ Determinar quais somas são convergentes:
 \item [e] $\displaystyle{\sum_{n = 0}^{\infty} \cos (n\pi)}$
 \item [a] $\displaystyle{\sum_{n = 0}^{\infty}  (2^{-n} + 3^{-n})}$
 \end{itemize}
+
+\section{Critério de Comparação no Limite}
+\label{sec:s29}
+Sejam $\sum a_n$ e $\sum b_n$ séries de termos positivos.
+\begin{itemize}
+\item [a] Dizemos que $a_n$ é da ordem de $b_n$ \footnote{$a_n = O(b_n)$} se $\exists k \in \mathds{R}\ |\ a_n \leq k\ b_n$ para n suficientemente grande.
+\item [b]  Se $a_n = O(b_n) \ \land \ b_n = O(a_n) \Longleftrightarrow a_n\approx b_n$.
+\item [c] $\displaystyle{a_n\approx b_n \ \Rightarrow \lim_{n \rightarrow +\infty} \frac{a_n}{b_n} = 0}$ \footnote{Verificar esse detalhe}
+\item [exemplo] 
+\begin{align*}
+a_n &= n    &    a_n &= O(b_n) \\
+b_n &= 10n  &   10n \leq \underbrace{20}_K n &\Rightarrow b_n = O(a_n) \\
+\end{align*}
+\end{itemize}
+
+\begin{lemma}
+Sejam $\sum a_n$ e $\sum b_n$ duas séries de termos positivos. Temos:\begin{itemize}
+\item se $a_n = O(b_n)$ e se $\sum b_n$ converge, então $\sum a_n$ converge também.
+\item se $a_n = O(b_n)$ e se $\sum b_n$ diverge, então $\sum a_n$ diverge também.
+\item se $\displaystyle{\lim_{n \rightarrow +\infty} \frac{a_n}{b_n} = c > 0}$ , então $\sum a_n$ converge e $\sum b_n$ também.
+\end{itemize}
+\end{lemma}
+
+\hspace{5mm} \textbf{Mostre que} $\displaystyle{\sum_{n=1}^{\infty} \frac{3n + 4}{n^2 + 2}}$ diverge.
+\begin{align*}
+a_n &= \frac{3n + 4}{n^2 + 2} & b_n &= \frac{1}{n} \\
+\lim_{n \rightarrow \infty} \frac{a_n}{b_n} &= \lim_{n \rightarrow \infty} \frac{3n^2 + 4n}{n^2 + 2} = \lim_{n \rightarrow \infty} \frac{3 + \frac{4}{n}}{1 + \frac{2}{n^2}} = 3 > 0 \\
+\end{align*}
+
+Como $\sum \frac{1}{n}$ diverge, então $\sum_{n = 1}^{\infty} a_n$ diverge também. \vspace{7mm}
+
+\hspace{5mm} \textbf{Mostre que} $\displaystyle{\sum_{n=1}^{\infty} \underbrace{\frac{\cos^2(n\pi)}{n^2}\ \frac{\sqrt{4n-3}}{n^2+1}}_{a_n}}$ convege.
+
+%Tomaremos $b_n = \frac{1}{n^2}$. Se mostrarmos que $a_n \approx b_n$, teremos que $a_n$ converge, pois $b_n$ também o faz. 
+\begin{align}
+\sqrt{4n-3} < 4n-3 \leq n^2 \label{eq:1} \\
+a_n = \frac{1}{n^2} \ \frac{\sqrt{4n-3}}{n^2 + 1} \underbrace{<}_{\ref{eq:1}} \frac{n^2}{n^2(n^2+1)} < \frac{1}{n^2} \\
+\end{align}
+$\sum a_n$ converge.
+
+\section{Séries de termos Positivos: Critérios de Comparação (Parte II)}
+\label{sec:s210}
+
+\hspace{5mm}Os critérios da parte anterior dependem do conhecimento de séries com determinadas propriedades. Nesta seção, veremos métodos "intrínsecos", ou seja, de métodos que dependem somente das próprias séries.
+
+\subsection{Critério da Razão (D'Alambert)}
+Seja $\sum a_n$ Uma série de termos positivos e suponha que exista $\displaystyle{\lim_{n \rightarrow \infty} \frac{a_n}{b_n} = l}$ finito ou não. Desse modo temos que: $\left\{ \begin{array}{rlll}
+diverge & \hbox{se} &  l > 1 \\
+converge & \hbox{se} & 0 \leq l < 1 \\
+inconclusivo & \hbox{se} & l = 1 \\
+\end{array}\right.$
+
+\begin{demonstration}
+Temos dois casos:
+\begin{itemize}
+\item [a.] $$\lim_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} = l < 1 $$ Existe $r \in \mathds{R}$ tal que $l < r < 1$. Existe $n \in \mathds{N}$  tal que $$ n \geq N \Rightarrow \frac{a_{n+1}}{a_n} < r$$
+Temos : \begin{align}
+\frac{a_{N+1}}{a_N} < r &\Rightarrow  a_{N+1} < r\ a_N \\
+\frac{a_{N+2}}{a_{N+1}} < r &\Rightarrow  a_{N+2} < r\ a_{N+1} < r^2\ a_N \\
+\vdots &\Rightarrow \vdots \\
+\vdots &\Rightarrow a_{N+K+1} < a_N\  r^{K+1} \label{eq:210}
+\end{align}
+Como $0 < r < 1$, a série $\displaystyle{\sum_{n=0}^{\infty} r^n}$ converge $\displaystyle{\Rightarrow \ \sum_{n=N}^{\infty} r^n}$ converge.
+Pela relação \ref{eq:210}, temos que $\displaystyle{\sum_{n=N}^{\infty} a_n}$ converge,então $\displaystyle{\sum_{n=0}^{\infty} a_n}$ converge também.
+\item [b.] $$\lim_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} = l > 1 $$ Existe $n \in \mathds{N}$  tal que $$ n \geq N \Rightarrow \frac{a_{n+1}}{a_n} > 1 \Rightarrow a_{n+1} > a_n $$
+
+\begin{align*}
+a_{N+1} &> a_N \\
+a_{N+2} &> a_{N+1} > a_N\\
+\vdots\\
+a_{N+K} &> a_N & \forall \ k \in \mathds{N}\\
+\lim_{n \rightarrow \infty} a_n \geq a_N > 0
+\end{align*}
+Logo $\sum a_n$ converge.
+\end{itemize}
+\end{demonstration}
+
+\hspace{5mm}\textbf{Exemplo} Analisar a série abaixo: $$\sum_{n=1}^{\infty} \frac{2^n \ n!}{n^n}$$ \footnote{$\displaystyle{\lim_{n \rightarrow \infty} \left( 1 + \frac{1}{n} \right)^n = e}$}
+\begin{align*}
+a_n &= \frac{2^n \ n!}{n^n} \\
+\frac{a_{n+1}}{a_n} &=  \frac{2^{n+1} \ (n+1)!}{(n+1)^{n+1}} \ \frac{n^n}{2^n \ n!} \\
+&= 2\ \left( \frac{n}{n+1}\right)^n = \frac{2}{\left( \frac{n+1}{n}\right)^n}\\
+\lim_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} &= \frac{2}{e} < 1 
+\end{align*}
+Pelo critério da Razão, a série converge.
+
+\subsection{Critério da Raíz(De Cauchy)}
+
+\hspace{5mm} Seja $a_n$ uma série de termos positivos tal que $\displaystyle{\lim_{n \rightarrow \infty} \sqrt[n]{a_n} = l}\  $ tal que $\ \sum a_n  \left\{ \begin{array}{rlll}
+diverge & \hbox{se} &  l > 1 \\
+converge & \hbox{se} & 0 \leq l < 1 \\
+inconclusivo & \hbox{se} & l = 1 \\
+\end{array}\right.$
+
+Seja $\int a_n$ uma série de números positivos, então se :
+\begin{align}
+\lim_{n \rightarrow \infty} \frac{a_{n+1}}{a_n} &= l \Rightarrow \label{eq:cauchy1} \\
+%esse rótulo foi nomeado com base na sessão, pra facilitar sua referência a algumas linhas a frente xD
+\lim_{n \rightarrow \infty} \sqrt[n]{a_n} &= l
+\end{align}
+
+Seja $(a_n)$ uma sequência tal que $\displaystyle{\lim_{n \rightarrow \infty} a_n = a}$ então,  $$\lim_{n \rightarrow \infty} \frac{a_1 + a_2 + \cdots + a_n}{n} = a \ \land \ \lim_{n \rightarrow \infty} \sqrt[n]{a_1 * a_2 * \hdots * a_n} = a$$
+\begin{align*}
+\lim_{n \rightarrow \infty} \sqrt[n]{a_n} \\
+\lim_{n \rightarrow \infty} \sqrt[n]{a_n} &= \sqrt[n]{a_1} \ \sqrt[n]{\underbrace{\frac{a_2}{a_1}}_l\ \underbrace{\frac{a_3}{a_2}}_l \ \underbrace{\frac{a_4}{a_3}}_l \ \cdots \ \underbrace{\frac{a_n}{a_{n-1}}}_{l \ (\ref{eq:cauchy1})}}
+\end{align*}
+
+\textbf{Decida} se a série abaixo é convergente. $$\sum_{n = 1}^{\infty} \left( \frac{n}{2n+1}\right)^n$$
+\begin{align*}
+a_n &= \left( \frac{n}{2n+1}\right)^n \\
+\lim_{n \rightarrow \infty} \sqrt[n]{a_n} &= \lim_{n \rightarrow \infty}\frac{n}{2n+1} \\
+&= \lim_{n \rightarrow \infty}\frac{1}{2+\frac{1}{n}} = \frac{1}{2}
+\end{align*}
+
+Logo, a série converge.
+
+\subsection{Critério da Integral}
+
+\hspace{5mm} Seja $\displaystyle{f: [0;+\infty) \rightarrow \mathds{R}}$ uma função positiva e decrescente, e seja $a_n = f(x)$. Desse modo, a série $\displaystyle{\sum_{n=0}^{\infty} a_n}$ converge, se e somente se, $\displaystyle{\int_0^{\infty} f(x) \ dx}$ também for convergente. 
+
+Vale saber que $$\sum_{n=0}^{\infty} a_n = \int_0^{\infty} f(x) \ dx = \lim_{t \rightarrow +\infty} \left( \int_0^t f(x) \ dx \right)$$
+
+\begin{lemma}
+Seja $\sum a_n$ uma série de termos positivos e suponha que haja uma função positiva e decrescente $f: [N, +\infty) \rightarrow \mathds{R}$ tal que $\forall n \geq N, \ f(n) = a_n$. Logo $\sum a_n$ convege se, e somente se a integral $\displaystyle{\int_N^{\infty}  f(x) \ dx }$ convergir também.
+\end{lemma}
+
+\section{Exercícios da aula do dia 24/08}
+\label{sec:211}
+
+\subsection*{Mostrar que a série $$\sum_{n = 1}^{\infty} \frac{1}{n^s}$$ converge para $s > 1$ e converge para $s \leq 1$}
+
+\begin{itemize}
+\item se $\displaystyle{s = 0} \Rightarrow \sum_{n = 1}^{\infty} \frac{1}{n^0} \Longleftrightarrow \sum_{n = 1}^{\infty} 1$ \\ A série diverge.
+\item se $\displaystyle{s = 1} \Rightarrow \sum_{n = 1}^{\infty} \frac{1}{n}$ \\ A série também diverge.
+\item se $\displaystyle{0 < s < 1 \Rightarrow n^s < n \Longleftrightarrow \frac{1}{n^s} > \frac{1}{n} \ \ \ \vspace{5mm} \sum_{n = 1}^{\infty} \frac{1}{n^s}}$ diverge pelo critério de comparação.
+\item se $\displaystyle{s < 0} \Rightarrow \sum_{n = 1}^{\infty} n^{-s} = \infty$ A série diverge \footnote{se $s < 0 \Longleftrightarrow -s > 0$}
+\item se $s > 1$, considere $f: [1, \infty) \rightarrow \mathds{R} \ \ \ \ \ f(x) = \frac{1}{x^s}$
+
+\begin{align*}
+\int_1^{\infty} \frac{1}{x^s} \ dx = \lim_{t \rightarrow \infty} \left(\int_1^t x^{-s} \ dx \right) &= \lim_{t \rightarrow \infty} \left[\frac{x^{1-s}}{1-s} \right]_1^t \\
+\lim_{t \rightarrow \infty} \frac{t^{1-s}-1}{1-s} &= \frac{-1}{1-s} = \frac{1}{s-1}
+\end{align*}
+Logo, para $s > 1$, a série converge.
+\end{itemize}
+
+\subsection*{Avaliar as séries abaixo}
+\begin{itemize}
+\item [a.] $\displaystyle{\sum_{n=2}^{\infty} \frac{1}{(\ln n)^{\ln n}}}$ 
+\item [b.] $\displaystyle{\sum_{n=2}^{\infty} \frac{1}{(\ln n)^{\ln(\ln n)}}}$
+\end{itemize}
+\textbf{resolução item A\footnote{O item B se resolve de forma semelhamnte e eu deixo para que o leitor o faça}}
+\\
+\textbf{Passo 1:} Tome a função $f:[a, +\infty[ \rightarrow \mathds{R} \ | \  f(x) = \displaystyle{\frac{1}{(\ln x)^{\ln x}}}$, podemos usar, primeiramente, o critério da integral onde teremos algo assim: $$\int_2^{\infty} f(x) \ dx = \lim_{t \rightarrow \infty} \int_2^t \displaystyle{\frac{dx}{(\ln x)^{\ln x}}}$$
+\textbf{Passo 2:} Mudança de variável
+\begin{align}
+y &= \ln x \\ \label{211a}
+x &= e^y \\ 
+dx &= e^y \ dy \label{211b}
+\end{align}
+Teremos a seguinte integral $$\lim_{t \rightarrow \infty} \int_2^t \displaystyle{\frac{\overbrace{e^y \ dy}^{\ref{211a}}}{\underbrace{y^y}_{\ref{211b}}}} = \int_2^{\infty} \frac{e^y}{y^y} dy$$
+
+\textbf{Passo 3:} Tomamos uma sequência $b_n = \displaystyle{\frac{e^n}{n^n}}$ e com ela podemos usar o critério da raíz. Assim, se $\displaystyle{\exists \lim_{n \rightarrow \infty} \sqrt[n]{b_n}}$ e esse limite estiver entre 0 e 1 ($0 \leq k < 1$), a $b_n$ e consequentemente, $a_n$ serão convergentes, caso contrário, serão divergentes. $$\lim_{n \rightarrow \infty} \sqrt[n]{\frac{e^n}{n^n}} = \lim_{n \rightarrow \infty} \ \frac{e}{n} = 0$$ Logo, as séries são convergentes. \\
+\vspace{7mm}
+
+\section{Convergência Absoluta --- Convergência Condicional}
+
+\hspace{5mm} Lembrando que uma sequência $b_n$ é convergente, se e somente se, para um dado $\epsilon$ suficientemente pequeno, houver $N \in \mathds{N}$ tal que \begin{align*}
+m,\ n \ \geq N \Rightarrow |b_m - b_n| &\leq \epsilon \\
+m \ \geq N \Rightarrow |b_{m+k} - b_m| &\leq \epsilon & \forall \ k = 1,\ 2, 3 \ \hdots
+\end{align*}
+
+\begin{theorem}
+Seja $\displaystyle{\sum_{n=0}^{\infty} a_n}$ uma série numérica. Se a série $\displaystyle{\sum_{n=0}^{\infty} |a_n|}$ convergir, a primeira série certamente será convergente também.
+\end{theorem}
+
+\begin{demonstration}
+Sejam \begin{align*}
+S_m &= a_0 + a_1 + a_2 + \hdots + a_m \\
+S'_m &= |a_0| + |a_1| + |a_2| + \hdots + |a_m|
+\end{align*}
+Vamos tomar que $S'_m$ seja convergente, queremos provar que $S_m$ converge também.
+Dado $\epsilon > 0$ e $S'_m$ convergente, então existe $N \in \mathds{N}$ tal que \begin{align}
+m \ \geq N &\Rightarrow |S'_{m+k} - S'_m| \leq \epsilon \\
+&= |a_{m+1}| + |a_{m+2}| + \ \hdots \ + |a_{m+k}| < \epsilon \label{212a}
+\end{align}
+
+Então, $m \geq N \Rightarrow |S_{m+k} - S_m| = |a_{m+1} +\hdots + a_{m+k}| < \\ < \underbrace{|a_{m+1}| + \hdots + |a_{m+k}| < \epsilon}_{\ref{212a}}$
+
+Pelo critério de Couchy, a sequência $S_m$ é convergente.
+\end{demonstration}
+
+\textbf{Exemplo:} $$(*) a_n = \sum_{n=0}^{\infty} \ \frac{\cos n\pi}{n^2} = \sum_{n=0}^{\infty} \ \frac{(-1)^n}{n^2}$$ Em valor absoluto temos $\displaystyle{\sum_{n=1}^{\infty} \ \frac{1}{n^2}}$ que é convergente, logo $\displaystyle{\sum_{n=1}^{\infty} \ \frac{\cos(n\pi)}{n^2}}$ também o é.
+
+\textbf{Considere} o seguinte exemplo: $$(**) \sum_{n=1}^{\infty} \ \frac{(-1)^n}{n}$$ Em valores absolutos temos $\displaystyle{\sum_{n=1}^{\infty} \ \frac{1}{n}}$ que é divergente, mas a série $(**)$ converge como veremos a seguir. 
+
+\begin{definition} São tipos de convergência:
+\begin{itemize}
+\item Uma série $\sum a_n$ é dita \underline{absolutamente convergente} se $\sum a_n$ e $\sum |a_n|$ forem convergentes. Exemplo $(*)$
+\item Uma série $\sum a_n$ é dita \underline{condicionalmente convergente} se $\sum a_n$ convergir, mas $\sum |a_n|$. divergir. Exemplo $(**)$
+\end{itemize}
+\end{definition}
+
+Para dada $\displaystyle{\sum_{n=0}^{\infty} a_n, \ a_n \neq 0}$ e suponha que exista $$\lim_{n \rightarrow \infty} \ \frac{|a_{n+1}|}{|a_n|} = l$$
+
+\begin{itemize}
+\item [a] se $0 \leq l <1$, então $\displaystyle{\sum_{n=0}^{\infty} |a_n|}$ converge, e portanto, $\displaystyle{\sum_{n=0}^{\infty} a_n}$ converge também.
+\item [b] se $l > 1$ então $\displaystyle{\sum_{n=0}^{\infty} |a_n|}$ diverge, e portanto, $\displaystyle{\sum_{n=0}^{\infty} a_n}$ também o é. Isso acontece pois se $$ \lim_{n \rightarrow \infty} |a_n| \neq 0 \Rightarrow \lim_{n \rightarrow \infty} a_n \neq 0 \Rightarrow \sum a_n \ \ diverge$$
+\end{itemize}
+
+\subsection{Critério de Liebniz}
+\label{subsec:2121}
+
+\hspace{5mm}Tomamos uma série $\displaystyle{\sum_{n=0}^{\infty} (-1)^n a_n}$ onde $a_n$ é uma sequência de termos positivos tais que: \begin{enumerate}
+\item $a_n$ é decrescente ($a_n \geq a_{n+1}$)
+\item $\displaystyle{\lim_{n \rightarrow \infty} a_n = 0}$
+\end{enumerate}
+
+Então $\displaystyle{\sum_{n=0}^{\infty} (-1)^n a_n}$ converge. Além disso, temos que \begin{align}
+S_m &= \sum_{n=0}^m (-1)^n \ a_n \\
+S &= \sum_{n=0}^{\infty} (-1)^n \ a_n \\
+\lim_{n \rightarrow \infty} S_m &= S \\
+|S-S_m| &\leq a_{m+1} & \forall m \geq 1
+\end{align}
+\textbf{Voltemos ao exemplo (**)} $ \ \displaystyle{a_n = \frac{1}{n}}$ e tomando dois inteiros tais que $i \leq j$ \begin{itemize}
+\item $a_n$ é decrescente. $$ i \leq j \Longleftrightarrow \frac{1}{i} \geq \frac{1}{j} \Longleftrightarrow a_i \geq a_j $$ 
+\item $a_n$ é uma série de números positivos
+\item $\displaystyle{\lim_{n \rightarrow \infty} a_n = a}$
+\item $\displaystyle{|S-S_{99}| = a_{99+1} = a_{100} = 0,01}$ \footnote{Eu não tenho certeza, mas acredito que essa propriedade é uma consequência, e não uma dependência da série ser convergente ou não}
+\end{itemize}
+$$\sum_{n=1}^\infty \ \frac{(-1)^n}{n} \ converge$$ 
+
+\textbf{Fatos importantes sobre essa série:}\footnote{$n \in \mathds{N} \land n \geq 1$}
+\begin{itemize}
+\item $S_2 > S_4 > S_6 > \hdots > S_{2n}$
+\item $S_1 < S_3 < S_5 < \hdots < S_{2n-1}$
+\item Para $k$ par e $l$ ímpar, temos tempre que $S_k > S_l$
+\end{itemize}
+
+\begin{align}
+S_{2n+2} &= -a_1 + a_2 - \hdots + a_{2n} - a_{2n-1} + a_{2n+2}\\
+S_{2n+1} &= -a_1 + a_2 - \hdots - a_{2n-1} + a_{2n} - a_{2n+1}\\
+S_{2n+2} - S_{2n} &= -a_{2n+1} + a_{2n+2} \leq 0 \Longleftrightarrow S_{2n+2} \leq S_{2n} \label{212A}\\
+S_{2n+1} - S_{2n-1} &= a_{2n} - a_{2n+1} \geq 0 \Longleftrightarrow S_{2n+1} \geq S_{2n-1} \label{212B}\\
+S_{2n} - S_{2n-1} &= a_{2n} > 0 \label{212C} \\
+l \leq 2n-1 &\land k < 2n
+\end{align}
+
+Podemos concluir que $S_l \underbrace{<}_{\ref{212B}} S_{2n-1} \overbrace{<}^{\ref{212C}} S_{2n} \underbrace{<}_{\ref{212A}} S_k$
+
+\begin{obs}{Observações}
+\begin{itemize}
+\item $S_{2n}$ é decrescente e é limitada inferiormente ($S_{2n} \geq S_1 \ \forall n$). \\
+Logo $\exists \displaystyle{\lim_{n \rightarrow \infty} S_{2n} = \alpha = inf \ \left\{S_{2n} | \ n \in \mathds{N}\right\} }$
+\item $S_{2n+1}$ é crescente e é limitada superiormente ($S_{2n+1} \leq S_2 \ \forall n$). \\
+Logo $\exists \displaystyle{\lim_{n \rightarrow \infty} S_{2n+1} = \beta = sup \ \left\{S_{2n+1} | \ n \in \mathds{N}\right\} }$
+\end{itemize}
+
+Desejamos mostrar que $\alpha = \beta$. Para isso, temos que $S_{2n+2} - S_{2n+1} = a_{2n+2} > 0$. 
+$$\lim_{n \rightarrow \infty} \overbrace{\left(S_{2n+2} - S_{2n+1}\right)}^{\alpha - \beta} = \lim_{n \rightarrow \infty} a_{2n+2} = 0$$
+Logo $\alpha - \beta = 0 \Longleftrightarrow \alpha = \beta$
+\end{obs}
+\newpage
+
+\section*{Teste seus conhecimentos -- Avalie se as séries abaixo são divergentes, convergentes absolutas, ou convergentes condicionais} Pergunte ao monitor, se tiver qualquer dúvida.
+%Ideia de subtítulo #1 (caso vc queira se aprofundar em LaTeX )\section{Section Title\\Section Subtitle}
+%Ideia de subtítulo #2 \section[Section Title. Section Subtitle]{Section Title\\ {\large Section Subtitle}}
+\begin{itemize}
+\item [a.] $\displaystyle{\sum_{n=1}^{\infty} \ \frac{\sin(n\theta)}{n^2}, \ \theta \in \mathds{R}}$
+\item [b.] $\displaystyle{1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+ \frac{1}{9} + \hdots = \sum_{n=0}^{\infty} \ \frac{(-1)^n}{2n+1}}$
+\item [c.] $\displaystyle{1-\frac{1}{2}+\frac{2}{3}-\frac{1}{3}+\frac{2}{4}-\frac{1}{4}+\frac{2}{5}-\frac{1}{5}+\frac{2}{6}}-\frac{1}{6}+ \hdots$
+\item [d.] $\displaystyle{\sum_{n=1}^{\infty} (-1)^n \ \frac{\ln n}{n}}$
+\item [e.] $\displaystyle{\sum_{n=1}^{\infty} \ \frac{(-1)^n}{\ln n}}$
+\item [f.] $\displaystyle{\sum_{n=1}^{\infty} \ \frac{(-1)^{n+1}}{\sqrt{n}}}$
+\item [g.] $\displaystyle{1+\frac{1}{2}-\frac{1}{4}-\frac{1}{8}+\frac{1}{16}+\frac{1}{32}-\frac{1}{64}-\frac{1}{128}+\hdots}$
+\end{itemize}
+
+\chapter{Sequências de Funções} Assunto tratado entre 31/08/2015 até 00/00/2015
+\label{chap:c3}
+
+\begin{definition} Uma sequência de funções é uma sequência $n \rightarrow f_n$ onde cada $f_n$ é uma função definida em um mesmo conjunto $A \subset \mathds{R}$ \textbf{Exemplos:} \begin{enumerate}
+\item $f_n: \mathds{R} \rightarrow \mathds{R} \ | \ f_n(x) = x^n, \ n \geq 1$ \label{ex:302a}
+\item $f_n: \mathds{R} \rightarrow \mathds{R} \ | \ f_n(x) = n\ \displaystyle{\sin \left( \frac{x}{n}\right)}$ \label{ex:302b}
+\end{enumerate}
+\end{definition}
+
+Seja $f_n$ uma sequência definida em $A \in \mathds{R}$. Seja B o subconjunto de A, tal que a seuqência numérica ($f_n(x)$) seja convergente. $B = \left\{x \in A\ | \ \exists \lim_{n \rightarrow \infty} f_n(x) \right\}$
+
+Podemos definir: $f: B \rightarrow \mathds{R} \ | \ f(x) = \displaystyle{\lim_{n \rightarrow \infty} f_n(x)}$ Dado $\epsilon > 0, \ \exists n_0 \in \mathds{N}$ tal que $n \geq n_0 \Rightarrow |f_n(x) - f(x)| < \epsilon$
+
+Voltemos ao exemplo \ref{ex:302a} onde: $f_n(x) = x^n, \ A = \mathds{R}$ e queremos definir o conjunto B.
+
+\begin{itemize}
+\item Se $|x| < 1$, então $f_n$ tende a 0.
+\item Se $x=1$, $f_n$ tende a 1.
+\item Se $x=1 \ \lor \ |x| > 1$: $f_n$ diverge.
+\end{itemize}
+Logo $B = ]-1;1]\ \land \hbox{f}(x)
+= \left\{ \begin{array}{rll}
+0 & \hbox{se} &  |x| < 1 \\
+1 & \hbox{se} &  x  = 1 \\
+\end{array}\right.$
+
+Agora, nos voltamos ao exemplo \ref{ex:302b}
+\begin{itemize}
+\item se $x=0$, $f_n$ tende a 0
+\item caso contrário, temos $$f(x) = \lim_{n \rightarrow \infty} n \sin \left(\frac{x}{n}\right) = \LI x \ \underbrace{\frac{\sin(\frac{x}{n})}{\frac{x}{n}}}_1 = x$$
+\end{itemize}
+
+\section*{Mais exemplos} Determine o domínio da função $f$ dada por $\displaystyle{f(x) = \LI f_n(x)}$
+
+\begin{itemize}
+\item [a] $$f_n= e^{nx}$$ 
+ Não existe $\displaystyle{ \LI f_n(x) = k \ | \ k \neq \infty}$ Logo não existe $f(x)$ nessas condições \ldots
+ \item [b] $$f_n= \frac{nx}{1+nx^2}$$
+ se $x=0 \Rightarrow f_n(0) = 0 \rightarrow f(0) = 0$, para $x \neq 0$ teremos $\displaystyle{\LI \ \frac{nx}{1+nx^2} = \LI \ \frac{x}{\frac{1}{n}+x^2} = \frac{x}{x^2} \rightarrow f(x) = \frac{1}{x}}$. O seu domínio é $D = \mathds{R} \left\{0\right\}$
+ \item [c] $$f_n(x) = \ \left( 1 + \frac{1}{n} \right)^{nx} \rightarrow \LI \ \left[ \left( 1 + \frac{1}{n} \right)^n \right]^x \rightarrow f(x) = e^x$$
+\end{itemize}
+
+\begin{definition}[Convergência Uniforme]
+Dadas ($f_n$) e $f$ definidas em $A \subset \mathds{R}$, dizemos que $f_n$ \underline{converge unformemente} para $f$ em $A$ se para dado $\epsilon > 0, \exists \ n_0 \in \mathds{N} \ | \ n \geq n_0 \Rightarrow |f_n(x) - f(x)| < \epsilon$
+\end{definition}
+
+Voltamos para o exemplo 1 \footnote{p. \pageref{ex:302a}} com $x \in [-\frac{1}{2}; \ \frac{1}{2}]$. Sabemos que essa série converge a 0 neste intervalo. Neste caso, verificaremos que a convergência é uniforme.
+
+Dado $\epsilon > 0, \ \exists \ n_0 \ | \ n \geq n_0 \Rightarrow |x^n-0| < \epsilon \ \forall \ x \in [-\frac{1}{2};\frac{1}{2}]$.
+
+Tomamos que $\displaystyle{|x| < \frac{1}{2} \Rightarrow |x|^n < \frac{1}{2^n} <\epsilon}$. Tomando $\displaystyle{\frac{1}{2^{n_0}} < \epsilon}$ Temos  que para: $$n \geq n_0 \Rightarrow |x|^n < \frac{1}{2^n} < \frac{1}{2^{n_0}} < \epsilon$$
+
+\section*{Exercício:} Determine para que valores de $x \in \mathds{R}$ as funções a seguir estão definidas:
+\begin{itemize}
+\item [a.] $\displaystyle{\soma{1} \ \frac{n! x^n}{3^n}}$
+
+Tomamos $a_n = \soma{1} \frac{n! x^n}{3^n}$ 
+\begin{align*}
+\LI \frac{a_{n+1}}{a_n} &= \LI \frac{(n+1)! x^{n+1}}{3^{n+1}}\ \frac{3^n}{n! x^n} \\
+&= \LI \frac{x}{3} (n+1) = \frac{x}{3} \LI (n+1) = \infty
+\end{align*}
+Logo não há nuémros reais para os quais essa função está definida.
+\item [b.] $\displaystyle{\soma{1} \ ne^{-xn}}$
+\begin{align*}
+a_n &= n \ e^{-xn} \\
+&= \frac{n}{e^{xn}} \\
+\LI \sqrt[n]{\frac{n}{e^{xn}}} &= \LI \frac{\overbrace{\sqrt[n]{n}}^{=1 \footnote{\ref{subsec:ex223}}}}{\sqrt[n]{e^{xn}}} \\
+f(x) = \frac{1}{e^x}
+\end{align*}
+Logo essa função está definida para qualquer valor estritamente positivo de $x$
+\end{itemize}
+
 
 \end{document}
