@@ -14,8 +14,15 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{dsfont}
+\usepackage{multicol}
 \newcommand{\LI}[1][n]{\lim_{{#1} \rightarrow \infty}}
 \newcommand{\soma}[2][n]{\sum_{{#1} = #2}^\infty}
+\newcommand{\defini}[3][\mathds{R}]{#2: #3 \rightarrow {#1}}
+\newcommand{\E}[1]{Exercício #1}
+\newcommand{\DS}{\displaystyle{}}
+\newcommand{\Resolve}{\begin{center} \textbf{Resolução} \end{center}}
+\newcommand{\IT}[1]{Item {#1}}
+\newcommand{\cmw}{Critério M de Weierstrass }
 
 %modelo de início de capítulo encontrado no link https://pt.sharelatex.com/learn/Defining_your_own_commands
 \makeatletter 
@@ -41,6 +48,7 @@
 
 \title{Calculo IV - IME 2015}
 \author{André Luiz A Silveira}
+%\author{}
 \date{Segundo Semestre -- 2015}
 
 \begin{document}
@@ -48,6 +56,7 @@
 \maketitle
 
 \tableofcontents
+
 
 \chapter*{Introdução}
 \label{chap:c0}
@@ -59,14 +68,17 @@ Esse PDF não tem intenção nenhuma de ser uma segunda lousa, quanto menos subs
 Professor: 	Antonio Carlos Asperti (\href{mailto:asperti@ime.usp.br}{asperti@ime.usp.br})
 
 Livro usado: Um curso de Cáluclo -- Volumes 2 e 4
+\vspace{10mm}
 
 Provas:
-\begin{description}
-\item[P1] 14-Set (2ªf - peso 1)
-\item[P2] 21-Out (4ªf - peso 1)
-\item[P3] 02-Dez (4ªf - peso 2)
-\item[P SUB] 07-Dez (2ªf - peso ?)
-\end{description}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ Prova & Data & Dia & Peso & Correção \\ \hline 
+ 1 & 14/09 & 2a & 1 &  p. \pageref{C:P1}\\ \hline
+ 2 & 21/10 & 4a & 1 &  p. \pageref{C:P2}\\ \hline
+ 3 & 02/12 & 4a & 2 &  p. \pageref{C:P3}\\ \hline
+ SUB & 07/12 & 2a & ?? & p. \pageref{C:SUB} \\\hline
+\end{tabular}
 
 \begin{figure}
 \centering
@@ -76,7 +88,7 @@ Provas:
 \end{figure}
 
 
-
+\part{Teoria}
 \chapter{Integrais Impróprias}
 \label{chap:c1}
 
@@ -123,12 +135,12 @@ Exemplo 1: Dada $f:\mathds{R}\rightarrow\mathds{R}$, $\hbox{f}(t)
 2 & \hbox{se} &  |t| \leq 1 \\
 0 & \hbox{se} &  |t|  > 1 \\
 \end{array}\right.$, esboçe o gráfico de $\displaystyle{F(x)=\int_{-\infty}^x f(t)dt}$
-\begin{SCfigure}
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{enun}
 \caption{gráfico de f(x): exemplo 1}
 \label{fig:en1}
-\end{SCfigure}
+\end{figure}
 
 Resolução:
 \begin{itemize}
@@ -144,7 +156,7 @@ $\hbox{F}(x)
 4 & \hbox{se} & x \geq 1 \\
 \end{array}\right.$
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{resp}
 \caption{Gráfico Resultate da Operação}
@@ -192,7 +204,7 @@ Como $\displaystyle{\int_a^{+\infty} g(t)dt}$ é convergente, então $\displayst
 
 Pelo que se vê acima, $\displaystyle{\lim_{t\rightarrow+\infty} F(t) = \lim_{t\rightarrow+\infty} \int_a^t f(x)dx}$ exite e é finito. Logo, $\displaystyle{\int_a^{+\infty} f(t)dt}$ é \textbf{convergente}.
 
-Interessante destacar que se tivermos a integral indefinida de $\displaystyle{f(x) =  \frac{g(x)}{x^{\alpha}}}$ com $g(x)$ limitado \footnote{$\displaystyle{\lim_{x \rightarrow +\infty} g(x)} = L \neq \infty $}, então sua classificação depende únicamente da classificação de 1/x^\alpha 
+Interessante destacar que se tivermos a integral indefinida de $\displaystyle{f(x) =  \frac{g(x)}{x^{\alpha}}}$ com $g(x)$ limitado \footnote{$\displaystyle{\lim_{x \rightarrow +\infty} g(x)} = L \neq \infty $}, então sua classificação depende únicamente da classificação de $1 /x^\alpha$ 
 
 \section{Descobrindo se é ou não convergente -- Exemplo de exercícios}
 \label{sec:s14}
@@ -206,7 +218,7 @@ f(x) &= e^{-x} \cos(\sqrt x) \\
 |f(x)| &= e^{-x}  |\cos(\sqrt x)| \leq e^{-x} = g(x) \\
 \end{align*}
 Se $\displaystyle{\int_0^\infty \ g(x)dx}$ for convergente, $\displaystyle{\int_0^{+\infty}f(x)dx }$ também o será.
-$$ \int_0^{+\infty}e^{-x}dx = \lim_{t \rightarrow +\infty} -e^{-x} |_0^t} = - \lim_{t \rightarrow +\infty} \left[\frac{1}{e^t}-1 \right] = 1$$
+$$ \int_0^{+\infty}e^{-x}dx = \lim_{t \rightarrow +\infty} \left.-e^{-x} \right|_0^t = - \lim_{t \rightarrow +\infty} \left[\frac{1}{e^t}-1 \right] = 1$$
 
 $\displaystyle{\int_0^{+\infty}g(x)dx }$ é convergente, logo $\displaystyle{\int_0^{+\infty}f(x)dx }$ também  é convergente.
 
@@ -250,8 +262,10 @@ Para $0  < \alpha \neq 1$ temos que $$\displaystyle{\int_1^\infty \frac{dx}{x^\a
 \end{enumerate}
 
 \begin{enumerate}
-\item [a.] Seja  $\displaystyle{g(x) = \frac{\ln x}{\kn {x+1}}}$ uma função limitada ($\displaystyle{\lim_{x \rightarrow +\infty} \frac{\ln x}{\ln {x+1}} = 1}$) e o fato de que $\displaystyle{\int_1^{\infty} \frac{1}{x}}$ é divergente, então a integral em questão é divergente.
-\item [b.] $$f(x) = \frac{x^5-3}{\sqrt{x^{20}+x^{10}+1}} = \frac{x^5\left(1-\frac{3}{x^5}\right)}{\sqrt{x^{20}(1+x^{-10}+x^{-20})}}= \underbrace{\frac{1}{x^5}}_{g(x)}\ \underbrace{\frac{1-\frac{3}{x^5}}{1+x^{-10}+x^{-20}}}_{h(x)}} = g(x)*h(x) $$ \\ $$\lim_{x \rightarrow +\infty} h(x) = 1$$ \\ $\displaystyle{\int_{10}^{\infty} g(x)\ dx}$ é convergente. Logo, $\displaystyle{\int_{10}^{\infty} f(x)\ dx}$ é convergente.
+\item [a.] Seja  $\displaystyle{g(x) = \frac{\ln x}{\ln {x+1}}}$ uma função limitada ($\displaystyle{\lim_{x \rightarrow +\infty} \frac{\ln x}{\ln {x+1}} = 1}$) e o fato de que $\displaystyle{\int_1^{\infty} \frac{1}{x}}$ é divergente, então a integral em questão é divergente.
+\item [b.] $$f(x) = \frac{x^5-3}{\sqrt{x^{20}+x^{10}+1}} = \frac{x^5\left(1-\frac{3}{x^5}\right)}{\sqrt{x^{20}(1+x^{-10}+x^{-20})}}= \underbrace{1 \over x^5}_{g(x)} \underbrace{\frac{1-\frac{3}{x^5}}{1+x^{-10}+x^{-20}}}_{h(x)} = g(x)*h(x)$$ 
+$$\lim_{x \rightarrow +\infty} h(x) = 1$$ 
+$\displaystyle{\int_{10}^{\infty} g(x)\ dx}$ é convergente. Logo, $\displaystyle{\int_{10}^{\infty} f(x)\ dx}$ é convergente.
 \end{enumerate}
 
 \chapter{Sequências e Séries Numéricas} Aulas dadas entre 10/08/2015 e 26/08/2015
@@ -272,7 +286,7 @@ O que acontece quando n tende a infinito?
 \begin{enumerate}
 \item $(a_n) \ n \in \mathds{N} a_n = n$
 \item $\frac{1}{2}, \ \frac{1}{4}, \ \frac{1}{8}, \ \frac{1}{16}, \ \hdots a_n = \frac{1}{2^n}, \ \  n\geq 1 $
-\item 1, -1, 1, -1 , 1 , 1 $\hdots a_n = (-1)^n $ Vai para 0, 1 ou -1?
+\item 1, -1, 1, -1 , 1 , -1 $\hdots a_n = (-1)^n $ Vai para 0, 1 ou -1?
 \end{enumerate}
 \begin{definition}[Convergência]
 Dizemos que a sequência $(a_n)$ converge para o limite $L \in \mathds{R}$ dado $\epsilon > 0$, existe $n_0 \in \mathds{N}$ tal que $$ n \geq n_0 \Rightarrow |a_n - L| < \epsilon \Longleftrightarrow L-\epsilon < a_n < L + \epsilon $$
@@ -293,8 +307,8 @@ a_n &= \frac{1}{2^n}\\
 \lim_{n \rightarrow + \infty} a_n &= 0\\
 \end{align*}
 Vamos verificar esse fato. Dado $\epsilon > 0, \ \exists \ n_0 \in \mathds{N}$ tal que $\displaystyle{ n \geq n_0  \Rightarrow \left\| \frac{1}{2^n} - 0 \right\| <  \epsilon \Longleftrightarrow \frac{1}{2^n} < \epsilon \Longleftrightarrow 2^n > \frac{1}{\epsilon}}$.   Basta tomarmos $n_0 \in \mathds{N}$ tal que $\displaystyle{2^{n_0} > \frac{1}{\epsilon}}$ e $$ n \geq n_0 \Rightarrow 2^n \geq 2^{n_0} > \frac{1}{\epsilon} \Rightarrow \frac{1}{2^n} < \epsilon$$
-\item $a_n = (-1)^n$. O limite dessa expressão não pode ser $\pm \infty$ pois para n tendendo a infinito, teremos $-1 \leq a_n \leq 1 $.  Seja $\displaystyle{0 < \epsilon < \frac{1}{\epsilon} } $. Dado qualquer $L \in \mathds{R}}$, o intervalo $]L- \epsilon, L+ \epsilon[ $ tem diâmetro $\displaystyle{2\epsilon < \frac{2}{3}}$. 
-Portanto, esse intervalo não comporta  todos os elementos da sequência, logo $$ \nexists \lim_{n \rightarrow + \infty} (-a)^n$$
+\item $a_n = (-1)^n$. O limite dessa expressão não pode ser $\pm \infty$ pois para n tendendo a infinito, teremos $-1 \leq a_n \leq 1 $.  Seja $\displaystyle{0 < \epsilon < \frac{1}{\epsilon} } $. Dado qualquer $L \in \mathds{R}$, o intervalo $]L- \epsilon, L+ \epsilon[ $ tem diâmetro $\displaystyle{2\epsilon < \frac{2}{3}}$. 
+Portanto, esse intervalo não comporta  todos os elementos da sequência, logo $$ \not \exists \lim_{n \rightarrow + \infty} (-a)^n$$
 \item [\textbf{Adendo}] Seja $(a_n) \ n \in \mathds{N}$  e sejam $n > 0 \land s > 1$ com s fixo. Assim teremos $\displaystyle{\lim_{n \rightarrow + \infty} \frac{1}{n^s} = 0}$
 \end{enumerate}
 
@@ -477,7 +491,7 @@ a'_{n_k} &= \frac{1}{2k+1} \\
 
 Dada uma sequência $\displaystyle{a'_{n_k} = \frac{1}{k^2}}$ é uma subsequência de $a_n$ se $\displaystyle{\lim_{n \rightarrow +\infty} a_n = a \Longleftrightarrow \lim_{k \rightarrow +\infty} a_{n_k} = a} \ \forall \ (a_n)$ subsequência de $(a_n)$.
 
-\textbf{Importante: }Sejam $(a_{n_k})$ e $(a'_{n_k})$ subsequências de $(a_n)$ e suponha que $\nexists \lim_{k \rightarrow +\infty} a_{n_k}$ ou mesmo que $$\lim_{k \rightarrow +\infty} a_{n_k} = a \neq \lim_{k \rightarrow +\infty} a'_{n_k} = b $$. Então $(a_n)$ não é convergente.
+\textbf{Importante: }Sejam $(a_{n_k})$ e $(a'_{n_k})$ subsequências de $(a_n)$ e suponha que $\not \exists \lim_{k \rightarrow +\infty} a_{n_k}$ ou mesmo que $$\lim_{k \rightarrow +\infty} a_{n_k} = a \neq \lim_{k \rightarrow +\infty} a'_{n_k} = b $$. Então $(a_n)$ não é convergente.
 
 \section{Séries Numéricas: Definições e exmplos}
 \label{sec:s25}
@@ -543,7 +557,7 @@ S_{2k+1} &= 0, \ k \in \mathds{N} \\
 \lim_{k \rightarrow +\infty} S_{2k+1} &= 0 \\
 \end{align*}
 
-$(S_m)$  tem duas subsequências convergindo a limites distintos, logo $\nexists \displaystyle{\lim_{n \rightarrow +\infty} S_{n}}$ nem $\displaystyle{\sum_{n=0}^{\infty} (-1)^n}$
+$(S_m)$  tem duas subsequências convergindo a limites distintos, logo $\not \exists \displaystyle{\lim_{n \rightarrow +\infty} S_{n}}$ nem $\displaystyle{\sum_{n=0}^{\infty} (-1)^n}$
 
 \textbf{Propriedades Simples:}
 \begin{enumerate}
@@ -775,12 +789,12 @@ Seja $\sum a_n$ uma série de termos positivos e suponha que haja uma função p
 Logo, para $s > 1$, a série converge.
 \end{itemize}
 
-\subsection*{Avaliar as séries abaixo}
+\subsection*{Avaliar as séries abaixo} \label{avaliar}
 \begin{itemize}
 \item [a.] $\displaystyle{\sum_{n=2}^{\infty} \frac{1}{(\ln n)^{\ln n}}}$ 
 \item [b.] $\displaystyle{\sum_{n=2}^{\infty} \frac{1}{(\ln n)^{\ln(\ln n)}}}$
 \end{itemize}
-\textbf{resolução item A\footnote{O item B se resolve de forma semelhamnte e eu deixo para que o leitor o faça}}
+\textbf{resolução item A}
 \\
 \textbf{Passo 1:} Tome a função $f:[a, +\infty[ \rightarrow \mathds{R} \ | \  f(x) = \displaystyle{\frac{1}{(\ln x)^{\ln x}}}$, podemos usar, primeiramente, o critério da integral onde teremos algo assim: $$\int_2^{\infty} f(x) \ dx = \lim_{t \rightarrow \infty} \int_2^t \displaystyle{\frac{dx}{(\ln x)^{\ln x}}}$$
 \textbf{Passo 2:} Mudança de variável
@@ -891,9 +905,39 @@ Desejamos mostrar que $\alpha = \beta$. Para isso, temos que $S_{2n+2} - S_{2n+1
 $$\lim_{n \rightarrow \infty} \overbrace{\left(S_{2n+2} - S_{2n+1}\right)}^{\alpha - \beta} = \lim_{n \rightarrow \infty} a_{2n+2} = 0$$
 Logo $\alpha - \beta = 0 \Longleftrightarrow \alpha = \beta$
 \end{obs}
-\newpage
 
-\section*{Teste seus conhecimentos -- Avalie se as séries abaixo são divergentes, convergentes absolutas, ou convergentes condicionais} Pergunte ao monitor, se tiver qualquer dúvida.
+\section{Exercícios Resolvidos}
+ 
+Exercício B -- p. \pageref{avaliar}
+\textbf{resolução item B}
+
+\textbf{Passo 1:} Considere a função $\displaystyle{f(x) = \frac{1}{\ln n^{\ln(\ln n)}}}$. No intervalo de 2 até infinito teremos o seguinte ($a > 2$): \begin{align*}
+\int_2^a f(x) \ dx = \int_2^a \ \frac{dx}{(\ln n)^{\ln(\ln n)}}
+\Rightarrow \int_{\ln 2}^{\ln a} \frac{e^y \ dy}{y^{\ln y}} \label{ob:2-11}
+\end{align*}
+
+ Mudança de variáveis $(y = \ln x  \ \ \ x = e^y \ \ \ dx = e^y \ dy)$
+
+\vspace{5mm}
+
+\textbf{Passo 2:} Considere agora $g(y) = \frac{e^y}{y^{\ln y}}$ e a sua respectiva série 
+\begin{align*}
+b_n = g(n) &= \frac{e^n}{n^{\ln n}} = \frac{e^n}{e^{n^{\ln n}}} \\
+&= \frac{e^n}{e^{(\ln n)^2}} = e^{n - (\ln n)^2}
+\end{align*}
+Como $\displaystyle{\LI n - (\ln n)^2 = \infty}$. Então $b_n$ diverge, e pelo critério da Integral, divergem as demais outras operações.
+
+Exercício na lousa do dia (02/Set) -- avaliar a série $\soma{1} \ln \left( 1 + \frac{1}{n}\right)$
+
+\begin{align*}
+a_n &= \ln \left( \frac{n+1}{n} \right) = \ln (n+1) - \ln n \\
+S_m &= \ln 2 - \underbrace{\ln 1}_{\ln 1 = 0} + \ln 3 - \ln 2 + \cdots + \ln (m+1) - \ln m = \ln (m+1)\\
+\LI[m] S_m &= \LI[m] (\ln (m+1))
+\end{align*}
+
+Logo a série é divergente
+
+\section{Teste seus conhecimentos -- Avalie se as séries abaixo são divergentes, convergentes absolutas, ou convergentes condicionais} Pergunte ao monitor, se tiver qualquer dúvida.
 %Ideia de subtítulo #1 (caso vc queira se aprofundar em LaTeX )\section{Section Title\\Section Subtitle}
 %Ideia de subtítulo #2 \section[Section Title. Section Subtitle]{Section Title\\ {\large Section Subtitle}}
 \begin{itemize}
@@ -906,10 +950,12 @@ Logo $\alpha - \beta = 0 \Longleftrightarrow \alpha = \beta$
 \item [g.] $\displaystyle{1+\frac{1}{2}-\frac{1}{4}-\frac{1}{8}+\frac{1}{16}+\frac{1}{32}-\frac{1}{64}-\frac{1}{128}+\hdots}$
 \end{itemize}
 
-\chapter{Sequências de Funções} Assunto tratado entre 31/08/2015 até 00/00/2015
+\chapter{Sequências de Funções} Assunto tratado entre 31/08/2015 até 02/09/2015
 \label{chap:c3}
 
-\begin{definition} Uma sequência de funções é uma sequência $n \rightarrow f_n$ onde cada $f_n$ é uma função definida em um mesmo conjunto $A \subset \mathds{R}$ \textbf{Exemplos:} \begin{enumerate}
+\section{Definições}
+
+\begin{definition} Uma \textbf{sequência de funções} é uma sequência $n \rightarrow f_n$ onde cada $f_n$ é uma função definida em um mesmo conjunto $A \subset \mathds{R}$ Exemplos: \begin{enumerate}
 \item $f_n: \mathds{R} \rightarrow \mathds{R} \ | \ f_n(x) = x^n, \ n \geq 1$ \label{ex:302a}
 \item $f_n: \mathds{R} \rightarrow \mathds{R} \ | \ f_n(x) = n\ \displaystyle{\sin \left( \frac{x}{n}\right)}$ \label{ex:302b}
 \end{enumerate}
@@ -978,5 +1024,287 @@ f(x) = \frac{1}{e^x}
 Logo essa função está definida para qualquer valor estritamente positivo de $x$
 \end{itemize}
 
+\section{Continuidade, diferenciabilidade e Integrabilidade de uma uma função dada como o limite de uma sequência de funções}
+
+\begin{theorem}[Teorema 1\label{t:3-1}] 
+Seja $f_n: B \rightarrow \mathds{R}$ uma sequência de funções e $f: B \rightarrow \mathds{R}$ definida como  $$f(x) = \LI f_n(x)$$ \hspace{5mm}Vamos supor agora que cada $f_n$ seja contínua em B, e que a convergência é uniforme neste universo  Neste cao, $f$ é contínua em B.
+\end{theorem}
+
+\begin{theorem}[Teorema 2\label{t:3-2}] 
+Seja $f: \ [a;b] \rightarrow \mathds{R}$ dada por $f(x) = \LI f_n (x)$ onde cada $f_n$ é contínua em todos os pontos do domínio da função. Se $f_n$ convergir uniformemente a $f$ no domínio, então: \begin{align*}
+\int_b^a f(x) \ dx &= \LI \int_a^b f_n(x) \ dx \\
+&= \int_b^a \left( \LI f_n(x) \right) \ dz  \\ 
+&= \LI \left[\int_a^b f_n (x) \right] \\
+\end{align*}
+\end{theorem}
+
+\begin{theorem}[Teorema 3\label{t:3-3}] 
+Seja ($f_n$) uma sequência de funções de classe $C_1$ no intervalo $I \subset \mathds{R}$. Sendo $f$ e $g$ funções definidas em $I$ tal  que \begin{align*}
+f(x) = \LI f_n (x) \\
+g(x) = \LI f'_n(x)
+\end{align*}
+Se $f'_n$ converge uniformemente para $g$, então $$f'(x) = g(x) \Longleftrightarrow \left( \LI f_n(x)\right)' = \LI f'_n(x)$$
+\end{theorem}
+
+\chapter{Série de funções} {Assunto tratado entre 16/09/2015 até 23/09/2015}
+\section{Definição}
+\hspace{5mm} Uma série de funções é uma série $\displaystyle{\soma{0} f_n}$ onde cada $f_n$ é uma função definida em um mesmo conjunto $B \in \mathds{R}$. Dizemos que a série $\sum f_n$ converge para a função $s: B \rightarrow \mathds{R}$, se para todo o $x \in B, \ s(x) = \soma{0} f_n(x)$. É o mesmo que dizer que $$\LI[m] \sum_{m=0}^n f_n(x) = s(x) \ \ \  \forall \ x \in B$$
+ Para $x > 0$\begin{align*}
+ s(x) &= \soma{0} \frac{n}{e^{xn}}\\
+ a_n &= {n \over e^{xn}}\\
+ \LI \sqrt[n]{a_n} &= \LI {\sqrt[n]{n} \over e^x} = {1 \over e^x} <1
+ \end{align*}
+
+A série de funções $\displaystyle{\soma{0} f_n}$ converge uniformemente em B para a função $s: B \rightarrow \mathds{R}$ se dado $\epsilon > 0, \ \exists n_0 \in \mathds{N}$ tal que, para todo $x \in \mathds{B}$ tivermos que $n\geq n_0 \Rightarrow \displaystyle{\left|\sum_{k = 0}^n f_k (x) - s(x)\right| < \epsilon}$. Isso significa que a sequência $s_n = \displaystyle{\sum_{k=0}^n f_k}$ converge unifirmemente para $s$
+
+\section{Critério de Cauchy} {Para convergência uniforme de uma série de funções}
+
+\hspace{5mm} A série de funções $\displaystyle{\soma{0} f_n}$ converge uniformemente em $B$ para a função $\displaystyle{f(x) = \soma{0} f_n(x)}$ se, e somente se, para dado $\epsilon > 0, \ \exists n_0 \in \mathds{N}$ tal que \begin{align*}
+m>n \geq n_0 \ &\Rightarrow \left| \sum_{k=0}^m f_k (x) - \sum_{k=0}^n f_k (x)\right|  \Longleftrightarrow & \forall x \in B \\
+\Longleftrightarrow m > n \geq n_0 &\Rightarrow |s_m(x) - s_n(x)| < \epsilon
+\end{align*}
+
+\section{Critério M de Weierstrass} {Para convergência uniforme de uma série de funções}
+
+Seja $\displaystyle{\soma{0} f_n}$ uma série de funções definidas em $b \subseteq \mathds{R}$ e suponha que exista uma \underline{série numérica} $\displaystyle{\soma[k]{0} M_k}$ tal que \begin{itemize}
+\item $\forall \ x \in B \land \ k \in \mathds{N} \rightarrow \ |f_k(x)| \leq M_k$
+\item $\displaystyle{\soma[k]{0} M_k}$ é convergente
+\end{itemize}
+
+Nestas condições, a série $\displaystyle{\soma{0} f_n}$ converge uniformemente para a função $\displaystyle{s(x) = \soma{0} f_n(x)}$ (\textbf{Demonstração} na foto do link).
+
+\section*{Exemplo 1} {Considere $\displaystyle{\soma{0} {\sin kx \over x^4 + k^4} \ (*) \ x \in \mathds{R}}$}
+$$f_k(x) = {\sin kx \over x^4 + k^4} \Rightarrow |f_k(x)| = {|\sin kx| \over x^4 + k^4} \leq {1 \over x^4 + k^4} \leq {1 \over k^4} = M_k$$ Como $\displaystyle{\soma{1} {1 \over k^4}}$ converge, então a série em questão também o faz.
+
+\section*{Exemplo 2}{Faça o mesmo com a série $\displaystyle{\soma{1} {1 \over x^2 + k^2}}$ e justifique a igualdade $$\int_0^1 s(x) \ dx = \soma{1} {1 \over k} \arctan \left( {1 \over k} \right)$$} Tomamos $\displaystyle{f_k(x) = {1 \over x^2 + k^2} \leq {1 \over k^2} = M_k}$. Logo, pelo critério M de Weierstrass, a série converge uniformemente para $s(x) = \displaystyle{\soma{1} {1 \over x^2 + k^2}}$ \begin{align*}
+\int_0^1 s(x) \ dx &= \int_0^1 (\LI s_n (x)) \ dx = \LI \int_0^1 s(x) \ dx = \LI \int_0^1 \left(\soma{1} {dx \over x^2 + k^2}\right) \\
+&= \LI \left( \sum_{k=1}^n \int_0^1 {dx \over x^2 + k^2}\right) = \LI \sum_{k=1}^n \left[ x \arctan {x \over k^2} - {k^2 \over 2} \ln (1+k^2) \right]_0^1\\
+\int \underbrace{\arctan x}_{u} \underbrace{dx}_{dv} &= x \arctan x - \int {x \over 1 + x^2} \ dx \\
+&= x \arctan x - {1 \over 2} \int {2x \over 1 + x^2} \ dx \\
+&= x \arctan x - {1 \over 2} (\ln{1 + x^2}) \ dx \\
+\int {dx \over x^2 + k^2} &= {1 \over k^2} \int \frac{dx}{1 + \frac{x^2}{k^2}} = {1 \over k^2} \int \frac{k \ dy}{1 + y^2} = \frac{1}{k} \arctan{y} = \frac{1}{k} \arctan{\frac{x^2}{k^2}}
+\end{align*}
+
+ \section{Continuidade, Integrabilidade e Diferenciabilidade} {de uma função dada como soma de uma série de funções}
+ 
+\begin{theorem}[Teorema 1 -- Continuidade] \label{T1 C4}
+ Seja $\defini{s}{B}$ dada por $s(x) = \displaystyle{\soma{1} f_k(x)} $. Se $\sum f_k$ convergir uniformemente para $s$ em $B$ e se cada $f_k$ for contínua, então $s$ é contínua.\footnote{\textbf{Pesquise:} sendo $s(x) = \soma{N} f_n$. Se s(x) for contínua, então $f_n$ também o será?}
+ \end{theorem}
+ 
+\begin{theorem}[Teorema 2 -- Integração termo a termo] \label{T2 C4}
+Seja $\defini{s}{[a,b]}$ dada por $s(x) = \displaystyle{\soma{1} f_k(x)}$. Se cada $f_i$ for contínua em $[a,b]$ e se a série $\sum f_n$ convergir uniformemente a $s$ em $[a,b]$, então: \begin{align*}
+\int_a^b  s(x) \ dx &= \soma{o} \int_a^b  f_n(x) \ dx  \Longleftrightarrow\\
+\int_a^b \left( \sum f_k(x)\right) \ dx &= \sum \int_a^b  f_n(x) \ dx \\
+\end{align*}
+
+\end{theorem}
+
+\begin{theorem}[Teorema 3 -- Derivação termo a termo] \label{T3 C4}
+Seja $\defini{s}{I}$ dada por $s(x) = \displaystyle{\soma{1} f_k(x)} $. Se cada $f_k$ for de classe $C^1$ em $I$ e se a série $\sum f_n$ convergir uniformemente a $s$ em $I$, então: \begin{align*}
+s'(x) &= \soma[k]{0} f'_k(x) = \left( \soma[k]{0} f_k(x)\right)'
+\end{align*}
+\end{theorem}
+
+\section{Testando o que vimos}
+
+\subsection*{\E{1}} {Prove que a função dada é contínua nos subconjuntos de $\mathds{R}$} 
+
+\begin{align*}
+(a) \ \ \ f(x) &= \soma{1} {\cos nx^2 \over n^4} & B = \mathds{R}\\
+(b) \ \ \ f(x) &= \soma{0} {1 \over 2^{nx}} & B = [0; +\infty)\\
+(c) \ \ \ f(x) &= \soma{0} {2^n x^n \over 2^{nx}} & B = \mathds{R} \\
+\end{align*}
+
+\subsection*{\E{2}}{Sendo $\displaystyle{f(x) = \soma{1} \sin \left( {x \over n^2}\right)}$ justifique a igualdade $$\int_0^1 f(x) \ dx = \soma{1} n^2 \left(1 -\cos {1 \over n^2}\right)$$
+
+\textbf{Solução:} Para $x \in [0,1]$ temos que $$\sin {x \over n^2} < {x \over n^2} \leq {1 \over n^2}$$ Pelo critério M de Weierstrass, a série é convergente uniformemente em $[0,1]$. Podemos aplicar o teorema \ref{T2 C4} \footnote{\textbf{Bom saber} $\int \sin{x \over n^2}\ dx = n^2 \left(-\cos{x \over n^2}\right)$}. \begin{align*}
+\int_0^1 f(x) \ dx = \int_0^1 \left( \soma{1} \sin {x \over n^2} \right) \ dx = \soma{1} \int_0^1 \left( \sin {x \over n^2} \right) \ dx = \soma{1} \left[ -n^2 \cos{x \over n^2} \right]_{x = 0}^{x = 1}\\
+\soma{1} \left( -n^2\cos{1 \over n^2} +n^2 \right)
+\end{align*}
+
+\subsection*{\E{3}}{Seja $\displaystyle{f(x) = \soma{0}  {x^n \over n!} \ \ (0! = 1)}$ Verifique $$\int_0^x f(t) \ dt = f(x) -1 \ \ \ \forall \ x \in \mathds{R}$$}
+
+\textbf{Resolução:} Fixe $x \in \mathds{R}$ e seja $r < 0$ tal que $|x| \leq r \Longleftrightarrow x \in [-r,r]$. Nesse intervalo, a série em questão converge uniformemente. $\forall \ x \in [-r, r]$ temos: \begin{align*}
+\left| \frac{x^n}{n!} \right| = {|x|^n \over n!} &\leq {r^n \over n!} \\
+\LI {r^{n+1} \over (n+1)!}*{n! \over r^n} = \LI {r \over n+1} = 0
+\end{align*} 
+Logo $\DS{\sum {r^n \over n!}}$ é convergente. Pelo critério M de Weierstrass, a série converge uniformemente em $[-r,r]$. Como x está nesse  intervalo,, a série converge uniformemente em $[0,x]$
+
+\subsection*{\E{4}}{Sendo $\displaystyle{f(x) = \soma{1}  {x^6 \over x^2+n^2}}$, justifique a igualdade $$\int_0^1 f(x) \ dx = \frac{1}{2}\soma{1}\ln{1+ \frac{1}{n^2}}$$}
+
+\subsection*{\E{5}}{Seja $\displaystyle{f(x) = \soma{1} \arctan {x \over n^2}}$ Mostre que a série numérica $$\soma{1} \left[ \arctan{1 \over n^2} - \frac{n^2}{2} \ln \left(1+\frac{1}{n^4}\right) \right]$$ tem por soma $\displaystyle{\int_0^1 f(x) \ dx}$ 
+
+\textbf{Resolução:} Reparar que $\forall \ x > 0, \ \arctan{x} < x$. Então $\forall \ x \in [0,1] \land \ n \in \mathds{N}$ temos que $\arctan{x \over n^2} \leq {x \over n^2} \leq {1 \over n^2}$.\vspace{2mm}
+
+
+Como $\sum{x \over n^2}$ onverge, então, pelo \cmw a série converge unifrmmente em$[0,1]$
+
+\begin{align*}
+\int_0^1 \ f(x) \ dx = \soma{1} \int_0^1 \left( \arctan{x \over n^2}\right)dx \\
+\int \underbrace{\arctan{x}}_{u}\underbrace{dx}_{dv} &= x\arctan{x} - \int {x \over 1+x^2}dx \\
+&= x \arctan{x} - \frac{1}{2}\int {2x \over 1+x^2}dx\\
+&= x \arctan{x} - \frac{\ln{(1+x^2)}}{2}\\
+\int \arctan{x \over n^2} &= n^2 \left[ {x \over n^2}\arctan{x \over n^2} - \frac{1}{2}\ln{\left(1 + {x^2 \over n^4}\right)}\right]\\
+\int_0^1 \ f(x) \ dx = \soma{1} \int_0^1 \left( \arctan{x \over n^2}\right)dx &= \soma{1} \left[x \arctan{x \over n^2} - \frac{n^2}{2}\ln{\left(1 + {x^2 \over n^4}\right)} \right]_0^1 \\
+&= \soma{1} \left[\arctan{1 \over n^2} - \frac{n^2}{2}\ln{\left(1 + {1 \over n^4}\right)} \right]
+\end{align*}
+\footnote{Perguntar o pq do $n^2$}
+
+\chapter{Séries de Potências}{Aulas dias 23/09/2015 - 00/10/2015}
+\label{chap:c5}
+
+\section{Definições}
+Sejam $(a_n)$ uma sequênci E $x_0 \in \mathds{R}$, a série de funções $$\soma{0} a_n (x-x_0)^n$$ chama-se \textbf{série de potências com coeficientes $a_n$ e centralizada em $x_0$} 
+\begin{align*}
+f_n(x) = a_n (x-x_0)^n & & x_0 =1\\
+\soma{0} {(x-1)^n \over n!} & & a_n = \frac{1}{n!} &  & f_n(x) = {(x-1)^n \over n!}
+\end{align*}
+
+\begin{theorem}[Teorema 1]\label{T:5-1}
+Se $\displaystyle{\soma{0} a_n x^n}$ for convergente em algum $x \neq 0$, então a série convergirá em qualquer  intervalo $]-|x|, |x|[$
+\end{theorem}
+
+\section*{\textbf{Exemplo:}}{ Verificar que a série $\displaystyle{\soma{0} 2^{nx}}$ converge para $x = -1$ e para $x \in \ ]-1,1]$}
+
+Para $x = -1$ temos $$\soma{0} 2^{-n} = \soma{0} \frac{1}{2^n}$$ Usando o critério da razão ou da raíz (que eu vou escrever abaixo), podemos chegar em um resultado que nos confirma isso. $$\LI \sqrt[n]{\frac{1}{2^n}} = \LI \frac{1}{2} = \frac{1}{2} < 1$$ Pelo Teorema \ref{T:5-1},a série converge para $x \in ]-1,1[$. Se adotarmos $x= 1$ teremos que o limite da série para $n \rightarrow \infty$ é infinito também.
+
+\part{Provas} 
+\chapter{Correção P1}
+\label{C:P1}
+
+\section*{\E{1} (2,5)}{\textbf{Fato:} Se $\displaystyle{\LI a_n = a}$ \footnote{pode ser $\pm \infty$} então $$\LI {a_1 + a_2 + a_3 + \cdots + a_n \over n} = a$$ Seja $(b_n)$ uma sequência de números positivos tal que $\displaystyle{\LI b_n = b \geq 0}$ Mostre que $$\LI \sqrt[n]{b_1*b_2\cdots b_n} = b $$}
+
+\Resolve
+
+\begin{align*}
+\sqrt[n]{b_1*b_2\cdots b_n} &= e^{\ln{\sqrt[n]{b_1*b_2\cdots b_n}}} = e^{{1 \over n} \ln{b_1} + \ln{b_2} + \cdots + \ln{b_n}}\\
+\LI \ln{b_n} &= \ln{b} \Rightarrow \LI {\ln{b_1} + \ln{b_2} + \ln{b_3} + \cdots + \ln{b_n} \over n} = \ln{b} \\
+\sqrt[n]{b_1*b_2\cdots b_n} &= e^{\ln{b_1} + \ln{b_2} + \ln{b_3} + \cdots + \ln{b_n} \over n} = e^{\ln{b}} = b \\
+\end{align*}
+Logo $\displaystyle{\LI \sqrt[n]{b_1*b_2\cdots b_n} = b}$
+
+\newpage
+
+\section*{\E{2} (2,5)} {Determine se são convergentes ou não as séries:}
+\begin{multicols}{2}
+a) (1,0) $\displaystyle{\soma{2} {n! \ \left({5 \over 2}\right)^n \over n^n}}$
+
+b) (1,5) $\displaystyle{\soma{1} \sin{\left( {1 \over n \sqrt[n]{n^2 + 3}} \right)}}$ \footnote{Sugestão use comparação no limite com $\displaystyle{\soma{1} {1 \over n^{5 \over 3}}}$}
+\end{multicols}
+
+\Resolve
+
+\begin{multicols}{2}
+\subsection*{Item A}
+Temos $\displaystyle{{a_{n+1} \over a_n} = {(n+1)!\ \left({5 \over 2}\right)^{n+1} \over (n+1)^{n+1}}*{n^n \over n! \ \left({5 \over 2}\right)^n}} = \\ = {5 \over 2}*\left({n \over n+1}\right)^n = {{5 \over 2} \over e} < 1$
+===
+Logo, a série converge pelo Critério da Razão.
+
+\subsection*{Item B}
+\begin{align*}
+\LI {\sin{\left( {1 \over n \sqrt[n]{n^2 + 3}} \right)} \over {1 \over n^{5 \over 3}}} \\
+\LI {\sin{\left( {1 \over n \sqrt[n]{n^2 + 3}} \right)} \over {1 \over n \sqrt[n]{n^2 + 3}}}*{n^{5 \over 3} \over n \sqrt[n]{n^2 + 3}} = 1*1 = 1 \\
+\end{align*}
+
+Como a série $\displaystyle{\soma{1} {1 \over n^{5 \over 3}}}$ converge, pelo critério da comparação no limite, a série converge.
+
+
+Outra forma de constatar que a série  é convergente passa pelo fato de que
+\end{multicols}
+
+\newpage
+
+\section*{\E{3} (2,5)}{Decida se as séries abaixo divergem, convergem condicionalmete ou absolutamente}
+
+\begin{multicols}{3}
+a) (1,0) $\displaystyle{\soma{2} {(-1)^n \over n \ln{n}}}$
+
+b) (1,0) $\displaystyle{\soma{0} {(-1)^n(n+1) \over n+2}}$
+
+c) (0,5) $\displaystyle{\soma{1} {\sin\left({n\pi \over 2}\right) \over n^2}}$
+\end{multicols}
+
+\Resolve
+
+\begin{multicols}{3}
+\subsection*{Item A}
+$\displaystyle{\soma{2} \left|{(-1)^n \over n \ln{n}}\right| = \soma{2} {1 \over n \ln{n}}}$ que é diverge. Levaremos em conta uma mudança de variável para o pŕóximo passo.\footnote{$x = e^y \Longleftrightarrow dx = e^y \ dy$} \begin{align*}
+\int_2^\infty {dx \over x\ln{x}} &= \int_a^\infty {e^y \ dy \over e^y \ y} \\
+&= \int_a^\infty {dy \over y} \\
+&= \left[\ln({\ln{x}})\right]_2^\infty \\
+&= \infty
+\end{align*}
+
+Logo, não converge absolutamente. Agora, consideramos a sequência $a_n = {1 \over n\ln{n}}$ é positiva, descresente e tende a 0 quando n "vai pro infinito". Pelo critério de Liebniz, a sériealternada em questao converge condicionalmente.
+
+\subsection*{Item B}
+$\not \exists \LI a_n = \LI {(-1)^n \ (n+1) \over (n+2)}$ Logo, a série diverge.
+
+\subsection*{Item C}
+Como $\displaystyle{a_n = \left|{\sin\left({n\pi \over 2}\right) \over n^2}\right| \leq {1 \over n^2}}$ e a sérei $\displaystyle{\soma{1} \frac{1}{n^2}}$  converge pelo critério da comparação, a série converge absolutamente.
+\end{multicols}
+
+\newpage
+
+\section*{\E{4} (2,5)}{Determine para que valores \textbf{positivos} de $x \in \mathds{R}$ as funções abaixo estão definidas}
+
+\begin{multicols}{4}
+a) $\displaystyle{\soma{0} {n \over e^{xn}}}$
+
+b) $\displaystyle{\soma{1} {n^n x^n \over n!}}$
+
+c) $\displaystyle{\soma{1} {x^n \over n \ln{n}}}$
+
+a) $\displaystyle{\soma{0} {5x^n \over 2^n}}$
+\end{multicols}
+
+\Resolve
+
+\begin{multicols}{2}
+\section*{\IT{A}}\begin{align*}
+a_n &= {n \over e^{xn}} \\
+\LI \sqrt[n]{a_n} &= \LI {1 \over e^x} < 1 \Longleftrightarrow\\
+\Longleftrightarrow e^x > 0
+\end{align*}
+
+Logo $f(x)$ está definida $\forall \ x > 0$
+
+\section*{\IT{B}}\begin{align*}
+a_n = {n^n x^n \over n!} &\Rightarrow {a_{n+1} \over a_n} = {(n+1)^{n+1} x^{n+1} \over (n+1)!}*{n! \over n^n x^n}\\
+\LI {a_{n+1} \over a_n} &= x*\left({n+1 \over n}\right)^n = x*e < 1
+\end{align*}
+
+Logo a função está definida para todo o $\displaystyle{x < \frac{1}{e}}$
+
+\section*{\IT{C}}\begin{align*}
+a_n = {x^n \over n \ln{n}} &\Longleftrightarrow \sqrt[n]{a_n} = { x \over \sqrt[n]{n} \sqrt[n]{\ln{m}}}\\
+\LI \sqrt[n]{a_n} &= 1 \\
+\hbox{f}(x)
+&= \left\{ \begin{array}{rll}
+converge & \hbox{se} &  x < 1 \\
+diverge & \hbox{se} &  x \geq 1 \\
+\end{array}\right.
+\end{align*}
+
+\section*{\IT{D}}\begin{align*}
+a_n &= {5x^n \over 2^n} \\
+\LI \sqrt[n]{a_n} &= \LI {\sqrt[n]{5} x \over 2} = {x \over 2} < 1 \\
+\hbox{f}(x)
+&= \left\{ \begin{array}{rll}
+converge & \hbox{se} &  x < 2 \\
+diverge & \hbox{se} &  x \geq 2 \\
+\end{array}\right.
+\end{align*}
+
+\end{multicols}
+
+\chapter{Correção P2}
+\label{C:P2}
+
+\chapter{Correção P3}
+\label{C:P3}
+
+\chapter{Correção P SUB}
+\label{C:SUB}
 
 \end{document}
