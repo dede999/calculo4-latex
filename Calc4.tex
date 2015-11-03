@@ -1,8 +1,8 @@
-\documentclass[12pt,openany]{book}
+\documentclass[12pt,openany, letterpaper]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[portuguese]{babel}
 \usepackage[margin = 2cm]{geometry}
-\usepackage[colorlinks=false]{hyperref}
+\usepackage[colorlinks=false]{hyperref} %conectar o arquivo em PDF atravéz de links
 \newtheorem{theorem}{Teorema}[section]
 \newtheorem{lemma}{Lema}[section]
 \newtheorem{corollary}{Corolário}[theorem]
@@ -11,10 +11,10 @@
 \newtheorem{obs}{Observação}
 \newtheorem{prop}{Proposição}
 \usepackage[rightcaption]{sidecap}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{dsfont}
-\usepackage{multicol}
+\usepackage{graphicx} %acrescentar imagens
+\usepackage{amsmath} %ambiente matemático
+\usepackage{dsfont} % coloquei esse pacote aqui, mas não lembro ao certo, no que ele ajuda
+\usepackage{multicol} %permite que eu escreva o texto em mais de uma coluna
 \newcommand{\LI}[1][n]{\lim_{{#1} \rightarrow \infty}}
 \newcommand{\soma}[2][n]{\sum_{{#1} = #2}^\infty}
 \newcommand{\defini}[3][\mathds{R}]{#2: #3 \rightarrow {#1}}
@@ -23,6 +23,7 @@
 \newcommand{\Resolve}{\begin{center} \textbf{Resolução} \end{center}}
 \newcommand{\IT}[1]{Item {#1}}
 \newcommand{\cmw}{Critério M de Weierstrass }
+\newcommand{\IP}{\int_{-\pi}^{\pi}}
 
 %modelo de início de capítulo encontrado no link https://pt.sharelatex.com/learn/Defining_your_own_commands
 \makeatletter 
@@ -47,8 +48,7 @@
 
 
 \title{Calculo IV - IME 2015}
-\author{André Luiz A Silveira}
-%\author{}
+\author{André Luiz Abdalla Silveira \thanks{graças à ajuda e as lousas do Professor Antônio C. Asperti}}
 \date{Segundo Semestre -- 2015}
 
 \begin{document}
@@ -91,7 +91,7 @@ Provas:
 \part{Teoria}
 \chapter{Integrais Impróprias}
 \label{chap:c1}
-
+CONTEUDO5Figura
 \hspace{5mm} Assunto tratado entre 03/08/2015 e 05/08/2015
 \section{Conceitos}
 \label{sec:s11}
@@ -107,7 +107,7 @@ Se o limite existir e for finito, diremos se tratar de uma \underline{integral c
 
 Exemplo 1:
 \begin{align*}
-\int_1^{+\infty}\frac{1}{x^2}dx &= \lim_{t\rightarrow + \infty}\int_1^t \frac{dx}{x^2}=\lim_{t\rightarrow + \infty}\left[\frac{x^{-2+1}}{-2+1}\right]_1^t = \lim_{t\rightarrow + \infty}\left[-\frac{1}{x}\right]_1^t = -\lim_{t\rightarrow + \infty}\left[\frac{1}{t}-1\right]=1
+\int_1^{+\infty}\frac{1}{x^2}dx &= \lim_{t\rightarrow + \infty}\int_1^t \frac{dx}{x^2}=\LI[t]\left[\frac{x^{-2+1}}{-2+1}\right]_1^t = \lim_{t\rightarrow + \infty}\left[-\frac{1}{x}\right]_1^t = -\lim_{t\rightarrow + \infty}\left[\frac{1}{t}-1\right]=1
 \end{align*}
 
 Exemplo 2:
@@ -1150,25 +1150,317 @@ Como $\sum{x \over n^2}$ onverge, então, pelo \cmw a série converge unifrmment
 \end{align*}
 \footnote{Perguntar o pq do $n^2$}
 
-\chapter{Séries de Potências}{Aulas dias 23/09/2015 - 00/10/2015}
+\chapter{Séries de Potências}{Aulas dias 23/09/2015 - 05/10/2015}
 \label{chap:c5}
 
 \section{Definições}
-Sejam $(a_n)$ uma sequênci E $x_0 \in \mathds{R}$, a série de funções $$\soma{0} a_n (x-x_0)^n$$ chama-se \textbf{série de potências com coeficientes $a_n$ e centralizada em $x_0$} 
+Sejam $(a_n)$ uma sequência, e $x_0 \in \mathds{R}$, a série de funções $$\soma{0} a_n (x-x_0)^n$$ chama-se \textbf{série de potências com coeficientes $a_n$ e centralizada em $x_0$} 
 \begin{align*}
 f_n(x) = a_n (x-x_0)^n & & x_0 =1\\
 \soma{0} {(x-1)^n \over n!} & & a_n = \frac{1}{n!} &  & f_n(x) = {(x-1)^n \over n!}
 \end{align*}
 
 \begin{theorem}[Teorema 1]\label{T:5-1}
-Se $\displaystyle{\soma{0} a_n x^n}$ for convergente em algum $x \neq 0$, então a série convergirá em qualquer  intervalo $]-|x|, |x|[$
+Se $\displaystyle{\soma{0} a_n x^n}$ for convergente em algum $x \neq 0$, então a série convergirá em qualquer  intervalo  $]-|x|, |x|[$
 \end{theorem}
 
 \section*{\textbf{Exemplo:}}{ Verificar que a série $\displaystyle{\soma{0} 2^{nx}}$ converge para $x = -1$ e para $x \in \ ]-1,1]$}
 
-Para $x = -1$ temos $$\soma{0} 2^{-n} = \soma{0} \frac{1}{2^n}$$ Usando o critério da razão ou da raíz (que eu vou escrever abaixo), podemos chegar em um resultado que nos confirma isso. $$\LI \sqrt[n]{\frac{1}{2^n}} = \LI \frac{1}{2} = \frac{1}{2} < 1$$ Pelo Teorema \ref{T:5-1},a série converge para $x \in ]-1,1[$. Se adotarmos $x= 1$ teremos que o limite da série para $n \rightarrow \infty$ é infinito também.
+Para $x = -1$ temos $$\soma{0} 2^{-n} = \soma{0} \frac{1}{2^n}$$ Usando o critério da razão ou da raíz (que eu vou escrever abaixo), podemos chegar em um resultado que nos confirma isso. $$\LI \sqrt[n]{\frac{1}{2^n}} = \LI \frac{1}{2} = \frac{1}{2} < 1$$ Pelo Teorema \ref{T:5-1},a série converge para $x \in ]-1,1[$. Se adotarmos $x= 1$, por outro lado, teremos que o limite da série para $n \rightarrow \infty$ é infinito.
 
-\part{Provas} 
+\begin{demonstration}
+ Se $\displaystyle{\soma{0} a_n x^n}$ converge, então $\displaystyle{\LI a_n  x_1^2 = 0}$
+ 
+ Tomando $\epsilon = 1, \  \exists n_0 \in \mathds{N} \ | \ n \geq n_0 \Rightarrow |a_n x_1^n| \leq 1$. Como $|a_n x_1^n|  = |a_n x_1^n| \left(\frac{|x|}{|x_1|}\right)^n \leq \left|\frac{x}{x_1}\right|^n$. $$ |x| < |x_1| \Longleftrightarrow \left|\frac{x}{x_1}\right| < 1 \Rightarrow \soma{0} \left|\frac{x}{x_1}\right|^n $$ converge $\forall x \ | \ |x| <|x_1|$. Pelo critério da comparação, temos que $\sum a_n x^n$ é absolutamente convergente para esse mesmo intervalo.
+\end{demonstration}
+
+\hspace{5mm}\textbf{Exemplo:} $\displaystyle{\soma{1} \frac{x^n}{n}}$ converge $x = -1$. Logo, pelo critério de Liebniz, a série converge absolutamente $\forall x \in ]-1,1[$
+
+\begin{theorem}[Teorema 2]\label{T:5-2}
+Seja  $\displaystyle{\soma{0} a_n x^n}$ uma série de potências. Então vale um desses cenários: \begin{itemize}
+\item [(a)] a série converge apenas para $x=0$
+\item [(b)] a série converge abolutamente $\forall \ x \in \mathds{R}$
+\item [(c)] $\exists R > 0$ real tal que a série converge abolutamente $\forall \ x \in ]-R, R[$. Nos extremos, pode ou não convergir.
+\end{itemize}
+
+\end{theorem}
+
+$$A = \{x\geq 0 \ | \ \sum a_n x^n \ converge\} \subset [0, +\infty)$$
+\begin{itemize}
+\item [a.] $A = \{0\}$
+\item [b.] $A = [0, +\infty)$
+\item [c.] $A \neq \{0\} \land A \neq [0, +\infty)$
+\end{itemize}
+
+O número $R$ da parte (c) é chamado de \textbf{raio de convergência da série}. \begin{itemize}
+\item se acontecer (a), dizemos que o raio de convergência é zero
+\item se acontecer (b), dizemos que o raio de convergência é $\infty$
+\end{itemize}
+
+Como calcular o raio de convergência? Seja $\soma{0}a_n x^n$ com $a+n \neq 0$ a partir de um certo $p \in \mathds{N}$. Então $$ R = \LI \frac{|a_n|}{|a_{n+1}|} \  \lor \ \LI \frac{|a_{n+1}|}{|a_n|} = {1 \over R} = \LI \sqrt[n]{|a_n|} $$
+
+\textbf{Resumindo ...} Dada uma série $\displaystyle{\soma{0} a_n x^n}$, 3 coisas podem acontecer. \begin{itemize}
+\item Converge para $x = 0$ quando $R = 0$
+\item Converge absolutamente para qualquer x real ($R = 0$)
+\item $ \exists \ R > 0$ tal que a série converge para $x \in \ ]-R,R[$ e diverge para $ x \in \ ]-\infty,-R[\ \cup \ ]R,+\infty[$ \footnote{Quando $x = \pm R$, a série pode ser convergente ou não}
+\end{itemize}
+
+\textbf{Exemplo:} Considere a série $\displaystyle{\soma{0} {x^n \over \sqrt[n]{\left(\frac{5}{3}\right)^n + 2^n}}}$ \vspace{7mm}
+
+\begin{align*}
+\sqrt[n]{a_n} &= \frac{1}{\sqrt[n]{\left(\frac{5}{3}\right)^n + 2^n}} \\
+0 &< a \leq b \\
+\LI \sqrt[n]{a^n + b^n} &= b \\
+\LI \frac{1}{\sqrt[n]{\left(\frac{5}{3}\right)^n + 2^n}} &= \frac{1}{2} = \frac{1}{R} \\
+R = 2
+\end{align*}
+
+\begin{itemize}
+\item Converge para $|x| < 2$
+\item Diverge para $|x| > 2$
+\item Para $x = 2$, a série diverge como vemos abaixo $$\LI \frac{2^n}{\sqrt[n]{\left(\frac{5}{3}\right)^n + 2^n}} = {\infty \over 2} $$
+\item Para $x = -2$, a série diverge pelo critério de Liebniz \footnote{Não consigo dizer ao certo, se a série é decresente, mas com certeza $\LI a_n \neq 0$}
+\end{itemize}
+
+\section*{Exercícios: \footnote{Essas são as minhas resoluções, e eu sou só um aluno, eu posso estar errado}}
+\begin{multicols}{3}
+\begin{itemize}
+\item [a.] $f(x) = \displaystyle{\soma{0} \frac{x^n}{n+2}}$
+\item [b.] $f(x) = \displaystyle{\soma{0} \frac{x^n}{n^2+3}}$
+\item [c.] $f(x) = \displaystyle{\soma{1} \frac{x^n}{n^n}}$
+\item [d.] $f(x) = \displaystyle{\soma{0} 2^n x^n}$
+\item [e.] $f(x) = \displaystyle{\soma{0} n^n x^n}$
+\item [f.] $f(x) = \displaystyle{\soma{0} n! x^n}$
+\end{itemize}
+\end{multicols}
+
+\Resolve
+
+\textbf{Item A
+} $a_n = {1 \over n+2}$
+\begin{align*}
+R = \LI \frac{(n+2)+1}{n+2} = \LI \frac{n+3}{n+2} = \LI \frac{1 + \frac{3}{n}}{1 + \frac{2}{n}} = 1
+\end{align*}
+
+Assim, descobrimos que o provável raio de convergência é 1, logo a série converge para todo $x \in ]-1,1[$. se tomarmos $x = -1$, teremos uma série $a_n = {(-1)^n \over n + 2}$ que converge pelo critério de Liebniz. Como a série $\displaystyle{\soma{0} \frac{(1)^n}{n+2}}$ não converge, então, temos que $D_f = [-1,1[$ \vspace{5mm}
+
+\textbf{Item B} $a_n = {1 \over n^2+3}$
+\begin{align*}
+R = \LI \frac{(n+1)^2+3}{n^2+3} = \LI \frac{n^2 + 2n +4}{n^2+3} = \LI \frac{1 + \frac{2}{n} + \frac{4}{n^2}}{1 + \frac{4}{n^2}} = 1
+\end{align*}
+
+O raio de convergência é o mesmo (1). Para $x =-1$ teremos novamente uma série que converge pelo critério de Liebniz, e para $x = 1$, temos $a_n = \frac{1}{n^2+3} \leq \frac{1}{n^2}$ que é convergente. Logo $D_f = [-1,1]$ \vspace{5mm}
+
+\textbf{Item C} $a_n = {1 \over n^n}$
+\begin{align*}
+{1 \over R} = \LI \sqrt[n]{1 \over n^n} = \LI \frac{1}{n} = 0
+\end{align*}
+
+Como $R$ tende ao infinito, $D_f = \mathds{R}$ \vspace{5mm}
+
+\textbf{Item D} $a_n = 2^n$ \vspace{5mm}
+
+\begin{align*}
+R = \LI \frac{a_n}{a_{n+1}} = \LI \frac{2^n}{2^{n+1}} = \frac{1}{2}
+\end{align*}
+
+Analisando os extremos temos que: \begin{itemize}
+\item se $\displaystyle{x = -\frac{1}{2} \Longleftrightarrow a_n = \soma{0} (-1)^n}$ (divergente)
+\item se $\displaystyle{x = \frac{1}{2} \Longleftrightarrow a_n = \soma{0} 1^n}$ (divergente)
+\end{itemize}
+
+Logo $D_f = ]-\frac{1}{2},\frac{1}{2}[$ \vspace{5mm}
+
+\textbf{Item E} $a_n = n^n$
+\begin{align*}
+\frac{1}{R} = \LI \sqrt[n]{n^n} = \LI n = \infty \Longleftrightarrow R = 0
+\end{align*}
+
+Logo, $D_f = \{0\}$ \vspace{5mm}
+
+\textbf{Item F} $a_n = n!$
+\begin{align*}
+R = \LI \frac{n!}{(n+1)!} = \LI \frac{1}{n+1} = 0
+\end{align*}
+
+Logo, $D_f = \{0\}$
+
+\section{Propriedades de uma função dada como uma série de potências}{Continuidade, Integrabilidade e diferenciabilidade}
+$$\frac{1}{1-x}= 1 + x +x^2 + x^3 + \cdots \hspace{10mm} |x| < 1 $$
+\hspace{5mm}Seja $\displaystyle{\soma{0} a^n x^n}$ uma série com raio de convergência $R > 0$ (pode ser infinito ou não). Uma série converge uniformemente em todo o intervalo $[-r,r]$ onde $0 < r < R$. Seja um $r$ tal que\footnote{\cmw}: $$r \in [0,R] \Rightarrow \soma{0}|a_n|r^n \ converge$$
+
+\begin{theorem}[Continuidade de Séries de Potências]
+Seja a série de potências $\displaystyle{\soma{0} a_n x^n}$ com raio de convergência $R > 0$, então a função $f(x) = \displaystyle{\soma{0} a_n x^n}$ é contínua em $]-R,R[$
+\end{theorem}
+
+\begin{corollary}[Integrabilidade -- Diferenciabilidade]
+Sendo a função dada no teorema anterior, que é contínua em $\mathds{A} = \{]-R,R[\}$, então, se $x \in \mathds{A}$, então vale que \begin{align*}
+\int_0^t f(x) \ dx &= \soma{0} \int_0^t a_n x^n = \soma{0} a_n \frac{t^{n+1}}{n+1} \\
+f'(x) &= \soma{1} n a_n x^{n-1}
+\end{align*}
+\end{corollary}
+
+\section{Funções dadas por uma série de potências}
+\hspace{5mm} Procuramos funções que podem ser representadas como séries de potências. A partir da fórmula da soma de uma progressão geométrica de razão $r \ | \ |r| < 1$, podemos afirmar que: \begin{align*}
+\frac{1}{1-\underbrace{(-x^2)}_q} &= \frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + \cdots \\
+\arctan x &= \int_0^x \frac{dx}{1+x^2} = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots
+\end{align*}
+
+\textbf{Importante:} Independentemente que se derive ou integre uma série de potências, o raio de convergência permanece inalterado.
+
+Levando em conta uma função $f(x)$ dada por $\soma{0} a_n x^n$. Podemos dizer que a função é infinitamente diferenciável em $]-R,R[$. Além disso \begin{align*}
+f(0) = a_0 \\
+f'(0) = 1*a_1 \\
+f''(0) = 2*1*a_2 \\
+f'''(0) = 3*2*1*a_3 \\
+f^{(n)}(0) = n!\ a_n \Longleftrightarrow a_n = \frac{f^{(n)}(0)}{n!}
+\end{align*}
+
+Se $f$ for de classe $C^\infty$, então sua série de Taylor é $\displaystyle{\soma{0} \frac{f^{(n)} (0)}{n!}}$.
+
+Conforme já foi visto, se a função $f$ pode ser descrita como uma soma de séries de potências, então $f(x)$ é a soma de sua série de Taylor.
+
+Seja $\displaystyle{\soma{0} a_n x^n}$ uma série de potências com raio de convergência $R > 0$. Se houver $r$ tal que $0 < r < R \land f(x) = 0 \ \forall x \in ]-r,r[ \subset ]-R,R[$ então $f \equiv 0$.
+
+Para todo $x, \ x+h \in ]-r,r[$ temos que \begin{align}
+        & \ & a_0 = f(0) = 0 \\
+        f'(x) = \LI[h] \frac{f(x+h)-f(x)}{h} = \LI[h] \frac{0-0}{h} = 0 & \ & a_1 = f'(0) = 0 \\
+        f''(x) = \LI[h] \frac{f'(x+h)-f'(x)}{h} = \LI[h] \frac{0-0}{h} = 0 & \ & a_2 = \frac{f''(0)}{2!} = 0 \\
+        f'''(x) = \LI[h] \frac{f''(x+h)-f''(x)}{h} = \LI[h] \frac{0-0}{h} = 0 & \ & a_3 = \frac{f'''(0)}{3!} = 0\\
+        & \ & a_n = \frac{f^{(n)}(0)}{n!} = 0 \ \forall n
+    \end{align}
+
+Logo $\displaystyle{\soma{0} a_n x^n = 0 \ \forall x \in \ ]-R,R[}$
+
+Se a função $f(x)$ for constante para um intervalo $]a,b[ \subset ]-R,R[$ então $f$ é constante para todo o intervalo de convergência.
+\vspace{5mm}
+
+\textbf{Definição 1:} Seja $f: I \rightarrow \mathds{R}$ uma função infinitamente diferenciável ($C^\infty$) em $I$. A Série de Taylor de $f$ em $a \in I$ é $$\soma{0} \frac{f^{(n)}(a)}{n!} (x-a)^n$$ 
+
+\textbf{Definição 2:} Uma função é \textbf{analítica} em $a \in \mathds{R}$ se existe uma série de potências tal que $$f(x) = \soma{0} \frac{f^{(n)}(a)}{n!} (x-a)^n$$ para todo $x$ num intervalo centrado em $a$. Nesse caso, $a_n = \frac{f^{(n)}(a)}{n!}$. São exemplos de funções analíticas: \begin{align*}
+\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots & \ & |x| < 1 \\
+\ln (1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots & \ & |x| < 1 \\
+\arctan (x) = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots & \ & |x| < 1
+\end{align*}
+
+\begin{theorem}[Taylor]
+Seja $f$ uma função $(n+1)$ vezes diferenciável em um intervalo $I \subset \mathds{R}$. Se $a \in I$ e $x \in I$, temos: \begin{align*}
+    f(x) = f(a) + \frac{f'(a)}{1}(x-a) + \frac{f''(a)}{2}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n}(x-a)^n + R_{n,a}(x) \\
+    \lim_{x \rightarrow a} \frac{R_{n,a}(x)}{|x-a|^n}=0 \\
+    R_{n,a}(x) = f(x) - \sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k
+    \end{align*}
+\end{theorem}
+
+\begin{corollary}
+Seja $f$ uma função infinitamente diferenciável em um intervalo $I \subset \mathds{R}$. Se $a \in I$, logo a função é analítica se e somente se $\exists R > 0$ tal que $|x-a| < R \Rightarrow \LI R_{n,a} (x) = 0$
+\end{corollary}
+
+\textbf{Exemplo:} $f(x) = \sin x \ \ \ f(0) = 0 \ \ \ f'(0) = 1 \ \ \ f''(0) = 0$ 
+
+Fórmula de Taylor: $\displaystyle{\sin x = x - \frac{x^3}{3} + \frac{x^5}{5} + \cdots \frac{(-1)^n x^{2n+1}}{(2n+1)!} + R_{2n+1,0}(x)}$ $$R_{2n+1, 0}(x) = \int_0^x \frac{\sin^{(2n+1)}t}{(2n+1)!}t^{2n+1}dt \land \LI R_{2n+1,0}(x) = 0 \ \forall \ x \in \mathds{R}$$ Logo $\displaystyle{\sin x = \soma{0} (-1)^n \frac{x^{2n+1}}{(2n+1)!}} \ \forall x \in \mathds{R}$
+
+\section{Séries Binomiais}
+
+Seja $\alpha \in \mathds{R}$, $\alpha \notin \mathds{N}$, então: \begin{align*}
+(1+x)^\alpha &= 1 + \soma{1} \frac{\alpha(\alpha - 1) (\alpha - 2) (\alpha - 3) \cdots (\alpha -n + 1)}{n!} \ x^n \ (-1 < x < 1) \\
+&= 1 + \soma{1} {\alpha \choose n} \ x^n
+\end{align*}
+
+\textbf{Exemplo:} \begin{align*}
+    \frac{1}{\sqrt{1+x}} &= (1+x)^{-\frac{1}{2}} \\
+    &= 1 + \soma{1} \frac{\left(-\frac{1}{2}\right) \left(-\frac{3}{2}\right) \left(-\frac{5}{2}\right) \cdots \left(-\frac{2n-1}{2}\right)}{n!} \ x^n \\
+    &= 1 + \soma{1} \ \left(\frac{-1}{2}\right)^n \frac{1 * 3 * 5 * \cdots * (2n-1)}{n!} \ x^n \\
+    &= 1 + \soma{1} \ (-1)^n \frac{1*3*5*\cdots*(2n-1)}{2*4*6*\cdots*(2n)} \ x^n
+\end{align*}
+
+\subsection*{\E 1} Desenvolva $\displaystyle{\frac{1}{1+x}}$ centralizado em $x=3$
+
+\begin{align*}
+    \frac{1}{1+x} = \frac{1}{1+3+x-3} &= \frac{1}{4 + (x-3)} = \frac{1}{4} \ \frac{1}{1 + \frac{(x-3)}{4}} = \frac{1}{4} \ \frac{1}{1+y} \\
+    |y| &= \frac{|x-3|}{4} < 1 \Longleftrightarrow |x-3| < 4 \Longleftrightarrow -1 < x < 7 \\
+    \frac{1}{1+y} &= 1 - y + y^2 - y^3 + \cdots \\
+    &= 1 - \frac{x-3}{4} + \frac{(x-3)^2}{4^2} - \frac{(x-3)^3}{4^3} + \cdots \\
+    &= \soma{0} (-1)^n \frac{(x-3)^n}{4^n} \\
+    \frac{1}{1+x} &= \frac{1}{4} \frac{1}{1+y} \\
+    &= \soma{0} (-1)^n \frac{(x-3)^n}{4^{n+1}}
+\end{align*}
+
+Nos extremos, temos \footnote{conferir com o professor}:\begin{itemize}
+\item A série diverge (o limite do termo geral não é zero $$x =-1 \Rightarrow \soma{0}\frac{(-1)^n(-4)^n}{4^{n+1}} = \soma{0} \frac{4^n}{4^{n+1}} = \soma{0} \frac{1}{4} $$
+\item A série também diverge (por Liebniz) $$x = 7 \Rightarrow \soma{0}\frac{(-1)^n 4^n}{4^{n+1}} = \soma{0} \frac{(-1)^n}{4} $$
+\end{itemize}
+
+\subsection*{\E 2} Dada a série de potências abaixo $$f(x) = \soma{0} (-1)^{n+1} (n+1)x^n$$ determine o raio de convergência e identifique a função.
+
+$$a_n = (-1)^n (n+1) \Rightarrow \LI \frac{|a_n|}{|a_{n+1}|} = 1$$. Para $x \in ]-1,1[$, integrando termo a termo, temos \begin{align*}
+    F(x) = \int_0^x f(t) \ dt &= \soma{0} (-1)^{n+1} \int_0^x (n+1) t^{n} \ dt \\
+    &= \soma{0} (-1)^{n+1} x^{n+1} \\
+    &= -x + x^2 - x^3 + x^4 - x^5 + x^6 - \cdots \\
+    \frac{1}{1+x} &= 1 - x + x^2 - x^3 + x^4 - x^5 + x^6 - \cdots \\
+    F(x) &= \frac{1}{1+x} - 1 = \frac{-x}{1+x} \\
+    f(x) = F'(x) &= \frac{-(1+x)-1(-x)}{(1+x)^2} = \frac{-1}{(1+x)^2}
+\end{align*}
+
+
+\chapter{Séries de Fourier}{Aulas dias 05/10/2015 - 00/10/2015}
+
+\section{Observações -- Séries pares e séries ímpares}.
+
+\hspace{5mm} Uma função é dita \underline{par} se $f(-x) = f(x)$, e \underline{ímpar} se $f(-x) = -f(x)$.
+
+Temos também que para qualquer $a > 0$\begin{align*}
+    f \ par &\Rightarrow \int_{-a}^{+a} f(x) \ dx = 2 \int_0^a f(x) \ dx \\
+    f \ impar &\Rightarrow \int_{-a}^{+a} f(x) \ dx = 0 \\
+\end{align*}
+
+\section{As séries}
+
+\hspace{5mm}Dados $(a_n) \ n \geq 0$ e $(b_n) \ n \geq 1$ duas sequências, consideremos as séries trigonométricas: $$\frac{a_0}{2} + \soma{1} [a_n \cos (nx)+ b_n\sin (nx)] \ \ x \in [-\pi, \pi]$$ 
+
+Seja $f:[-\pi,\pi] \rightarrow \mathds{R}$ e sejam $a_n \ (n \geq 0)$ e $b_n \ (n \geq 1)$ tais que $$f(x) = \frac{a_0}{2} + \soma{1} [a_n\cos (nx) + b_n \sin (nx)] \ \ (*)$$ para $x \in [-\pi,\pi]$. Se $f$ é contínua e as séries forem convergentes, então \begin{align}
+    a_0 &= \frac{1}{\pi}\int_{-\pi}^\pi f(x) \ dx \\
+    a_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos (nx) \ dx \\
+    b_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin (nx) \ dx
+\end{align}
+
+A exprressão $(*)$ é a \textbf{série de Fourier de $f(x)$} e $a_0, \ a_n, b_n$ são os \textbf{coeficientes de Fourier de $f$} 
+
+Como a convergência é uniforme no dado intervalo, podemos integrar termo a termo. \begin{align*}
+    \IP f(x) \ dx = \IP \frac{a_0}{2} \ dx + \soma{1} \left( a_n \IP \cos (nx) \ dx + b_n \IP \sin (nx) \ dx \right) \\
+    \IP \sin (nx) \ dx = 0 \\
+    \IP \cos (nx) = \left. \frac{\sin (nx)}{n}\right|_{-\pi}^\pi = 0 \\
+    \IP f(x) \ dx = \IP \frac{a_0}{2} \ dx = \pi a_0 \\
+    a_0 = \frac{1}{\pi}\IP f(x) \ dx
+\end{align*}
+
+O desenvolvimento dos outros termos da série estão nas fotos das aulas do dia 05/10
+
+\textbf{Mudando um pouco de assunto ...} Uma função $f:[-\pi,\pi] \rightarrow \mathds{R}$ é de classe $C^2$ se existirem $f'(x)$ e $f''(x)$ contínuas. 
+
+Essa função será $C^2$ por partes se existir uma partição $K \subset \mathds{R}$ e uma função $f_l(x):K \rightarrow \mathds{R}$ tal que para todo $x \in K \Rightarrow f(x) = f_l(x) \ \forall \ l \in \mathds{N}$
+
+Seja $f:[-\pi,\pi] \rightarrow \mathds{R}$ de classe $C^2$ (por partes ou não) tal que $f(\pi) = f(-\pi)$. Então a série de Fourier de $f$ converge uniformemente em $\mathds{R}$ para $\displaystyle{F(x) = \frac{a_0}{2} + \soma{1} [a_n \cos (nx) + b_n \sin (nx)]}$. Em particular, para $x \in [-\pi, \pi]$ temos $F(x) = f(x)$
+
+\section*{\E 1} Determine a série de Fourier de $f(x) = x\ -\pi \leq x \leq \pi$ (\textbf{Dica:} calcule os coeficientes)\footnote{conferir a resolução do exercício} \begin{align*}
+    a_0 &= \frac{1}{\pi} \IP x \ dx =     \frac{1}{\pi}\left[\frac{x^2}{2}\right]_{-\pi}^{\pi} =\frac{1}{\pi}         \left[\frac{\pi^2}{2}-\frac{(-\pi)^2}{2}\right] = 0 \\
+    a_n &= \frac{1}{\pi}\IP x \cos (nx) \ dx = 0 \\
+    b_n &= \frac{1}{\pi}\IP x \sin (nx) \ dx = \frac{2}{\pi} \int_0^\pi x \sin (nx)\ dx = \frac{2}{\pi} \left[ \left. -\frac{x \cos (nx)}{n}\right|_0^\pi - \int_0^\pi \frac{\cos (nx)}{n} \ dx \right] \\
+    &= \frac{2}{\pi}\left[-\frac{\pi \cos (n\pi)}{n}-\left(\frac{\sin (nx)}{n^2}\right)_0^\pi \right] = -\frac{2 * \cos (n\pi)}{n} \\
+    f(x) &= \soma{1} \frac{2*(-1)^n}{n}\sin (nx)
+\end{align*}
+
+\section*{\E 2} Determine a série de Fourier de $f(x) = x^2\ -\pi \leq x \leq \pi$ \begin{align*}
+    a_0 &= \frac{1}{\pi} \IP x^2 \ dx = \frac{1}{\pi} \left[\frac{\pi^3}{3}-\left[-\frac{(-\pi)^3}{3}\right]\right] = \frac{2\pi^2}{3}\\
+    a_n &= \frac{1}{\pi} \IP x^2 \cos (nx) \ dx = \frac{2}{\pi} \int_0^\pi x^2 \cos (nx) \ dx = \frac{2}{\pi}\left( \left[ \frac{x^2 \sin (nx)}{n}\right]_0^\pi- \int_0^\pi \frac{2x \sin (nx)}{n} \ dx\right) \\
+    &= \frac{2}{\pi}\left(-\frac{2}{n}\left(\left[-\frac{x \cos (nx)}{n}\right]_0^\pi - \int_0^\pi -\frac{1}{n}\cos (nx)\ dx \right)\right) = \frac{2}{\pi}\left(-\frac{2}{n}\left(-\frac{\pi \cos (n\pi)}{n} + \left[\frac{\sin (nx)}{n^2}\right]_0^\pi\right)\right) \\
+    &= \frac{4}{n^2}\cos (n\pi)\\
+    b_n &= \frac{1}{\pi} \IP x^2 \sin (nx) \ dx = 0 \\
+    f(x) = \frac{\pi^2}{3}+\soma{1} \frac{(-1)^n * 4}{n^2} \cos (nx)
+\end{align*}
+
+\section*{}
+
+\part{Provas}
 \chapter{Correção P1}
 \label{C:P1}
 
@@ -1209,7 +1501,7 @@ Logo, a série converge pelo Critério da Razão.
 Como a série $\displaystyle{\soma{1} {1 \over n^{5 \over 3}}}$ converge, pelo critério da comparação no limite, a série converge.
 
 
-Outra forma de constatar que a série  é convergente passa pelo fato de que
+Outra forma de constatar que a série  é convergente passa pelo fato de que que $\sin x < x \ \ \forall x > 0$, mas isso eu deixo pra você pensar.
 \end{multicols}
 
 \newpage
@@ -1231,7 +1523,7 @@ c) (0,5) $\displaystyle{\soma{1} {\sin\left({n\pi \over 2}\right) \over n^2}}$
 $\displaystyle{\soma{2} \left|{(-1)^n \over n \ln{n}}\right| = \soma{2} {1 \over n \ln{n}}}$ que é diverge. Levaremos em conta uma mudança de variável para o pŕóximo passo.\footnote{$x = e^y \Longleftrightarrow dx = e^y \ dy$} \begin{align*}
 \int_2^\infty {dx \over x\ln{x}} &= \int_a^\infty {e^y \ dy \over e^y \ y} \\
 &= \int_a^\infty {dy \over y} \\
-&= \left[\ln({\ln{x}})\right]_2^\infty \\
+&= \left[\ln({\ln{y}})\right]_2^\infty \\
 &= \infty
 \end{align*}
 
@@ -1277,7 +1569,7 @@ a_n = {n^n x^n \over n!} &\Rightarrow {a_{n+1} \over a_n} = {(n+1)^{n+1} x^{n+1}
 Logo a função está definida para todo o $\displaystyle{x < \frac{1}{e}}$
 
 \section*{\IT{C}}\begin{align*}
-a_n = {x^n \over n \ln{n}} &\Longleftrightarrow \sqrt[n]{a_n} = { x \over \sqrt[n]{n} \sqrt[n]{\ln{m}}}\\
+a_n = {x^n \over n \ln{n}} &\Longleftrightarrow \sqrt[n]{a_n} = { x \over \sqrt[n]{n} \sqrt[n]{\ln{n}}}\\
 \LI \sqrt[n]{a_n} &= 1 \\
 \hbox{f}(x)
 &= \left\{ \begin{array}{rll}
@@ -1301,10 +1593,133 @@ diverge & \hbox{se} &  x \geq 2 \\
 \chapter{Correção P2}
 \label{C:P2}
 
+\section*{\E{1} (2,5)}
+
+\newpage
+
+\section*{\E{2} (2,5)}
+
+\newpage
+
+\section*{\E{3} (2,5)}
+
+\newpage
+
+\section*{\E{4} (2,5)}
+
 \chapter{Correção P3}
 \label{C:P3}
 
+\section*{\E{1} (2,5)}
+
+\newpage
+
+\section*{\E{2} (2,5)}
+
+\newpage
+
+\section*{\E{3} (2,5)}
+
+\newpage
+
+\section*{\E{4} (2,5)}
+
 \chapter{Correção P SUB}
 \label{C:SUB}
+
+\section*{\E{1} (2,5)}
+
+\newpage
+
+\section*{\E{2} (2,5)}
+
+
+\section*{\E{3} (2,5)}
+
+\newpage
+
+\section*{\E{4} (2,5)}
+
+\part{Referências}
+
+Antes de mais nada, eu gostaria de dizer que peguei as informações sobre as derivadas e as integrais aqui presentes no livro \cite[p.p. 199-201]{referencia}. 
+
+\section*{Tabela de Paridades}
+
+\hspace{5mm}Dadas funções $f(x)$ e $g(x)$, eu não acredito  \footnote{melhor perguntar para o professor} que possa se pode deduzir a paridade de $f(x) \circ g(x)$ (onde $\circ$ é uma operação binária) se essas operações forem soma ou subtração, mas quando se trata de produto ou quociente, esse trabalho é facilitado.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+$f(x) / g(x)$ & par & ímpar \\ \hline 
+ par &  par & ímpar \\
+ ímpar & ímpar & par \\ \hline
+\end{tabular}
+\caption{Paridade da função $h(x) = f(x) \circ g(x)$}
+\label{tab:par1}
+\end{table}
+
+Vale lembrar que uma dada função $f(x)$ é par se $f(-x) = f(x)$ e é impar se $f(-x) = - f(x)$. Aqui vão alguas poucas funções de exemplo. Aproveito a chance para dizer que podem contribuir com mais exemplos. 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+par & ímpar \\ \hline 
+ $x^n | n \in \mathds{Z}_2$ &  $x^n | n \in \mathds{Z} - \mathds{Z}_2$ \\
+ $\cos x$ & $\sin{x}$\\ 
+ $|x|$ & $ \tan x = \frac{\sin x}{\cos x}$ \\ \hline
+\end{tabular}
+\caption{Exemplos de funções pares e ímpares}
+\label{tab:par2}
+\end{table}
+
+\section*{Regras de Diferenciação\footnote{csc = cossecante; cot = cotangente}}
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\displaystyle{\frac{d}{dx} [f(x)g(x)] = f'(x)g(x) + g'(x)f(x)}$
+\item $\displaystyle{\frac{d}{dx} \left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)g(x) - g'(x)f(x)}{(g(x))^2}}$
+\item $\displaystyle{\frac{d}{dx} f(g(x)) = f'(g(x))g'(x)}$
+\item $\displaystyle{\frac{d}{dx} (a^x) = a^x \ln{a}}$
+\item $\displaystyle{\frac{d}{dx} \log_a{x} = \frac{1}{x \ln a}}$
+\item $\displaystyle{\frac{d}{dx} (\sin x) = \cos x}$
+\item $\displaystyle{\frac{d}{dx} (\cos x) = -\sin x}$
+\item $\displaystyle{\frac{d}{dx} (\tan x) = \sec^2 x}$
+\item $\displaystyle{\frac{d}{dx} (\csc x) = -\csc x \cot x}$
+\item $\displaystyle{\frac{d}{dx} (\sec x) = \sec x \tan x}$
+\item $\displaystyle{\frac{d}{dx} (\cot x} = -\csc^2 x$
+\item $\displaystyle{\frac{d}{dx} (\arcsin x) = \frac{1}{\sqrt{1-x^2}}}$
+\item $\displaystyle{\frac{d}{dx} (\arccos x) = -\frac{1}{\sqrt{1-x^2}}}$
+\item $\displaystyle{\frac{d}{dx} (\arctan x} = \frac{1}{1+x^2}$
+\end{enumerate}
+\end{multicols}
+
+\section*{Lista de Primitivas\footnote{para as expressões 6 e 7, $n \geq 1$ enquanto, para a expressão 8, $n > 1$}}
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\displaystyle{\int u dv = uv - \int v du}$
+\item $\displaystyle{\int \frac{du}{u} = \ln |u| + C}$
+\item $\displaystyle{\int e^u du = e^u + C}$
+\item $\displaystyle{\int a^u du = {a^u \over \ln a}}$
+\item $\displaystyle{\int \tan u \ du = \ln |\sec x| + C}$
+\item $\displaystyle{\int \sin^n u \ du = -{1 \over n}\sin^{n-1}u\cos  u + \frac{n-1}{n}\int \sin^{n-2} u \ du}$
+\item $\displaystyle{\int \cos^n u \ du = {1 \over n}\cos^{n-1}u\sin  u + \frac{n-1}{n}\int \cos^{n-2} u \ du}$
+\item $\displaystyle{\int \tan^n u \ du = \frac{1}{n-1}\tan^{n-1}u - \int \tan^{n-2} u \ du \ n > 1}$
+\item $\displaystyle{\int \ln u \ du = u \ln u - u + C}$
+\item $\displaystyle{\int \frac{du}{u \ln u} = \ln |\ln u| + C}$
+\end{enumerate}
+\end{multicols}
+
+\begin{thebibliography}{9}
+
+\bibitem{referencia}
+  James Stewart, %autor
+  Cálculo, Volume 1, %título
+  São Paulo, SP, %cidade
+  5ª edição, %edição
+  2008.%ano
+
+\end{thebibliography}
 
 \end{document}
