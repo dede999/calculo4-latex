@@ -3,6 +3,7 @@
 \usepackage[portuguese]{babel}
 \usepackage[margin = 2cm]{geometry}
 \usepackage[colorlinks=false]{hyperref} %conectar o arquivo em PDF atravéz de links
+\usepackage{framed} % frame enviroment
 \newtheorem{theorem}{Teorema}[section]
 \newtheorem{lemma}{Lema}[section]
 \newtheorem{corollary}{Corolário}[theorem]
@@ -22,6 +23,8 @@
 \newcommand{\DS}{\displaystyle{}}
 \newcommand{\Resolve}{\begin{center} \textbf{Resolução} \end{center}}
 \newcommand{\IT}[1]{Item {#1}}
+\newcommand{\diff}[2]{\frac{d{#1}}{d{#2}}}
+\newcommand{\difff}[2]{\frac{\partial {#1}}{\partial {#2}}}
 \newcommand{\cmw}{Critério M de Weierstrass }
 \newcommand{\IP}{\int_{-\pi}^{\pi}}
 
@@ -67,7 +70,7 @@ Esse PDF não tem intenção nenhuma de ser uma segunda lousa, quanto menos subs
 
 Professor: 	Antonio Carlos Asperti (\href{mailto:asperti@ime.usp.br}{asperti@ime.usp.br})
 
-Livro usado: Um curso de Cáluclo -- Volumes 2 e 4
+Livro usado: Um curso de Cálculo -- Volumes 2 e 4
 \vspace{10mm}
 
 Provas:
@@ -262,7 +265,7 @@ Para $0  < \alpha \neq 1$ temos que $$\displaystyle{\int_1^\infty \frac{dx}{x^\a
 \end{enumerate}
 
 \begin{enumerate}
-\item [a.] Seja  $\displaystyle{g(x) = \frac{\ln x}{\ln {x+1}}}$ uma função limitada ($\displaystyle{\lim_{x \rightarrow +\infty} \frac{\ln x}{\ln {x+1}} = 1}$) e o fato de que $\displaystyle{\int_1^{\infty} \frac{1}{x}}$ é divergente, então a integral em questão é divergente.
+\item [a.] Seja  $\displaystyle{g(x) = \frac{\ln x}{\ln {x+1}}}$ uma função limitada $\displaystyle{\left(\lim_{x \rightarrow +\infty} \frac{\ln x}{\ln {x+1}} = 1\right)}$ e o fato de que $\displaystyle{\int_1^{\infty} \frac{1}{x}}$ é divergente, então a integral em questão é divergente.
 \item [b.] $$f(x) = \frac{x^5-3}{\sqrt{x^{20}+x^{10}+1}} = \frac{x^5\left(1-\frac{3}{x^5}\right)}{\sqrt{x^{20}(1+x^{-10}+x^{-20})}}= \underbrace{1 \over x^5}_{g(x)} \underbrace{\frac{1-\frac{3}{x^5}}{1+x^{-10}+x^{-20}}}_{h(x)} = g(x)*h(x)$$ 
 $$\lim_{x \rightarrow +\infty} h(x) = 1$$ 
 $\displaystyle{\int_{10}^{\infty} g(x)\ dx}$ é convergente. Logo, $\displaystyle{\int_{10}^{\infty} f(x)\ dx}$ é convergente.
@@ -326,7 +329,7 @@ Sejam $(a_n)$ $(b_n)$ $(c_n)$ sequências tais que $a_n \leq b_n \leq c_n$. Supo
 
 \begin{demonstration}
 Seja um $\epsilon > 0$ suficientemente pequeno. Como $a_n$ e  $c_n$ tendem a $L$, existe $n_0 \in \mathds{N}$ tal que:
-\[ n \geq n_0) \Rightarrow
+\[ n \geq n_0 \Rightarrow
   \begin{cases}
     |a_n - L| < \epsilon \quad \Longleftrightarrow  & \quad L - \epsilon < a_n < L +\epsilon \\
     |c_n - L| < \epsilon \quad \Longleftrightarrow  & \quad L - \epsilon < c_n < L +\epsilon \\
@@ -462,7 +465,7 @@ Toda sequência de Couchy é convergente.
 \end{lemma}
 
 \begin{demonstration}
-\textbf{Diagmos que} $a_n$ satisfaz $m, \ n \geq n_0 \Rightarrow |a_m - a_n| < \epsilon$. De fato, para qualquer $k > 0$, existe $n_k \in \mathds{N}$ tal que para quaisquer $ m, \ n \geq n_k \Rightarrow |a_n - a_m| < \displaystyle{\frac{1}{k}}$.
+\textbf{Digamos que} $a_n$ satisfaz $m, \ n \geq n_0 \Rightarrow |a_m - a_n| < \epsilon$. De fato, para qualquer $k > 0$, existe $n_k \in \mathds{N}$ tal que para quaisquer $ m, \ n \geq n_k \Rightarrow |a_n - a_m| < \displaystyle{\frac{1}{k}}$.
 
 Toamando $m = n_k$ fixo, temos: $$ n \geq n_k \Rightarrow |a_{n_k} - a_n| < \frac{1}{k} $$ ou mesmo $$ n \geq n_k \Rightarrow a_{n_k} - \frac{1}{k} < a_n < a_{n_k} + 1 $$. Seja $M = max\left\{ |a_0|, |a_1|, \hdots , |a_{n_k}|, |a_{n_k} - \frac{1}{k}|, |a_{n_k} + 1| \right\}$, então $|a_n| \leq M \ \ \forall \ n \in \mathds{N}$
 
@@ -773,7 +776,7 @@ Seja $\sum a_n$ uma série de termos positivos e suponha que haja uma função p
 \section{Exercícios da aula do dia 24/08}
 \label{sec:211}
 
-\subsection*{Mostrar que a série $$\sum_{n = 1}^{\infty} \frac{1}{n^s}$$ converge para $s > 1$ e converge para $s \leq 1$}
+\subsection*{Mostrar que a série $$\sum_{n = 1}^{\infty} \frac{1}{n^s}$$ converge para $s > 1$ e diverge para $s \leq 1$}
 
 \begin{itemize}
 \item se $\displaystyle{s = 0} \Rightarrow \sum_{n = 1}^{\infty} \frac{1}{n^0} \Longleftrightarrow \sum_{n = 1}^{\infty} 1$ \\ A série diverge.
@@ -937,7 +940,7 @@ S_m &= \ln 2 - \underbrace{\ln 1}_{\ln 1 = 0} + \ln 3 - \ln 2 + \cdots + \ln (m+
 
 Logo a série é divergente
 
-\section{Teste seus conhecimentos -- Avalie se as séries abaixo são divergentes, convergentes absolutas, ou convergentes condicionais} Pergunte ao monitor, se tiver qualquer dúvida.
+\section{Teste seus conhecimentos}{Avalie se as séries abaixo são divergentes, convergentes absolutas, ou convergentes condicionais. Pergunte ao monitor, se tiver qualquer dúvida.}
 %Ideia de subtítulo #1 (caso vc queira se aprofundar em LaTeX )\section{Section Title\\Section Subtitle}
 %Ideia de subtítulo #2 \section[Section Title. Section Subtitle]{Section Title\\ {\large Section Subtitle}}
 \begin{itemize}
@@ -1027,7 +1030,7 @@ Logo essa função está definida para qualquer valor estritamente positivo de $
 \section{Continuidade, diferenciabilidade e Integrabilidade de uma uma função dada como o limite de uma sequência de funções}
 
 \begin{theorem}[Teorema 1\label{t:3-1}] 
-Seja $f_n: B \rightarrow \mathds{R}$ uma sequência de funções e $f: B \rightarrow \mathds{R}$ definida como  $$f(x) = \LI f_n(x)$$ \hspace{5mm}Vamos supor agora que cada $f_n$ seja contínua em B, e que a convergência é uniforme neste universo  Neste cao, $f$ é contínua em B.
+Seja $f_n: B \rightarrow \mathds{R}$ uma sequência de funções e $f: B \rightarrow \mathds{R}$ definida como  $$f(x) = \LI f_n(x)$$ \hspace{5mm}Vamos supor agora que cada $f_n$ seja contínua em B, e que a convergência é uniforme neste universo  Neste caso, $f$ é contínua em B.
 \end{theorem}
 
 \begin{theorem}[Teorema 2\label{t:3-2}] 
@@ -1047,6 +1050,7 @@ Se $f'_n$ converge uniformemente para $g$, então $$f'(x) = g(x) \Longleftrighta
 \end{theorem}
 
 \chapter{Série de funções} {Assunto tratado entre 16/09/2015 até 23/09/2015}
+\label{chap:c4}
 \section{Definição}
 \hspace{5mm} Uma série de funções é uma série $\displaystyle{\soma{0} f_n}$ onde cada $f_n$ é uma função definida em um mesmo conjunto $B \in \mathds{R}$. Dizemos que a série $\sum f_n$ converge para a função $s: B \rightarrow \mathds{R}$, se para todo o $x \in B, \ s(x) = \soma{0} f_n(x)$. É o mesmo que dizer que $$\LI[m] \sum_{m=0}^n f_n(x) = s(x) \ \ \  \forall \ x \in B$$
  Para $x > 0$\begin{align*}
@@ -1124,7 +1128,7 @@ s'(x) &= \soma[k]{0} f'_k(x) = \left( \soma[k]{0} f_k(x)\right)'
 
 \subsection*{\E{3}}{Seja $\displaystyle{f(x) = \soma{0}  {x^n \over n!} \ \ (0! = 1)}$ Verifique $$\int_0^x f(t) \ dt = f(x) -1 \ \ \ \forall \ x \in \mathds{R}$$}
 
-\textbf{Resolução:} Fixe $x \in \mathds{R}$ e seja $r < 0$ tal que $|x| \leq r \Longleftrightarrow x \in [-r,r]$. Nesse intervalo, a série em questão converge uniformemente. $\forall \ x \in [-r, r]$ temos: \begin{align*}
+\textbf{Resolução:} Fixe $x \in \mathds{R}$ e seja $r > 0$ tal que $|x| \leq r \Longleftrightarrow x \in [-r,r]$. Nesse intervalo, a série em questão converge uniformemente. $\forall \ x \in [-r, r]$ temos: \begin{align*}
 \left| \frac{x^n}{n!} \right| = {|x|^n \over n!} &\leq {r^n \over n!} \\
 \LI {r^{n+1} \over (n+1)!}*{n! \over r^n} = \LI {r \over n+1} = 0
 \end{align*} 
@@ -1390,6 +1394,8 @@ Nos extremos, temos \footnote{conferir com o professor}:\begin{itemize}
 \item A série também diverge (por Liebniz) $$x = 7 \Rightarrow \soma{0}\frac{(-1)^n 4^n}{4^{n+1}} = \soma{0} \frac{(-1)^n}{4} $$
 \end{itemize}
 
+$D_f = ]-1,7[$
+
 \subsection*{\E 2} Dada a série de potências abaixo $$f(x) = \soma{0} (-1)^{n+1} (n+1)x^n$$ determine o raio de convergência e identifique a função.
 
 $$a_n = (-1)^n (n+1) \Rightarrow \LI \frac{|a_n|}{|a_{n+1}|} = 1$$. Para $x \in ]-1,1[$, integrando termo a termo, temos \begin{align*}
@@ -1401,9 +1407,17 @@ $$a_n = (-1)^n (n+1) \Rightarrow \LI \frac{|a_n|}{|a_{n+1}|} = 1$$. Para $x \in 
     f(x) = F'(x) &= \frac{-(1+x)-1(-x)}{(1+x)^2} = \frac{-1}{(1+x)^2}
 \end{align*}
 
+\subsection*{\E 3} Desenvolver $\sqrt{1+x}$ em séries de potências \begin{align*}
+    \sqrt{1 + x} &= (1+x)^{\frac{1}{2}} \ \ \ |x| < 1 \\
+    &= 1 + \soma{1} \frac{\frac{1}{2}\left(\frac{1}{2}-1\right)\left(\frac{1}{2} - 2\right)\cdots \left(\frac{1}{2} - n + 1\right)}{n!}x^n \\
+    &= 1 + \soma{1} \frac{\left(\frac{1}{2}\right)*\left(-\frac{1}{2}\right)*\left(-\frac{3}{2}\right)*\left(-\frac{5}{2}\right) \cdots \left(-\frac{2n+1}{2}\right)}{n!}x^n \\
+    &= 1 + \soma{1} \frac{(-1)^{n-1}}{2^n} \frac{1*3*5\cdots(2n+1)}{n!}x^n \\
+    &= 1 + \soma{1} (-1)^{n-1} \frac{1*3*5\cdots(2n+1)}{2*4*6\cdots(2n)} x^n
+\end{align*}
 
-\chapter{Séries de Fourier}{Aulas dias 05/10/2015 - 00/10/2015}
 
+\chapter{Séries de Fourier}{Aulas dias 05/10/2015 -- 19/10/2015}
+\label{chap:c6}
 \section{Observações -- Séries pares e séries ímpares}.
 
 \hspace{5mm} Uma função é dita \underline{par} se $f(-x) = f(x)$, e \underline{ímpar} se $f(-x) = -f(x)$.
@@ -1412,6 +1426,8 @@ Temos também que para qualquer $a > 0$\begin{align*}
     f \ par &\Rightarrow \int_{-a}^{+a} f(x) \ dx = 2 \int_0^a f(x) \ dx \\
     f \ impar &\Rightarrow \int_{-a}^{+a} f(x) \ dx = 0 \\
 \end{align*}
+
+Esse material conta com uma sessão de referências, onde se fala um pouco de funções pares e ímpares. Para mais detalhes, veja a página \pageref{ref-3}
 
 \section{As séries}
 
@@ -1441,6 +1457,13 @@ Essa função será $C^2$ por partes se existir uma partição $K \subset \mathd
 
 Seja $f:[-\pi,\pi] \rightarrow \mathds{R}$ de classe $C^2$ (por partes ou não) tal que $f(\pi) = f(-\pi)$. Então a série de Fourier de $f$ converge uniformemente em $\mathds{R}$ para $\displaystyle{F(x) = \frac{a_0}{2} + \soma{1} [a_n \cos (nx) + b_n \sin (nx)]}$. Em particular, para $x \in [-\pi, \pi]$ temos $F(x) = f(x)$
 
+\begin{theorem}
+Seja $f$ uma função periódica com período $2\pi$ e de classe $C^2$ por partes em $[-\pi,\pi]$ (não necessariamente contínua em $[-\pi,\pi]$). Sejam $a_n$ e $b_n$ os coeficiente de Fourier da função $f$. Então: \begin{itemize}
+    \item se $f$ é contínua em $x$: $\displaystyle{f(x) = \frac{a_0}{2} + \soma{1} (a_n \cos (nx) + b_n \sin (nx))}$
+    \item se $f$ não é contínua em $x$: $\displaystyle{f(x) = \frac{f(x^+) + f(x^-)}{2} = \frac{a_0}{2} + \soma{1} (a_n \cos (nx) + b_n \sin (nx))}$
+\end{itemize}
+\end{theorem}
+
 \section*{\E 1} Determine a série de Fourier de $f(x) = x\ -\pi \leq x \leq \pi$ (\textbf{Dica:} calcule os coeficientes)\footnote{conferir a resolução do exercício} \begin{align*}
     a_0 &= \frac{1}{\pi} \IP x \ dx =     \frac{1}{\pi}\left[\frac{x^2}{2}\right]_{-\pi}^{\pi} =\frac{1}{\pi}         \left[\frac{\pi^2}{2}-\frac{(-\pi)^2}{2}\right] = 0 \\
     a_n &= \frac{1}{\pi}\IP x \cos (nx) \ dx = 0 \\
@@ -1455,10 +1478,177 @@ Seja $f:[-\pi,\pi] \rightarrow \mathds{R}$ de classe $C^2$ (por partes ou não) 
     &= \frac{2}{\pi}\left(-\frac{2}{n}\left(\left[-\frac{x \cos (nx)}{n}\right]_0^\pi - \int_0^\pi -\frac{1}{n}\cos (nx)\ dx \right)\right) = \frac{2}{\pi}\left(-\frac{2}{n}\left(-\frac{\pi \cos (n\pi)}{n} + \left[\frac{\sin (nx)}{n^2}\right]_0^\pi\right)\right) \\
     &= \frac{4}{n^2}\cos (n\pi)\\
     b_n &= \frac{1}{\pi} \IP x^2 \sin (nx) \ dx = 0 \\
-    f(x) = \frac{\pi^2}{3}+\soma{1} \frac{(-1)^n * 4}{n^2} \cos (nx)
+    f(x) &= \frac{\pi^2}{3}+\soma{1} \frac{(-1)^n * 4}{n^2} \cos (nx)
 \end{align*}
 
-\section*{}
+\section*{\E 3} Determine a série de Fourier de $f(x) = |x|\ -\pi \leq x \leq \pi$ \begin{align*}
+    a_0 &= \frac{1}{\pi} \IP |x| \ dx = \frac{2}{\pi} \int_0^\pi x \ dx = \left.\frac{2}{\pi}\frac{x^2}{2}\right|_0^\pi = \pi \\
+    a_n &= \frac{1}{\pi} \IP |x| \cos (nx) \ dx = \frac{2}{\pi} \int_0^\pi x \cos (nx) \ dx = \frac{2}{\pi} \left(\left.\frac{x \sin (nx)}{n}\right|_0^\pi - \int_0^\pi \frac{\sin (nx) }{n} \ dx\right)\\
+    &= \frac{2}{\pi}\left[\frac{\cos (nx)}{n^2}\right]_0^\pi = \frac{2}{\pi n^2}[(-1)^n - 1] = \frac{-4}{\pi n^2} \Rightarrow n \ impar\\
+    b_n &= \frac{1}{\pi} \IP |x| \sin (nx) = 0 \\
+    f(x) &= \frac{\pi}{2} + \soma{1} \frac{-4}{\pi (2n-1)^2}\cos ((2n-1)x)
+\end{align*}
+
+\section*{\E 4} Determine uma função não nula $F:[-\pi,\pi] \rightarrow \mathds{R}$ cuja série de Fourier convirja uniformemente para $f(x) = 0$ em $[0,\pi]$.
+
+\textbf{Exemplos de resolução:}
+
+$\hbox{f}(t)
+= \left\{ \begin{array}{rll}
+\sin x & \hbox{se} &  -\pi \leq x < 0 \\
+0 & \hbox{se} & 0 \leq x \leq \pi \\
+\end{array}\right.$
+\vspace {5mm}
+$\hbox{f}(t)
+= \left\{ \begin{array}{rll}
+x + \pi & \hbox{se} &  -\pi \leq x < -\frac{\pi}{2} \\
+-x & \hbox{se} & -\frac{\pi}{2} \leq x < 0 \\
+0 & \hbox{se} & 0 \leq x \leq \pi \\
+\end{array}\right.$
+
+Note que em ambas resoluções, $f(x) = 0 \ \forall x \in [0,\pi]$
+
+\begin{framed}
+\begin{definition}
+    \centering{Seja uma função $f:[-\pi,\pi] \rightarrow \mathds{R} \  \land \ f(\pi) = f(-\pi)$ e $C^2$ por partes. Tomando um intervalo $I \subset [-\pi,\pi]$. Se a Série de Fourier da função $f$ convergir  a ela no intervalo $I$, então convirgirá em todo $x \in [-\pi,\pi]$ \label{enunciado}}
+\end{definition}
+\end{framed}
+
+\chapter{Equações Diferenciais}{Aulas 26/10/2015 -- 00/11/2015}
+\label{chap:c7}
+
+\vspace{5mm}
+São equações que envolvem uma função e suas derivadas. Exemplos: \begin{align}
+    F(t) = m \ \frac{d^2x}{dt^2} \label{Newton} \\
+    \frac{\partial^2 E}{\partial x^2} + \frac{\partial^2 E}{\partial y^2} + \frac{\partial^2 E}{\partial z^2} = 4\pi p \label{Maxwell} \\
+    y' = y \label{ed1} \\
+    y' = y^{\frac{3}{2}} \label{ed2}
+\end{align}
+
+\underline{Variáveis independentes} são as variaveis em relação as quais estamos derivando. Exemplos: $t$ no exemplo \ref{Newton} e $x, y, z$ no exemplo \ref{Maxwell}.
+
+\underline{Variáveis dependentes} são aquelas que estão sendo derivadas. Exemplo: $x$ no exemplo \ref{Newton} e $E$ no exemplo \ref{Maxwell}.
+
+\section{Definições}
+
+\begin{align}
+    \frac{d^2y}{d x^2} + 5          \left(\frac{dy}{dx}\right)^2 - 7xy = \cos x \label{ed3} \\
+    -x^2y^{(IV)} + \cos x \ y'' + y\sqrt{1+x^2} = \sin x \label{ed4}
+\end{align}
+
+\hspace{5mm}Equações diferenciais \textbf{ordinárias} (e.d.o): têm apenas uma variável independente. Exemplos: \ref{Newton}, \ref{ed1}, \ref{ed2}.
+
+Equações derivadas parciais (e.d.p): têm mais de uma variada independente. Exemplo: \ref{Maxwell}
+
+A \underline{ordem} de uma \underline{e.d.o.} é a ordem da maior derivada que aparece na equação. \begin{itemize}
+    \item a equação \ref{Newton} é de ordem 2.
+    \item a equação \ref{ed3} é de ordem 2.
+    \item a equação \ref{ed4} é de ordem 4.
+\end{itemize}
+
+Defina $F: \mathds{R}^4 \rightarrow \mathds{R}: F(x_1,x_2,x_3,x_4) = x_4 + 5x_3^2 - 7x_1x_2 - \cos x_1$. $F$ é equivalente à equação \ref{ed3}.
+
+De um modo mais geral, dada uma equação diferencial de ordem $n$, podemos representá-la da forma $F(x, y, y', y'', \hdots, y^{(n)}) = 0$ onde $F:\mathds{R}^{n+2} \rightarrow \mathds{R}$
+
+Equações diferenciais lineares -- São equações onde $y$ e suas derivadas aparecem com expoente de no máximo 1 $$ a_0(x)\frac{d^n y}{d x^n}+ a_1(x) \frac{d^{n-1} y}{d x^n} + \cdots + a_n(x)y = f(x) $$ Exemplo: equações \ref{Newton} e \ref{ed4}
+
+Resolvendo, como primeiro exemplo, a equação \ref{ed1}: \begin{align*}
+    y' &= y \\
+    y &= c*e^x \ \ \ \forall \ x \in \mathds{R} \\
+    y' &= c*e^x \\
+    y(0) &= 1 \ \ \  (cond.) \\
+    y(x) &= c*e^x \\
+    y(0) &= 1 \Longleftrightarrow c*e^0 = 1 \Longleftrightarrow c = 1 \\
+    y(x) = e^x
+\end{align*}
+
+De uma forma mais genérica, teremos um sistema parecido com esse: \begin{align*}
+    F(x,y,y',y'') &= 0 \\
+    y(x_0) = y_1 \\
+    y'(x_0) = y_2
+\end{align*}
+
+
+\section{Equações diferenciais de 1ª ordem}{Alguns métodos de resolução}
+
+\subsection{Equações exatas}
+
+\hspace{5mm} Encontrar equações do tipo \begin{align}
+    Pdx + Qdy = 0 \ \ \ \ \left(\frac{dy}{dx} = - \frac{P(x,y)}{Q(x,y)}\right) \label{ed5}
+\end{align}
+
+onde $P(x,y)$ e $Q(x,y)$ estão definidas em um domínio $D \subset \mathds{R}$; Por exemplo: \begin{align*}
+    y \ dx + \left(x + \frac{2}{y}\right)\ dy = 0 \\
+    P(x,y) &= y \\
+    Q(x,y) &= x + \frac{2}{y}
+\end{align*}
+
+Uma equação como a do exemplo \ref{ed5} é considerada \underline{exata} se existir $\defini{\varphi}{D}$ suficientemente diferenciável tal que \begin{align*}
+    \frac{\partial \varphi}{\partial x}(x,y) &= P(x,y) \\
+    \frac{\partial \varphi}{\partial y}(x,y) &= Q(x,y) \\
+        (x,y) &\in D
+\end{align*}
+
+Supondo que a expressão \ref{ed5} seja exata,  então temos que \begin{align*}
+    \frac{\partial \varphi}{\partial x}(x,y) \ dx + \frac{\partial \varphi}{\partial y}(x,y)\ dy = 0 \ \lor \ d\varphi = 0 \Rightarrow \\
+    \Rightarrow \varphi(x,y) = c \ \ (cte) \\
+\end{align*}
+
+No exemplo numérico, temos que $\varphi(x,y) = xy + \ln y^2$. Portanto, as soluções da equação são dadas implicitamente por $\varphi(x,y) = c \lor \ xy + \ln y^2 = c$
+
+Que condições $P$ e $Q$ devem obedecer para a equação \ref{ed5} ser exata? (Considerando que exista uma função $\varphi$) \begin{align*}
+    \frac{\partial \varphi}{\partial x} = P & \ & \frac{\partial \varphi}{\partial y} = Q \\
+    \frac{\partial^2 \varphi}{\partial y \ \partial x} = \frac{\partial P}{\partial y} &  \  & \frac{\partial^2 \varphi}{\partial x \ \partial y} = \frac{\partial Q}{\partial x} \\
+    \ & \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} & \
+\end{align*}
+
+Considere a equação $P(x,y) \ dx + Q (x,y) \ dy = 0$ e o fato de que $\DS{\frac{\partial P}{\partial y}(x,y) = \frac{\partial Q}{\partial x}(x,y)}$ e que o conjunto $D$ seja simplesmente conexo. Então $$ \varphi(x,y) = \int_\gamma (P(x,y) \ dx + Q(x,y) \ dy) $$ onde $\gamma$ é uma curva diferenciável por partes que une dois pontos pertencentes a $D$
+
+\subsection*{Exemplo 1}{Resolver a equação $$ \left(x + \frac{2}{y}\right) \ dy + y \ dx = 0 $$}
+\begin{align*}
+    P(x,y) = y \Rightarrow \frac{\partial P}{\partial y} = 1 \\
+    Q(x,y) = x + \frac{2}{y} \Rightarrow \frac{\partial Q}{\partial x} = 1
+\end{align*}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{new}
+\caption{Intervalo de Integração: Resolução do exemplo 1}
+\label{fig:diff-1}
+\end{figure}
+
+\begin{align*}
+    \varphi(x,y) &= \int_b^y \left(a+ \frac{2}{y}\right) \ dy + \int_a^x y \ dx \\
+    &= [ay + 2 \ln y]_b^y + xy - ay = ay + \ln y^2 - (ab + \ln b^2) + xy -ay \\
+    &= \ln y^2 + xy = k, \ \ ab + \ln b^2 \\
+    \varphi (x,y) &= xy +\ln y^2 = c
+\end{align*}
+
+Outra forma: Queremos um $\varphi$ tal que:
+\begin{align*}
+    \frac{\partial \varphi}{\partial x} = y \ &\land \ \frac{\partial \varphi}{\partial y} = x + \frac{2}{y} \\
+    \varphi(x,y) = \int \frac{\partial \varphi}{\partial x} \ dx &= \int y \ dx = xy + k(y) \\
+    \frac{\partial \varphi}{\partial y} = x + \frac{2}{y} &= x + k'(y) \\
+    k'(y) = \frac{2}{y} &\Rightarrow k(y) = 2 \ln y = \ln y^2 \\
+    \varphi(x,y) &= xy + \ln y^2 = c
+\end{align*}
+
+Vamos tomar um tipo específico de equação diferencial exata. $$f(x) \ dx + g(y) \ dy = 0$$ onde $P(x,y) = f(x)$ e $Q(x,y) = g(y)$. Neste caso, teremos a derivada parcial de $P$ em $y$ é igual à derivada parcial de $Q$ em respeito a $x$ são iguais a zero e $\varphi(x,y) = \int_a^x f(x) \ dx + \int_b^y g(y) \ dy$
+
+\subsection*{Exemplo 2: Resolva a equação $$(\ln x \cos y)dx + (x \tan y)dy = 0 \ \ x > 0 $$}
+
+\hspace{5mm} Dividindo a expressão por $x \ \cos y$ teremos uma expressão parecida com o nosso modelo. \begin{align*}
+    \left( \frac{\ln x}{x}\right) \ dx + \left( \frac{\sin y}{\cos^2 y}\right)\ dy = 0 \ \ \cos y \neq 0 \ \land \ x >0 
+    \frac{\partial \varphi}{\partial x}(x,y) &= \frac{\ln x}{x}\\
+    \frac{\partial \varphi}{\partial y}(x,y) &= \frac{\sin y}{\cos^2 y} \\
+    \varphi(x,y) = \int \frac{\partial \varphi}{\partial x}\ dx &= \int \frac{\ln x}{x}\ dx = \frac{(\ln x)^2}{2} + k(y) \\
+    \frac{\partial \varphi}{\partial y} &= k'(y) = \frac{\sin y}{\cos^2 y}\\
+    k'(y) = \frac{\sin y}{\cos^2 y} &\Rightarrow k(y) = \frac{1}{\cos y} \\
+    \varphi(x,y) = \frac{(\ln x)^2}{2}+ \frac{1}{\cos y}
+\end{align*}
+
+\subsection*{Exemplo 3}
+
+\hspace{5mm} Dada $P(x,y) \ dx + Q(x,y) \ dy$
 
 \part{Provas}
 \chapter{Correção P1}
@@ -1593,36 +1783,273 @@ diverge & \hbox{se} &  x \geq 2 \\
 \chapter{Correção P2}
 \label{C:P2}
 
-\section*{\E{1} (2,5)}
+\section*{\E{1} (2,5)}{São dadas as seguintes séries de potências \begin{align}
+    \soma{1} (-1)^n \ 2n\  x^{2n-1} \label{P2-1} \\
+    \soma{2} (-1)^n \frac{x^n}{n(n-1)} \label{P2-2}
+\end{align}}
+
+a) \textbf{(1,0)} Determione o raio de convergência das séries dadas
+
+b) \textbf{(1,5)} Identifique as funções dadas pelas séries acima
+
+\Resolve
+
+\subsection*{Item A}
+
+\hspace{5mm}No caso da série \ref{P2-1}, não podemos usar o critério da razão do módulo diretamente, pois é necessário que todos os graus de $x$ estejam presentes Então, a opção é integrar a série termo a termo, pois o raio de convergência não se altera se derivarmos ou integrarmos a função. \begin{align*}
+    \soma{1} \int_0^x \ (-1)^n \ 2n \ t^{2n-1} \ dt &= \soma{1} \ (-1)^n \ x^{2n} \ \land \ y = x^2 \\
+    \soma{1} (-1)^n y^n \ &\land a_n = (-1)^n\\
+    \LI \frac{|a_n|}{|a_{n+1}|} &= 1 = R \\
+    |y| < 1 \land y = x^2 &\Longleftrightarrow |x^2| < 1 \Rightarrow |x| < 1
+\end{align*}
+
+No caso da série \ref{P2-2}, por outro lado, pode-se descobrir o raio de convergência atraves do quociente dos módulos. $$R = \LI \frac{|a_n|}{|a_{n+1}|} = \LI \frac{(n+1)n}{n(n-1)} = 1$$
+
+\subsection*{Item B}
+
+\begin{align*}
+    f_1(x) &= \soma{1} \ (-1)^n \ 2n\  x^{2n-1}  \ \ \land |x| < 1 \\
+    F_1 (x) &= \int_0^x f_1(t) dt = \soma{1} \ \int_0^x (-1)^n \ 2n x^{2n-1} \ dt = \soma{1} \ (-1)^n \ x^{2n} \\
+    &= -x^2 + x^4 -x^6 + x^8 - x^{10} + \cdots \\
+    \frac{1}{1 + x^2} &= 1 -x^2 + x^4 -x^6 + x^8 - x^{10} + \cdots \\
+    F_1 (x) &= \frac{1}{1 + x^2} - 1 = \frac{-x^2}{1+x^2} \\
+    f_1(x) &= F_1'(x) = \frac{-2x(1+x^2) - 2x(-x^2)}{(1+x^2)^2} = \frac{-2x}{(1+x^2)^2} \\
+    \hline
+    f_2(x) &= \soma{2} (-1)^n \ \frac{x^n}{n(n-1)} \\
+    &= \frac{x^2}{2*1}-\frac{x^3}{3*2}+\frac{x^4}{4*3}-\frac{x^5}{5*4}+\cdots \\
+    f_2'(x) &= x - \frac {x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots = \ln (1+x) \\
+    f_2(x) &= \int_0^x \ln (1+t) \ dt = (1+x) \ln (1+x) - (1+x)
+\end{align*}
+
 
 \newpage
 
 \section*{\E{2} (2,5)}
 
+a) \textbf{(1,0)} Usando a série binomial $$(1 + x)^\alpha = 1 + \soma{1} \frac{\alpha(\alpha - 1) \cdots(\alpha - n + 1)}{n!} \ x^n,\ \ |x| <1$$ desenvolva $\displaystyle{\frac{1}{\sqrt{1-x^2}}}$ em série de potências
+
+b) \textbf{(1,0)} Determine uma série de potências para $\arcsin x, \ |x| < 1$
+
+c) \textbf{(0,5)} Determine uma série numérica para $\frac{\pi}{6}$
+
+\Resolve 
+
+\subsection*{Item A} \begin{align*}
+    \frac{1}{\sqrt{1-x^2}} = (1-x^2)^{-\frac{1}{2}} &= 1 + \soma{1} \frac{\left(-\frac{1}{2}\right)\left(-\frac{1}{2} - 1\right)\left(-\frac{1}{2} - 2\right)\cdots\left(-\frac{1}{2} - n+1\right)}{n!}\ (-x^2)^n \\
+    &= 1 +\soma{1} \frac{(-1)^n}{2^n} \ \frac{1*3*5\cdots(2n-1)}{n!} \ (-1)^n \ x^{2n} \\
+    &= 1 +\soma{1} \frac{1*3*5\cdots(2n-1)}{2^n \ n!} \ x^{2n}
+\end{align*}
+
+\subsubsection*{Item B} \begin{align*}
+    \arcsin x = \int_0^x \frac{dt}{\sqrt{1-t^2}}\ dt &= \int_0^x 1 + \soma{1} \frac{1*3*5\cdots(2n-1)}{2^n \ n!} \ t^2 \ dt \\ 
+    \arcsin x &= x + \soma{1} \frac{1*3*5\cdots(2n-1)}{2^n \ n!} \ \frac{x^{2n+1}}{2n+1}
+\end{align*}
+
+\subsection*{Item C} \begin{align*}
+    \frac{\pi}{6} &= \arcsin \left(\frac{1}{2}\right) \\
+    &= \frac{1}{2} + \soma{1} \frac{1*3*5*\cdots(2n-1)}{2^n \ n!} \ \frac{\frac{1}{2^{2n+1}}}{2n+1} \\
+    \frac{\pi}{6} &= \frac{1}{2} + \soma{1} \frac{1*3*5\cdots(2n-1)}{2^{3n+1} \ n! (2n+1)}
+\end{align*}
+
 \newpage
 
-\section*{\E{3} (2,5)}
+\section*{\E{3} (2,5)}{Desenvolva as funções em séries de potências centradas em $a$ dado. Escreva as séries encontradas e os seus domínios}
+\begin{multicols}{2}
+    \begin{itemize}
+       \item [a] \textbf{(1,5)} $\DS{f(x) = \frac{1}{1+2x} \ \ (a = 1)}$
+       \item [b] \textbf{(1,0)} $\DS{f(x) = \int_0^x e^{-t^2} \ dt \ \ (a = 0)}$
+    \end{itemize}
+\end{multicols}
+
+\Resolve
+
+\begin{multicols}{2}
+    \subsection*{Item A} 
+    \begin{align*}
+        f(x) &= \frac{1}{1+2x} = \frac{1}{1+2(x-1) + 2} \\
+        &= \frac{1}{3 + 2(x-1)} = \frac{1}{3} \ \frac{1}{1+\frac{2(x-1)}{3}} \\
+        \frac{1}{1+\frac{2(x-1)}{3}} &= \soma{0}\ (-1)^n \frac{2^n}{3^n} \ (x-1)^n \\
+        f(x) &= \soma{0} \ (-1)^n \ \frac{2^n}{3^{n+1}} \ (x-1)^n \\
+         \LI\frac{|a_n|}{|a_{n+1}|} &= \LI \left( \frac{2^n}{3^{n+1}}*\frac{3^{n+2}}{2^{n+1}} \right) = \frac{3}{2} \\
+         R &= \frac{3}{2} \Rightarrow -\frac{3}{2} < x-1 < \frac{3}{2} \\
+         -\frac{3}{2}+1 < x &< \frac{3}{2}+1 \Longleftrightarrow -\frac{1}{2} < x < \frac{5}{2}
+    \end{align*}
+    Nos extremos temos \begin{align}
+        x - 1 &= -\frac{3}{2} \Rightarrow \soma{0} \ (-1)^n \ \frac{2^n}{3^{n+1}} \ (-1)^n \ \frac{3^n}{2^n} = \soma{0} \frac{1}{3} \label{parte1} \\
+        x-1 &= \frac{3}{2} \Rightarrow \soma{0} \ (-1)^n \ \frac{2^n}{3^{n+1}} \ \frac{3^n}{2^n} = \soma{0} \frac{(-1)^n}{3} \label{parte2}
+    \end{align}
+    As séries \ref{parte1} e \ref{parte2} são divergentes logo o intervalo será aberto dos dois lados. $D_f = ]-\frac{1}{2},\frac{5}{2}[$
+    \subsection*{Item B}
+    \begin{align*}
+        e^x &= \soma{0} \frac{x^n}{n!} \\
+        e^{-t^2} &= \soma{0} \frac{(-t^2)^n}{n!} = \soma{0} (-1)^n \frac{t^{2n}}{n!}\\
+        \int_0^x e^{-t^2} \ dt &= \soma{0} \int_0^x (-1)^n \frac{t^{2n}}{n!} \ dt = \soma{0} (-1)^n \ \frac{x^{2n+1}}{(2n+1)n!} \\
+        D_f = \mathds{R}
+    \end{align*}
+\end{multicols}
 
 \newpage
 
 \section*{\E{4} (2,5)}
+
+ \hspace{5mm}a) \textbf{(1,0)} Determine uma função $f:[-\pi,\pi] \rightarrow \mathds{R}$ satisfazendo que $f(\pi) = 0 = f(-\pi)$ e cuja série de Fourier convirja uniformemente  em $[-1,1]$ para a função $g(x) =x$. Exmplique porque a convergência acontece (a função $f$ pode ser tomada como ímpar)
+
+b) \textbf{(1,5)}  Determine a série de Fourier da função do item anterior
+
+\Resolve 
+
+\subsection*{Item A}
+\hspace{5mm}Levando em conta que a série abaixo segue as condições do postulado da página \pageref{enunciado}, então em um dado intervalo (no caso, $[-1,1]$), como a função converge a $g(x) = x$, então a série de Fourier da função $f$ converge a $g$ em todo o intervalo $[-\pi, \pi]$
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{e41}
+\caption{Gráfico Resultate da função encontrada}
+\label{fig:res4-p2}
+\end{figure}
+\begin{center}
+    $\hbox{f}(t)
+    = \left\{ \begin{array}{rlll}
+    (r1) & \frac{x+\pi}{1-\pi} & \hbox{se} &  -\pi \leq x < 1 \\
+    & x & \hbox{se} &  -1 \leq x \leq 1 \\
+    (r2) & \frac{x-\pi}{1-\pi} & \hbox{se} & 1 < x \leq \pi \\
+    \end{array}\right.$
+\end{center}
+
+\subsection*{Item B}
+
+\begin{align*}
+    a_n &= 0 \ \ \ n \geq 0 \\
+    b_n = \frac{2}{\pi}\int_0^\pi f(x) \ \sin (nx) \ dx &= \frac{2}{\pi}\left[\underbrace{\int_0^1 x \sin (nx) \ dx}_A + \underbrace{\int_1^\pi \frac{x-\pi}{1-\pi} \ \sin (nx) \ dx}_B\right] \\
+    A = \int_0^1 x \sin (nx) \ dx &= \left.-\frac{x \cos (nx)}{n}\right|_0^1 + \frac{1}{n}\int_0^1 \cos (nx) \\
+    &= -\frac{\cos (nx)}{n} + \left.\frac{1}{n^2} \ \sin (nx)\right|_0^1  =\frac{\sin n}{n^2} - \frac{\cos n}{n}\\
+    B = \int_1^\pi \frac{x-\pi}{1-\pi} \sin (nx) \ dx &= \frac{1}{1-\pi}\left[ \int_1^\pi \ x \sin (nx) \ dx - \pi \left( \int_0^\pi \sin (nx) \ dx \right) \right] \\
+    &= \frac{1}{1-\pi}\left[ -\left.\frac{x \cos (nx)}{n} \right|_1^\pi + \left.\frac{\sin (nx)}{n^2}\right|_1^\pi - \pi \left.\left(-\frac{\cos (nx)}{n}\right)\right|_1^\pi\right] \\
+    &= \frac{1}{1-\pi} \left[-\frac{\pi (-1)^n}{n} + \frac{\cos n}{n}-\frac{\sin n}{n^2}+\frac{\pi (-1)^n}{n} + \frac{\pi \cos n}{n}\right] \\
+    &= \frac{1}{1-\pi} \left[\frac{(1+\pi) \cos n}{n} - \frac{\sin n}{n^2} \right] \\
+    b_n &= \frac{2}{\pi} \left[\frac{\sin n}{n^2} - \frac{\cos n}{n} + \frac{1}{1-\pi} \left(\frac{(1+\pi) \cos n}{n} - \frac{\sin n}{n^2} \right)\right] \\
+    &= \frac{2}{\pi} \left[\frac{\cos n}{n} \frac{2\pi}{1-\pi} - \frac{-\pi}{1-\pi} \frac{\sin n}{n^2}\right] = \frac{4}{(1-\pi)} \frac{\cos n}{n} - \frac{2}{(1-\pi)}\frac{\sin n}{n^2}\\
+\end{align*}
+
 
 \chapter{Correção P3}
 \label{C:P3}
 
-\section*{\E{1} (2,5)}
+\section*{\E{1} (2,5) Resolva as equações abaixo:}
+
+\hspace{5mm} a) \textbf{(1,0)} $(\sin x \ln y)\ dy + (y \cot x)\ dx = 0\ \ \ (y > 0 \ \land \ x \neq k\pi \ \ k \in \mathds{Z})$
+
+b) \textbf{(1,5)} $(3xy + 2y)\ dx + (x^2 + 2x)\ dy = 0$
+
+\Resolve
+
+\textbf{Item A} Considerando as condições enunciadas, podemos dividir a equação por $y*\sin x$ e assim obtemos $$ \frac{\ln y}{y}dy + \frac{\cos x}{\sin ^2 x}dx = 0 $$ que é uma equação de variáveis separáveis. Logo $$ \int \frac{\ln y}{y}dy + \int \frac{\cos x}{\sin^2}dx = 0 \Rightarrow \frac{(\ln y)^2}{2} - \frac{1}{\sin x} = 0$$
+
+Solução Geral \begin{align*}
+    \varphi (x,y) &= c \\
+    \varphi (x,y) &= \frac{(\ln y)^2}{2} - \frac{1}{\sin x}
+\end{align*}
+
+\textbf{Item B} \begin{align*}
+    P(x,y) &= 3xy + 2y \\
+    Q(x,y) &= x^2 + 2x \\
+    \difff{P}{y} - \difff{Q}{x} &= 3x +2 - (2x + 2) = x \neq 0 \\
+    g(x) = \frac{1}{Q(x,y)}\left(\difff{P}{y} - \difff{Q}{x}\right) &= \frac{x}{x^2 +2x} = \frac{1}{x+2}
+\end{align*}
+
+É recomendável, nessa situação, que se aplique o método dos fatores integrantes, multiplicando a equação por um polinômio $\mu(x)$ de forma a obter uma equação exata: \begin{align*}
+    \mu(x) &= e^{\int \frac{dx}{x+2}} = e^{\ln (x+2)} = x + 2 \\
+    (x+2) (3xy + 2y)dx &+ (x+2) (x^2+2x)dy = 0 \\
+    (3x^2y + 8xy + 4y)dx &+ (x^3 + 4x^2 + 4x)dy = 0 \\
+    \difff{\varphi}{x} &= 3x^2y + 8xy + 4y \\
+    \difff{\varphi}{y} &= x^3 + 4x^2 + 4x \\
+    \varphi (x,y) &= \int \difff{\varphi}{x}dx = \int (3x^2y + 8xy + 4y) dx = x^3y + 4x^2y + 4xy + k(y) \\
+    \difff{\varphi (x,y)}{y} &= \difff{\varphi}{y} \Rightarrow x^3 + 4x^2 + 4x + k'(y) = x^3 + 4x^2 + 4x \Rightarrow k'(y) = 0 = k(y) \\
+    \varphi (x,y) &= x^3y + 4x^2y + 4xy + k\\
+    \varphi (x,y) &= C \ \ \ (sol. \ \ geral)
+\end{align*}
 
 \newpage
 
 \section*{\E{2} (2,5)}
 
+\hspace{5mm} a) \textbf{(1,0)} Encontre a solução geral de $$y'' + y = 0$$
+
+b) \textbf{(1,5)} Encontre a solução geral de $$y'' + y = \sin x \  e^x$$
+
+\Resolve
+
+\textbf{Item A:} A expressão tem como equação característica $x^2 + 1 = 0$ que tem como raízes $0 \pm i$. Assim, a solução geral dessa equação homogênia é $$y = c_1 \sin x + c_2 \cos x$$
+
+\textbf{Item B:} A partir da resolução do exercício anterior, temos que $y_h(x) = c_1 \sin x + c_2 \cos x$. Para resolver a equação desse item, deveremos considerar o modelo de solução particular proposto pelo professor na hora da prova ($y_p(x) = (A\sin x +  B\cos x)e^x$) e encontrar os coeficientes tais que $y''_p + y_p = \sin x \ e^x$ \begin{align*}
+    y_p(x) &= (A\sin x + B\cos x)\ e^x \\
+    y'_p(x) &= (A\sin x + B\cos x)\ e^x + (A\cos x - B\sin x)\ e^x \\
+    &= ((A-B) \sin x + (A+B) \cos x)\ e^x \\
+    y''_p(x) &= ((A-B) \sin x + (A+B) \cos x)e^x + ((A-B) \cos x +
+    (-A-B) \sin x)\ e^x \\
+    &= ((-2B) \sin x + (2A) \cos x)\ e^x \\
+    y''_p + y_p &= ((-2B) \sin x + (2A) \cos x)\ e^x + (A\sin x + B\cos x)\ e^x \\
+    &= ((A-2B) \sin x + (2A + B) \cos x)\ e^x = \sin x\ e^x \\
+    \begin{cases}
+        A - 2B = 1 \\
+        2A + B = 0
+    \end{cases} &\Longleftrightarrow
+    \begin{cases}
+        5A = 1 \\
+        A - 2B = 1
+    \end{cases} \Longleftrightarrow
+    A = \frac{1}{5} \ \land \ B = \frac{-2}{5} \\
+    y_p &= \frac{\sin x}{5} + \frac{-2 \cos x}{5} \\
+    y &= y_h + y_p = \left(c_1 + \frac{1}{5}\right)\ \sin x + \left( c_2 - \frac{2}{5}\right)\ \cos x 
+\end{align*}
+
 \newpage
 
 \section*{\E{3} (2,5)}
 
+\hspace{5mm} a) \textbf{(1,0)} Encontre a solução geral de $$y''' - 3y'' + 3y' -y = 0$$
+
+b) \textbf{(1,5)} Encontre a solução geral de $$y''' - 3y'' + 3y' -y = 2x + e^x$$
+
+\Resolve
+
+\textbf{\IT{A}}Temos a equação característica $x^3 - 3x^2 + 3x - 1 = 0 \Longleftrightarrow (x-1)^3 = 0$ da qual $\lambda = 1$ é raís tripla, logo $$y_h(x) = c_1 e^x + c_2 xe^x + c_3x^2e^x$$
+
+\textbf{\IT{B}} Procuramos uma solução particular do formato $$y_p(x) = Ax + B + Cx^3e^x$$ e através do calculo das derivadas desse modelo de solução, descobriremos os valores dos coeficientes. \begin{align*}
+    y'_p(x) &= A + Ce^x(x^3 + 3x^2) \\
+    y''_p(x) &= Ce^x(x^3 + 6x^2 + 6x) \\
+    y'''_p(x) &= Ce^x(x^3 + 9x^2 + 18x + 6) \\
+    y'''_p(x) &- 3y''_p(x) + 3 y'_p(x) - y_p(x) = 2x + e^x \\
+    -Ax + (3A-B) + 6Ce^x &= 2x + e^x \Rightarrow A = -2 \ \land B = -6 \ \land C = \frac{1}{6} \\
+    y_p(x) &= -2x -6 + \frac{1}{6}x^3e^x \\
+    y &= \underbrace{c_1 e^x + c_2 xe^x + c_3x^2e^x}_{y_h(x)} \underbrace{-2x -6 + \frac{1}{6}x^3e^x}_{y_p(x)}
+\end{align*}
+
 \newpage
 
-\section*{\E{4} (2,5)}
+\section*{\E{4} (2,5)}{Enunciado a ser inserido depois, pois não lembro dele em detalhes}
+
+\Resolve
+
+\textbf{\IT{A}} Claramente $y_1 = 1$ é uma solução (poderia ser qualquer outra função constante) de $y'' - \underbrace{\frac{1}{x}}_{p(x)}y' = 0$. Para encontrar a outra solução:$$\left|\begin{array}{cc}
+1 & y \\
+0 & y'
+\end{array}\right| = e^{\int \frac{dx}{x}} \Longleftrightarrow y' = e^{\ln x} = x \Longleftrightarrow y_2 = \frac{x^2}{2}$$
+
+Solução geral: $y_h(x) = c_1 + c_2\frac{x^2}{2}$
+
+\textbf{\IT{B}} $$y'' -\frac{1}{x}y' = 3x^2$$ a solução particular está na forma $$y_p(x) = \underbrace{1}_{y_1}*v_1 + \underbrace{\frac{x^2}{2}}_{y_2}*v_2$$ onde: \begin{align*}
+    v_1 &= - \int \frac{y_2 * \overbrace{r(x)}^{3x^2}}{W(x)} dx \\
+    v_2 &= \int \frac{y_1*r(x)}{W(x)}dx \\
+    W(x) &= \left| \begin{array}{cc}
+    1 & \frac{x^2}{2} \\
+    0 & x
+    \end{array}\right| = x \\
+    v_1 &= -\int \frac{\frac{x^2}{2}*3x^2}{x}dx = -\frac{3}{2} \int x^3 \ dx= -\frac{3x^4}{8} \\
+    v_2 &= \int \frac{3x^2}{x}dx = \int 3x\ dx = \frac{3x^2}{2} \\
+    y_p(x) &= -\frac{3x^4}{8} + \frac{3x^4}{4} = \frac{3x^4}{8} \\
+    y &= c_1 + c_2\frac{x^2}{2} + \frac{3x^4}{8}
+\end{align*}
+
 
 \chapter{Correção P SUB}
 \label{C:SUB}
@@ -1633,6 +2060,7 @@ diverge & \hbox{se} &  x \geq 2 \\
 
 \section*{\E{2} (2,5)}
 
+\newpage
 
 \section*{\E{3} (2,5)}
 
@@ -1641,6 +2069,7 @@ diverge & \hbox{se} &  x \geq 2 \\
 \section*{\E{4} (2,5)}
 
 \part{Referências}
+\label{ref-3}
 
 Antes de mais nada, eu gostaria de dizer que peguei as informações sobre as derivadas e as integrais aqui presentes no livro \cite[p.p. 199-201]{referencia}. 
 
@@ -1652,7 +2081,7 @@ Antes de mais nada, eu gostaria de dizer que peguei as informações sobre as de
 \centering
 \begin{tabular}{|c|c|c|}
 \hline
-$f(x) / g(x)$ & par & ímpar \\ \hline 
+$f(x) \circ g(x)$ & par & ímpar \\ \hline 
  par &  par & ímpar \\
  ímpar & ímpar & par \\ \hline
 \end{tabular}
@@ -1688,10 +2117,10 @@ par & ímpar \\ \hline
 \item $\displaystyle{\frac{d}{dx} (\tan x) = \sec^2 x}$
 \item $\displaystyle{\frac{d}{dx} (\csc x) = -\csc x \cot x}$
 \item $\displaystyle{\frac{d}{dx} (\sec x) = \sec x \tan x}$
-\item $\displaystyle{\frac{d}{dx} (\cot x} = -\csc^2 x$
+\item $\displaystyle{\frac{d}{dx} (\cot x) = -\csc^2 x}$
 \item $\displaystyle{\frac{d}{dx} (\arcsin x) = \frac{1}{\sqrt{1-x^2}}}$
 \item $\displaystyle{\frac{d}{dx} (\arccos x) = -\frac{1}{\sqrt{1-x^2}}}$
-\item $\displaystyle{\frac{d}{dx} (\arctan x} = \frac{1}{1+x^2}$
+\item $\displaystyle{\frac{d}{dx} (\arctan x) = \frac{1}{1+x^2}}$
 \end{enumerate}
 \end{multicols}
 
